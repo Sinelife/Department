@@ -1,27 +1,21 @@
 package MainMenu;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import dao.CathedraDao;
-import dao.ScientificThemeDao;
 import domain.Cathedra;
-import domain.ScientificTheme;
+import main.Methods;
 
 import javax.swing.JComboBox;
 
@@ -32,46 +26,17 @@ public class AddTheme extends JFrame {
 	private JTextField CustomerField;
 	private JTextField StartField;
 	private JTextField EndField;
-
-	//private Statement s; 
-	//private PreparedStatement ps;
-	//private ResultSet rs;
-	//private String sql;
 	
-	
+	public static String cathedra_name;
+	public static int cathedra_id;
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
 	public AddTheme(JFrame parent) throws SQLException 
 	{ 	  	
-		ScientificThemeDao std = new ScientificThemeDao();
-		ScientificTheme st = new ScientificTheme();
 		CathedraDao cd = new CathedraDao();
-		/*
- 	  	String sql_cathedra = "select cathedra_id,name from cathedra";
- 	  	PreparedStatement statement_cathedra = MainMenu.conn.prepareStatement(sql_cathedra);
- 	  	ResultSet rs_cathedra = statement_cathedra.executeQuery(sql_cathedra);
- 	  	String cathedras[] = new String[100];
- 	  	int ids[] = new int[100];
- 	  	int i = 0;
- 	  	while(rs_cathedra.next())
- 	  	{
- 	  		ids[i] = rs_cathedra.getInt("cathedra_id");
- 	  		cathedras[i] = rs_cathedra.getString("name");
- 	  		i++;
- 	  	}*/
- 	  	
 		List<Cathedra> cathedras = cd.getAll();
-		String[] _names = new String[100];
-		int[] _ids = new int[100];
-		int i = 0;
-		for(Cathedra cathedra : cathedras)
-		{
-			_names[i] = cathedra.getName();
-			_ids[i] = cathedra.getId();
-			i++;
-		}
  	  	
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,49 +91,21 @@ public class AddTheme extends JFrame {
 		EndField.setBounds(202, 288, 350, 22);
 		contentPane.add(EndField);
 		
-		JComboBox comboBox = new JComboBox(_names);
-		comboBox.setBounds(202, 354, 350, 22);
-		contentPane.add(comboBox);
-		
-
+		JComboBox<String> CathedraComboBox = new JComboBox<String>();
+		CathedraComboBox.setBounds(202, 354, 350, 22);
+		contentPane.add(CathedraComboBox);
+		for(Cathedra cathedra : cathedras)
+		{
+			CathedraComboBox.addItem(cathedra.getName());
+		}
 
 		
 		JButton btnL = new JButton("Додати");
 		btnL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				int selected_cathedra_id;
-				String selected_cathedra_name = String.valueOf(comboBox.getSelectedItem());
-				int k = 0;
-				while(true)
-				{
-					selected_cathedra_id = _ids[k];
-					if((_names[k]).equals(selected_cathedra_name))
-					{
-						break;
-					}
-					k++;
-				}
-				
-				st.setTitle(TitleField.getText());
-				st.setCustomer(CustomerField.getText());
-				st.setStart(Date.valueOf(StartField.getText()));
-	 	  		if(EndField.getText().equals("null"))
-	 	  		{
-	 	  			st.setEnd(null);
-	 	  		}
-	 	  		else
-	 	  		{
-	 	  			st.setEnd(Date.valueOf(EndField.getText()));
-	 	  		}
-				st.setCathedraId(selected_cathedra_id);
-			
-	 	  		try {
-					std.addTheme(st);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				cathedra_id = Methods.getCathedraIdByCathedraName(cathedra_name, cathedra_id, CathedraComboBox, cathedras);
+				Methods.addTheme(cathedra_id, TitleField, CustomerField, StartField, EndField);
 				if (parent != null)
 					parent.setVisible(true);
 				AddTheme.this.setVisible(false);

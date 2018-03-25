@@ -1,27 +1,19 @@
 package MainMenu;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import dao.ScientificThemeDao;
 import domain.ScientificTheme;
+import main.Methods;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class EditThemeFrame extends JFrame {
@@ -31,9 +23,6 @@ public class EditThemeFrame extends JFrame {
 	private JTextField CustomerField;
 	private JTextField StartField;
 	private JTextField EndField;
-	private JTextField CathedraIdField;
-
-
 	
 	
 	
@@ -46,7 +35,6 @@ public class EditThemeFrame extends JFrame {
  	  	ScientificThemeDao std = new ScientificThemeDao();
  	  	ScientificTheme st = std.readTheme(EditTheme.id_to_edit);
  	  	
-		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 534);
@@ -107,30 +95,12 @@ public class EditThemeFrame extends JFrame {
 		
 		
 		
-		
-		
 		JButton button = new JButton("ַבונודעט");
 		button.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				st.setTitle(TitleField.getText());
-				st.setCustomer(CustomerField.getText());
-				st.setStart(Date.valueOf(StartField.getText()));
-	 	  		if(EndField.getText().equals("null"))
-	 	  		{
-	 	  			st.setEnd(null);
-	 	  		}
-	 	  		else
-	 	  		{
-	 	  			st.setEnd(Date.valueOf(EndField.getText()));
-	 	  		}
-				try {
-					std.updateTheme(st);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				Methods.updateTheme(TitleField, CustomerField, StartField, EndField);
 				EditThemeFrame.this.setVisible(false);
 				EditThemeFrame.this.dispose();
 				new MainMenu().setVisible(true);

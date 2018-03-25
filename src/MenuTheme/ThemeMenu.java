@@ -1,25 +1,22 @@
 package MenuTheme;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 import MainMenu.ChooseTheme;
-import MainMenu.EditThemeFrame;
 import MainMenu.MainMenu;
 import MenuSupervision.MenuSupervision;
 import MenuWorking.MenuWorking;
+import dao.ScientificThemeDao;
+import domain.ScientificTheme;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
@@ -31,8 +28,14 @@ public class ThemeMenu extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public ThemeMenu(JFrame parent) {
+	public ThemeMenu(JFrame parent) throws SQLException 
+	{
+		ScientificThemeDao std = new ScientificThemeDao();
+		ScientificTheme st = std.readTheme(ChooseTheme.id_to_work);
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 628, 536);
 		contentPane = new JPanel();
@@ -46,7 +49,7 @@ public class ThemeMenu extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		String l = "''";
-		String res = l.concat(ChooseTheme.title_to_work).concat(l);
+		String res = l.concat(st.getTitle()).concat(l);
 		JLabel label = new JLabel(res);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 23));

@@ -1,7 +1,5 @@
 package MainMenu;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -15,15 +13,11 @@ import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import javax.swing.SwingConstants;
-import java.awt.Color;
-import javax.swing.JOptionPane; 
+import java.awt.Color; 
 
 public class MainMenu extends JFrame {
 
@@ -51,22 +45,7 @@ public class MainMenu extends JFrame {
 	
 	
 	public static Connection conn;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainMenu frame = new MainMenu();
-					frame.setVisible(true);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
@@ -75,7 +54,7 @@ public class MainMenu extends JFrame {
 	{
 		try {
 		    //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/department", "ya", "euncZ23-");
-				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/test1?useSSL=false", "root", "euncZ23-");
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/department_db?useSSL=false", "root", "euncZ23-");
 		    if (conn != null) {
 		    	//JOptionPane.showMessageDialog (null, "Succesful conection to database!" ); 
 		    }
@@ -105,7 +84,6 @@ public class MainMenu extends JFrame {
 				try {
 					new ChooseTheme(MainMenu.this).setVisible(true);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				};
 			}
@@ -122,7 +100,6 @@ public class MainMenu extends JFrame {
 				try {
 					new AddTheme(MainMenu.this).setVisible(true);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				};
 			}
@@ -140,7 +117,6 @@ public class MainMenu extends JFrame {
 				try {
 					new DeleteTheme(MainMenu.this).setVisible(true);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				};
 			}
@@ -157,7 +133,6 @@ public class MainMenu extends JFrame {
 				try {
 					new EditTheme(MainMenu.this).setVisible(true);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				};
 			}
