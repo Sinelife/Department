@@ -10,18 +10,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import MainMenu.ChooseTheme;
-import MainMenu.MainMenu;
 import dao.ScientificThemeDao;
 import dao.SupervisionDao;
 import dao.TeacherDao;
 import domain.ScientificTheme;
 import domain.Supervision;
 import domain.Teacher;
+import main.Methods;
 
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
@@ -30,7 +28,8 @@ public class ChangeSupervisor extends JFrame {
 	private JPanel contentPane;
 	public static String surname_to_look;
 	public static int id_to_look;
-
+	public static String surname_to_select;
+	public static int id_to_select;
 
 
 	/**
@@ -48,15 +47,6 @@ public class ChangeSupervisor extends JFrame {
 		
 		TeacherDao td = new TeacherDao();
 		List<Teacher> teachers = td.getAllFromCathedraExceptSupervisor(ChooseTheme.id_to_work, st.getCathedraId());
-		String[] teacher_names = new String[100];
-		int[] teacher_ids = new int[100];
-		int i = 0;
-		for(Teacher teacher : teachers)
-		{
-			teacher_names[i] = td.getSurname(teacher.getId());
-			teacher_ids[i] = teacher.getId();
-			i++;
-		}
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,10 +56,15 @@ public class ChangeSupervisor extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox(teacher_names);
+		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		comboBox.setBounds(40, 121, 411, 34);
 		contentPane.add(comboBox);
+		for(Teacher teacher : teachers)
+		{
+			comboBox.addItem(td.getSurname(teacher.getId()));
+		}
+		
 		
 		JLabel lblNewLabel = new JLabel("Вибір нового керівника");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
@@ -82,22 +77,14 @@ public class ChangeSupervisor extends JFrame {
 		SaveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				String selected_teacher = (String) comboBox.getSelectedItem();
-				int selected_id = 0;
-				int i = 0;
-				while(true)
-				{
-					if(selected_teacher.equals(teacher_names[i]))
-					{
-						selected_id = teacher_ids[i];
-						break;
-					}
-					i++;
+				try {
+					id_to_select = Methods.getTeacherIdBySurname(surname_to_select, id_to_select, comboBox, teachers);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
 				}
 				try {
-					sd.changeSupervisor(selected_id,s);
+					sd.changeSupervisor(id_to_select,s);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				if (parent != null)
@@ -118,23 +105,15 @@ public class ChangeSupervisor extends JFrame {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				MenuSupervision.teacher_change_or_add = 2;
-				surname_to_look = String.valueOf(comboBox.getSelectedItem());
-				int k = 0;
-				while(true)
-				{
-					
-					id_to_look = teacher_ids[k];
-					if((teacher_names[k]).equals(surname_to_look))
-					{
-						break;
-					}
-					k++;
+				try {
+					id_to_look = Methods.getTeacherIdBySurname(surname_to_look, id_to_look, comboBox, teachers);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
 				}
 				ChangeSupervisor.this.setVisible(false);
 				try {
 					new TeacherInformation(ChangeSupervisor.this).setVisible(true);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

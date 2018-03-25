@@ -56,20 +56,6 @@ public class ThemeMenu extends JFrame {
 		label.setBounds(12, 68, 574, 42);
 		contentPane.add(label);
 		
-		JButton btnBack = new JButton("BACK");
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				if (parent != null)
-					parent.setVisible(true);
-				ThemeMenu.this.setVisible(false);
-				ThemeMenu.this.dispose();
-				ChooseTheme.title_to_work = null;
-				ChooseTheme.id_to_work = 0;
-			}
-		});
-		btnBack.setBounds(489, 427, 97, 25);
-		contentPane.add(btnBack);
 		
 		JButton button1 = new JButton("1)Інформація про тему");
 		button1.setHorizontalAlignment(SwingConstants.LEFT);
@@ -82,7 +68,6 @@ public class ThemeMenu extends JFrame {
 				try {
 					new ScientificThemeInformation(ThemeMenu.this).setVisible(true);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -95,7 +80,11 @@ public class ThemeMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				ThemeMenu.this.setVisible(false);
-				new MenuSupervision(ThemeMenu.this).setVisible(true);
+				try {
+					new MenuSupervision(ThemeMenu.this).setVisible(true);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		button2.setHorizontalAlignment(SwingConstants.LEFT);
@@ -114,6 +103,22 @@ public class ThemeMenu extends JFrame {
 		button3.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		button3.setBounds(40, 312, 240, 36);
 		contentPane.add(button3);
+	
 		
+		
+		JButton btnBack = new JButton("BACK");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if (parent != null)
+					parent.setVisible(true);
+				ThemeMenu.this.setVisible(false);
+				ThemeMenu.this.dispose();
+				ChooseTheme.title_to_work = null;
+				ChooseTheme.id_to_work = 0;
+			}
+		});
+		btnBack.setBounds(489, 427, 97, 25);
+		contentPane.add(btnBack);
 	}
 }

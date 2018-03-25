@@ -16,6 +16,7 @@ import dao.SupervisionDao;
 import dao.TeacherDao;
 import domain.Supervision;
 import domain.Teacher;
+import main.Methods;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -48,7 +49,6 @@ public class EditSupervisorInformationFrame extends JFrame {
 		Supervision s = sd.readSupervisor(ChooseTheme.id_to_work);
 		
 		
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 534);
 		contentPane = new JPanel();
@@ -93,20 +93,10 @@ public class EditSupervisorInformationFrame extends JFrame {
 		SaveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				s.setStart(Date.valueOf(StartInThemeField.getText()));
-				if(EndInThemeField.getText().equals(""))
-				{
-					s.setEnd(null);
-				}
-				else
-				{
-					s.setEnd(Date.valueOf(EndInThemeField.getText()));
-				}
 				try {
-					sd.updateSupervisor(s);
-				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
+					Methods.updateSupervision(ChooseTheme.id_to_work, StartInThemeField, EndInThemeField);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
 				}
 				
 				if (parent != null)

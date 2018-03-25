@@ -48,7 +48,7 @@ public class TeacherInformation extends JFrame
 		{
 			t = td.read(ChangeSupervisor.id_to_look);
 		}
-		if(MenuSupervision.teacher_change_or_add == 3)
+		else
 		{
 			t = td.read(AddSupervisor.id_to_look);
 		}

@@ -1,33 +1,24 @@
 package MenuSupervision;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import MainMenu.ChooseTheme;
-import MainMenu.MainMenu;
 import dao.ScientificThemeDao;
-import dao.SupervisionDao;
 import dao.TeacherDao;
 import domain.ScientificTheme;
-import domain.Supervision;
 import domain.Teacher;
+import main.Methods;
 
 import javax.swing.JTextField;
 
@@ -36,6 +27,10 @@ public class AddSupervisor extends JFrame {
 	private JPanel contentPane;
 	public static String surname_to_look;
 	public static int id_to_look;
+	
+	public static int id_to_select;
+	public static String surname_to_select;
+	
 	private JTextField StartSupervisionField;
 	private JTextField EndSupervisionField;
 	
@@ -51,17 +46,6 @@ public class AddSupervisor extends JFrame {
 		
 		TeacherDao td = new TeacherDao();
 		List<Teacher> teachers = td.getAllFromCathedra(st.getCathedraId());
-		String[] teacher_names = new String[100];
-		int[] teacher_ids = new int[100];
-		int i = 0;
-		for(Teacher teacher : teachers)
-		{
-			teacher_names[i] = td.getSurname(teacher.getId());
-			teacher_ids[i] = teacher.getId();
-			i++;
-		}
- 	  	
-		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 628, 536);
@@ -70,15 +54,22 @@ public class AddSupervisor extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox(teacher_names);
-		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		comboBox.setBounds(40, 121, 415, 34);
-		contentPane.add(comboBox);
-		
 		JLabel lblNewLabel = new JLabel("Додавання керівника(якщо його немає)");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
 		lblNewLabel.setBounds(40, 44, 543, 42); 
 		contentPane.add(lblNewLabel);
+	
+		
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 23));
+		comboBox.setBounds(40, 121, 415, 34);
+		contentPane.add(comboBox);
+		for(Teacher teacher : teachers)
+		{
+			comboBox.addItem(td.getSurname(teacher.getId()));
+		}
+		
+
 		
 		JLabel lblStartSupervisition = new JLabel("початок керування темою");
 		lblStartSupervisition.setBounds(17, 230, 179, 22);
@@ -106,38 +97,12 @@ public class AddSupervisor extends JFrame {
 		AddButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				int selected_teacher_id;
-				String selected_teacher_name = String.valueOf(comboBox.getSelectedItem());
-				int k = 0;
-				while(true)
-				{
-					selected_teacher_id = teacher_ids[k];
-					if((teacher_names[k]).equals(selected_teacher_name))
-					{
-						break;
-					}
-					k++;
-				}
-				
-				SupervisionDao sd = new SupervisionDao();
-				Supervision s = new Supervision();
-				s.setScientificThemeId(ChooseTheme.id_to_work);
-				s.setScientistId(selected_teacher_id);
-				s.setStart(Date.valueOf(StartSupervisionField.getText()));
-				if(EndSupervisionField.getText().equals(""))
-				{
-					s.setEnd(null);
-				}
-				else
-				{
-					s.setEnd(Date.valueOf(EndSupervisionField.getText()));
-				}
 				try {
-					sd.addSupervisor(s);
+					id_to_select = Methods.getTeacherIdBySurname(surname_to_select, id_to_select, comboBox, teachers);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				Methods.addSupervisor(ChooseTheme.id_to_work, id_to_select, StartSupervisionField, EndSupervisionField);
 				if (parent != null)
 					parent.setVisible(true);
 				AddSupervisor.this.setVisible(false);
@@ -156,23 +121,15 @@ public class AddSupervisor extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				MenuSupervision.teacher_change_or_add = 3;
-				surname_to_look = String.valueOf(comboBox.getSelectedItem());
-				int k = 0;
-				while(true)
-				{
-					
-					id_to_look = teacher_ids[k];
-					if((teacher_names[k]).equals(surname_to_look))
-					{
-						break;
-					}
-					k++;
+				try {
+					id_to_look = Methods.getTeacherIdBySurname(surname_to_look, id_to_look, comboBox, teachers);
+				} catch (SQLException e2) {
+					e2.printStackTrace();
 				}
 				AddSupervisor.this.setVisible(false);
 				try {
 					new TeacherInformation(AddSupervisor.this).setVisible(true);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

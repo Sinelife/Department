@@ -1,7 +1,5 @@
 package MenuSupervision;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -9,20 +7,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 import MainMenu.ChooseTheme;
-import MainMenu.MainMenu;
-import MenuTheme.ScientificThemeInformation;
-import MenuWorking.EditWorkerInformation;
-import MenuWorking.MenuWorking;
+import dao.ScientificThemeDao;
 import dao.SupervisionDao;
+import domain.ScientificTheme;
 import domain.Supervision;
 
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import java.awt.Color;
@@ -35,9 +29,13 @@ public class MenuSupervision extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public MenuSupervision(JFrame parent) 
+	public MenuSupervision(JFrame parent) throws SQLException 
 	{
+		ScientificThemeDao std = new ScientificThemeDao();
+		ScientificTheme st = std.readTheme(ChooseTheme.id_to_work);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 628, 536);
 		contentPane = new JPanel();
@@ -51,7 +49,7 @@ public class MenuSupervision extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		String l = "''";
-		String res = l.concat(ChooseTheme.title_to_work).concat(l);
+		String res = l.concat(st.getTitle()).concat(l);
 		JLabel label = new JLabel(res);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 23));
@@ -68,7 +66,6 @@ public class MenuSupervision extends JFrame {
 				try {
 					s = sd.readSupervisor(ChooseTheme.id_to_work);
 				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
 				if(s == null)
@@ -81,7 +78,6 @@ public class MenuSupervision extends JFrame {
 					try {
 						new SupervisorInformation(MenuSupervision.this).setVisible(true);
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -101,7 +97,6 @@ public class MenuSupervision extends JFrame {
 				try {
 					s = sd.readSupervisor(ChooseTheme.id_to_work);
 				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
 				if(s == null)
@@ -115,7 +110,6 @@ public class MenuSupervision extends JFrame {
 					try {
 						new ChangeSupervisor(MenuSupervision.this).setVisible(true);
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -138,7 +132,6 @@ public class MenuSupervision extends JFrame {
 				try {
 					s = sd.readSupervisor(ChooseTheme.id_to_work);
 				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
 				if(s != null)
@@ -151,7 +144,6 @@ public class MenuSupervision extends JFrame {
 					try {
 						new AddSupervisor(MenuSupervision.this).setVisible(true);
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
@@ -174,7 +166,6 @@ public class MenuSupervision extends JFrame {
 				try {
 					s = sd.readSupervisor(ChooseTheme.id_to_work);
 				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
 					e2.printStackTrace();
 				}
 				if(s == null)
@@ -188,7 +179,6 @@ public class MenuSupervision extends JFrame {
 					try {
 						new EditSupervisorInformationFrame(MenuSupervision.this).setVisible(true);
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}
