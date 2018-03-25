@@ -10,16 +10,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.ChooseTheme;
 import MainMenu.MainMenu;
 import dao.AspirantDao;
 import domain.Aspirant;
 
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
 public class NotWorkerAspirantInformation extends JFrame {

@@ -18,9 +18,7 @@ import domain.Magister;
 import domain.Working;
 
 import java.awt.event.ActionListener;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
 public class WorkerMagisterInformation extends JFrame {
@@ -44,9 +42,9 @@ public class WorkerMagisterInformation extends JFrame {
 	public WorkerMagisterInformation(JFrame parent) throws SQLException
 	{
 		MagisterDao md = new MagisterDao();
-		Magister m = md.read(WorkersList.m_id_to_look);
+		Magister m = md.read(WorkersList.worker_id_to_look);
 		WorkingDao wd = new WorkingDao();
-		Working w = wd.readWorker(ChooseTheme.id_to_work, WorkersList.m_id_to_look);
+		Working w = wd.readWorker(ChooseTheme.id_to_work, WorkersList.worker_id_to_look);
 
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

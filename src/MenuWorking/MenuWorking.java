@@ -1,20 +1,16 @@
 package MenuWorking;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 
 import MainMenu.ChooseTheme;
-import MainMenu.MainMenu;
-import MenuSupervision.MenuSupervision;
-import MenuTheme.ThemeMenu;
+import dao.ScientificThemeDao;
+import domain.ScientificTheme;
 
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -28,9 +24,14 @@ public class MenuWorking extends JFrame {
 
 	/** 
 	 * Create the frame .
+	 * @throws SQLException 
 	 */
-	public MenuWorking(JFrame parent) 
+	public MenuWorking(JFrame parent) throws SQLException 
 	{
+		ScientificThemeDao std = new ScientificThemeDao();
+		ScientificTheme st = std.readTheme(ChooseTheme.id_to_work);
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 644, 626);
 		contentPane = new JPanel();
@@ -44,24 +45,13 @@ public class MenuWorking extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		String l = "''";
-		String res = l.concat(ChooseTheme.title_to_work).concat(l);
+		String res = l.concat(st.getTitle()).concat(l);
 		JLabel label = new JLabel(res);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		label.setBounds(12, 68, 574, 42);
 		contentPane.add(label);
 		
-		JButton btnBack = new JButton("BACK");
-		btnBack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (parent != null)
-					parent.setVisible(true);
-				MenuWorking.this.setVisible(false);
-				MenuWorking.this.dispose();
-			}
-		});
-		btnBack.setBounds(517, 541, 97, 25);
-		contentPane.add(btnBack);
 		
 		JButton WorkersListButton = new JButton("1)Переглянути список науковців");
 		WorkersListButton.addActionListener(new ActionListener() {
@@ -70,7 +60,6 @@ public class MenuWorking extends JFrame {
 				try {
 					new WorkersList(MenuWorking.this).setVisible(true);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -79,6 +68,7 @@ public class MenuWorking extends JFrame {
 		WorkersListButton.setHorizontalAlignment(SwingConstants.LEFT);
 		WorkersListButton.setBounds(56, 135, 442, 42);
 		contentPane.add(WorkersListButton);
+		
 		
 		JButton AddWorkerButton = new JButton("2)Додати нового науковця до теми");
 		AddWorkerButton.addActionListener(new ActionListener() {
@@ -92,6 +82,7 @@ public class MenuWorking extends JFrame {
 		AddWorkerButton.setBounds(56, 215, 442, 42);
 		contentPane.add(AddWorkerButton);
 		
+		
 		JButton DeleteWorkerButton = new JButton("3)Видалити науковця з теми");
 		DeleteWorkerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -99,7 +90,6 @@ public class MenuWorking extends JFrame {
 				try {
 					new DeleteWorker(MenuWorking.this).setVisible(true);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -109,6 +99,7 @@ public class MenuWorking extends JFrame {
 		DeleteWorkerButton.setBounds(56, 301, 442, 42);
 		contentPane.add(DeleteWorkerButton);
 		
+		
 		JButton AddWorkerTeacherButton = new JButton("4)Залучити викладача");
 		AddWorkerTeacherButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -116,7 +107,6 @@ public class MenuWorking extends JFrame {
 				try {
 					new AddWorkerTeacher(MenuWorking.this).setVisible(true);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -135,7 +125,6 @@ public class MenuWorking extends JFrame {
 				try {
 					new EditWorkerInformation(MenuWorking.this).setVisible(true);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -145,5 +134,19 @@ public class MenuWorking extends JFrame {
 		button.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		button.setBounds(56, 464, 442, 42);
 		contentPane.add(button);
+		
+		
+		
+		JButton btnBack = new JButton("BACK");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (parent != null)
+					parent.setVisible(true);
+				MenuWorking.this.setVisible(false);
+				MenuWorking.this.dispose();
+			}
+		});
+		btnBack.setBounds(517, 541, 97, 25);
+		contentPane.add(btnBack);
 	}
 }

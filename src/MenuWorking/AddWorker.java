@@ -43,7 +43,6 @@ public class AddWorker extends JFrame {
 				try {
 					new AddWorkerMagister(AddWorker.this).setVisible(true);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -59,7 +58,6 @@ public class AddWorker extends JFrame {
 				try {
 					new AddWorkerAspirant(AddWorker.this).setVisible(true);
 				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

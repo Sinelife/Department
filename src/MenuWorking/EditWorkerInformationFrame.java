@@ -1,32 +1,22 @@
 package MenuWorking;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import MainMenu.ChooseTheme;
-import MainMenu.EditTheme;
-import MainMenu.EditThemeFrame;
 import MainMenu.MainMenu;
 import dao.WorkingDao;
 import domain.Working;
+import main.Methods;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
 public class EditWorkerInformationFrame extends JFrame {
@@ -101,21 +91,10 @@ public class EditWorkerInformationFrame extends JFrame {
 		SaveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				w.setTitle(WorkInThemeField.getText());
-				w.setStart(Date.valueOf(StartInThemeField.getText()));
-				if(EndInThemeField.getText().equals(""))
-				{
-					w.setEnd(null);
-				}
-				else
-				{
-					w.setEnd(Date.valueOf(EndInThemeField.getText()));
-				}
 				try {
-					wd.updateWorker(w);
-				} catch (SQLException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
+					Methods.editWorking(ChooseTheme.id_to_work, EditWorkerInformation.id_to_edit, WorkInThemeField, StartInThemeField, EndInThemeField);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
 				}
 				if (parent != null)
 					parent.setVisible(true);

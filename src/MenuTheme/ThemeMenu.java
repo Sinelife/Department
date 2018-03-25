@@ -96,7 +96,11 @@ public class ThemeMenu extends JFrame {
 		button3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ThemeMenu.this.setVisible(false);
-				new MenuWorking(ThemeMenu.this).setVisible(true);
+				try {
+					new MenuWorking(ThemeMenu.this).setVisible(true);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		button3.setHorizontalAlignment(SwingConstants.LEFT);

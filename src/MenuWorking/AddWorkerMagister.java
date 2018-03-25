@@ -11,12 +11,10 @@ import javax.swing.border.EmptyBorder;
 
 import MainMenu.ChooseTheme;
 import dao.MagisterDao;
-import dao.WorkingDao;
 import domain.Magister;
-import domain.Working;
+import main.Methods;
 
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -29,8 +27,11 @@ public class AddWorkerMagister extends JFrame {
 	private JTextField WorkingNameField;
 	private JTextField StartField;
 	private JTextField EndField;
+	
 	public static String m_surname_to_look;
 	public static int m_id_to_look;
+	public static String m_surname_to_select;
+	public static int m_id_to_select;
 
 
 	/**
@@ -41,16 +42,6 @@ public class AddWorkerMagister extends JFrame {
 	{
 		MagisterDao md = new MagisterDao();
 		List<Magister> magisters = md.getAllNotFromTheme(ChooseTheme.id_to_work);
-		String[] magister_names = new String[100];
-		int[] magister_ids = new int[100];
-		int i = 0;
-		for(Magister magister : magisters)
-		{
-			magister_names[i] = md.getSurname(magister.getId());
-			magister_ids[i] = magister.getId();
-			i++;
-		}
- 	  	
  	  	
  	  	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,10 +51,14 @@ public class AddWorkerMagister extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox(magister_names);
+		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		comboBox.setBounds(40, 121, 418, 34);
 		contentPane.add(comboBox);
+		for(Magister magister : magisters)
+		{
+			comboBox.addItem(md.getSurname(magister.getId()));
+		}
 		
 		JLabel lblNewLabel = new JLabel("Додати нового науковця-магістра до теми");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
@@ -106,41 +101,12 @@ public class AddWorkerMagister extends JFrame {
 		AddButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				int selected_worker_id;
-				String selected_worker_name = String.valueOf(comboBox.getSelectedItem());
-				int k = 0;
-				while(true)
-				{
-					selected_worker_id = magister_ids[k];
-					if((magister_names[k]).equals(selected_worker_name))
-					{
-						break;
-					}
-					k++;
-				}
-				
-				
-				WorkingDao wd = new WorkingDao();
-				Working w = new Working();
-				
-				w.setScientificThemeId(ChooseTheme.id_to_work);
-				w.setScientistId(selected_worker_id);
-				w.setTitle(WorkingNameField.getText());
-				w.setStart(Date.valueOf(StartField.getText()));
-				if(EndField.getText().equals(""))
-				{
-					w.setEnd(null);
-				}
-				else
-				{
-					w.setEnd(Date.valueOf(EndField.getText()));
-				}
 				try {
-					wd.addWorker(w);
-				} catch (SQLException e6) {
-					// TODO Auto-generated catch block
-					e6.printStackTrace();
-				}
+					m_id_to_select = Methods.getMagisterIdBySurname(m_surname_to_select, m_id_to_select, comboBox, magisters);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}				
+				Methods.addWorking(ChooseTheme.id_to_work, m_id_to_select, WorkingNameField, StartField, EndField);
 				if (parent != null)
 					parent.setVisible(true);
 				AddWorkerMagister.this.setVisible(false);
@@ -161,23 +127,15 @@ public class AddWorkerMagister extends JFrame {
 		ChooseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				m_surname_to_look = String.valueOf(comboBox.getSelectedItem());
-				int k = 0;
-				while(true)
-				{
-					
-					m_id_to_look = magister_ids[k];
-					if((magister_names[k]).equals(m_surname_to_look))
-					{
-						break;
-					}
-					k++;
+				try {
+					m_id_to_look = Methods.getMagisterIdBySurname(m_surname_to_look, m_id_to_look, comboBox, magisters);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
 				}
 				AddWorkerMagister.this.setVisible(false);
 				try {
 					new NotWorkerMagisterInformation(AddWorkerMagister.this).setVisible(true);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

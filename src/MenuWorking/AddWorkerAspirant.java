@@ -11,12 +11,10 @@ import javax.swing.border.EmptyBorder;
 
 import MainMenu.ChooseTheme;
 import dao.AspirantDao;
-import dao.WorkingDao;
 import domain.Aspirant;
-import domain.Working;
+import main.Methods;
 
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
@@ -31,6 +29,8 @@ public class AddWorkerAspirant extends JFrame {
 	private JTextField EndField;
 	public static String a_surname_to_look;
 	public static int a_id_to_look;
+	public static String a_surname_to_select;
+	public static int a_id_to_select;
 
 
 	/**
@@ -41,15 +41,6 @@ public class AddWorkerAspirant extends JFrame {
 	{
  	  	AspirantDao ad = new AspirantDao();
 		List<Aspirant> aspirants = ad.getAllNotFromTheme(ChooseTheme.id_to_work);
-		String[] aspirant_names = new String[100];
-		int[] aspirant_ids = new int[100];
-		int i = 0;
-		for(Aspirant aspirant : aspirants)
-		{
-			aspirant_names[i] = ad.getSurname(aspirant.getId());
-			aspirant_ids[i] = aspirant.getId();
-			i++;
-		}
  	  	
  	  	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,10 +50,15 @@ public class AddWorkerAspirant extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBox = new JComboBox(aspirant_names);
+		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		comboBox.setBounds(40, 121, 418, 34);
 		contentPane.add(comboBox);
+		for(Aspirant aspirant : aspirants)
+		{
+			comboBox.addItem(ad.getSurname(aspirant.getId()));
+		}
+		
 		
 		JLabel lblNewLabel = new JLabel("Додати нового науковця-аспіранта до теми");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
@@ -105,41 +101,12 @@ public class AddWorkerAspirant extends JFrame {
 		AddButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{	
-				int selected_worker_id;
-				String selected_worker_name = String.valueOf(comboBox.getSelectedItem());
-				int k = 0;
-				while(true)
-				{
-					selected_worker_id = aspirant_ids[k];
-					if((aspirant_names[k]).equals(selected_worker_name))
-					{
-						break;
-					}
-					k++;
-				}
-				
-				
-				WorkingDao wd = new WorkingDao();
-				Working w = new Working();
-				
-				w.setScientificThemeId(ChooseTheme.id_to_work);
-				w.setScientistId(selected_worker_id);
-				w.setTitle(WorkingNameField.getText());
-				w.setStart(Date.valueOf(StartField.getText()));
-				if(EndField.getText().equals(""))
-				{
-					w.setEnd(null);
-				}
-				else
-				{
-					w.setEnd(Date.valueOf(EndField.getText()));
-				}
 				try {
-					wd.addWorker(w);
-				} catch (SQLException e6) {
-					// TODO Auto-generated catch block
-					e6.printStackTrace();
+					a_id_to_select = Methods.getAspirantIdBySurname(a_surname_to_select, a_id_to_select, comboBox, aspirants);
+				} catch (SQLException e) {
+					e.printStackTrace();
 				}
+				Methods.addWorking(ChooseTheme.id_to_work, a_id_to_select, WorkingNameField, StartField, EndField);
 				if (parent != null)
 					parent.setVisible(true);
 				AddWorkerAspirant.this.setVisible(false);
@@ -160,23 +127,15 @@ public class AddWorkerAspirant extends JFrame {
 		ChooseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				a_surname_to_look = String.valueOf(comboBox.getSelectedItem());
-				int k = 0;
-				while(true)
-				{
-					
-					a_id_to_look = aspirant_ids[k];
-					if((aspirant_names[k]).equals(a_surname_to_look))
-					{
-						break;
-					}
-					k++;
+				try {
+					a_id_to_look = Methods.getAspirantIdBySurname(a_surname_to_look, a_id_to_look, comboBox, aspirants);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
 				}
 				AddWorkerAspirant.this.setVisible(false);
 				try {
 					new NotWorkerAspirantInformation(AddWorkerAspirant.this).setVisible(true);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -42,9 +42,9 @@ public class WorkerTeacherInformation extends JFrame {
 	public WorkerTeacherInformation(JFrame parent) throws SQLException
 	{
 		TeacherDao td = new TeacherDao();
-		Teacher t = td.read(WorkersList.t_id_to_look);
+		Teacher t = td.read(WorkersList.worker_id_to_look);
 		WorkingDao wd = new WorkingDao();
-		Working w = wd.readWorker(ChooseTheme.id_to_work, WorkersList.t_id_to_look);
+		Working w = wd.readWorker(ChooseTheme.id_to_work, WorkersList.worker_id_to_look);
  	  	
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

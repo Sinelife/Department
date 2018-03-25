@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import MainMenu.ChooseTheme;
 import MainMenu.MainMenu;
 import domain.Aspirant;
 import domain.ScientificTheme;

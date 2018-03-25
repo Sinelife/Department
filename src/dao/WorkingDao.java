@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -69,5 +71,70 @@ public class WorkingDao
     	}
     	JOptionPane.showMessageDialog (null, "Науковець успішно видалений з роботи над темою!" );
 	}
+    
+    
+    
+    public List<Working> getAllFromTheme(int scientific_theme_id) throws SQLException
+    {
+        String sql = "SELECT * FROM working WHERE scientific_theme_id = " + scientific_theme_id;
+        List<Working> list = new ArrayList<Working>();
+        try (PreparedStatement stm = MainMenu.conn.prepareStatement(sql)) {
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+            	Working w = new Working();
+            	w.setScientificThemeId(rs.getInt("scientific_theme_id"));
+            	w.setScientistId(rs.getInt("scientist_id"));
+            	w.setTitle(rs.getString("title"));
+            	w.setStart(rs.getDate("start"));
+            	w.setEnd(rs.getDate("end"));
+            	list.add(w);
+            }
+        }
+        return list;
+    }
+    
+    
+    public String getSurname(int scientist_id) throws SQLException
+    {
+    	String sql = "SELECT surname FROM scientist WHERE scientist_id IN "
+    				+ "(SELECT scientist_id FROM working WHERE scientist_id = " + scientist_id + ")";
+		Statement s = MainMenu.conn.createStatement();
+ 	  	ResultSet rs = s.executeQuery(sql);
+ 	  	String surname = null;
+ 	  	while (rs.next()) {
+ 	  		surname = rs.getString("surname");
+ 	  	}
+		return surname; 
+    }
+    
+    
+    
+    
+    
+    public String getRole(int scientist_id, String table) throws SQLException
+    {
+    	String role = "";
+    	String sql1 = "SELECT surname FROM scientist WHERE scientist_id IN "
+    			+ "(SELECT scientist_id FROM " + table + " WHERE scientist_id = " + scientist_id + ")";
+    	Statement s1 = MainMenu.conn.createStatement();
+ 	  	ResultSet rs1 = s1.executeQuery(sql1);
+ 	  	String surname1 = "not ";
+ 	  	while (rs1.next()) {
+ 	  		surname1 = rs1.getString("surname");
+ 	  	}
+ 	  	
+	    if(surname1.equals(""))
+	    {
+
+	    }
+	    else
+	    {
+	    	role = table;
+	    	return role;
+	    }
+		return " ";
+ 	  	
+    }
+
     
 }
