@@ -42,7 +42,7 @@ public class WorkerAspirantInformation extends JFrame {
 	public WorkerAspirantInformation(JFrame parent) throws SQLException
 	{
 		AspirantDao ad = new AspirantDao();
-		Aspirant a = ad.read(WorkersList.worker_id_to_look);
+		Aspirant a = ad.readAspirant(WorkersList.worker_id_to_look);
 		WorkingDao wd = new WorkingDao();
 		Working w = wd.readWorker(ChooseTheme.id_to_work, WorkersList.worker_id_to_look);
 		

@@ -17,7 +17,7 @@ public class AspirantDao
     
 
     /** @throws SQLException */
-    public Aspirant read(int key) throws SQLException 
+    public Aspirant readAspirant(int key) throws SQLException 
     {
         String sql = "SELECT * FROM aspirant WHERE scientist_id = ?";
         Aspirant a = new Aspirant();

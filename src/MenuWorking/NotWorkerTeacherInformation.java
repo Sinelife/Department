@@ -1,5 +1,6 @@
 package MenuWorking;
 
+import DepartmentMenu.CathedraPeopleInfo;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -10,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import DepartmentMenu.DepartmentMenu;
+import DepartmentMenu.DepartmentPeopleInfo;
 import dao.TeacherDao;
 import domain.Teacher;
 
@@ -35,8 +38,20 @@ public class NotWorkerTeacherInformation extends JFrame {
 	public NotWorkerTeacherInformation(JFrame parent) throws SQLException
 	{
 		TeacherDao td = new TeacherDao();
-		Teacher t = td.readTeacher(AddWorkerTeacher.t_id_to_look);
+		Teacher t = new Teacher();
 		
+		if(DepartmentMenu.teacher == 1)
+		{
+			t = td.readTeacher(DepartmentPeopleInfo.t_id);
+		}
+		if(DepartmentMenu.teacher == 2)
+		{
+			t = td.readTeacher(CathedraPeopleInfo.t_id);
+		}
+		if(DepartmentMenu.teacher == 3)
+		{
+			t = td.readTeacher(AddWorkerTeacher.t_id_to_look);
+		}
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 634, 473);

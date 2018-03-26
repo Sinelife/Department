@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import DepartmentMenu.DepartmentMenu;
 import ThemesMenu.ChooseTheme;
 import dao.AspirantDao;
 import domain.Aspirant;
@@ -132,6 +133,7 @@ public class AddWorkerAspirant extends JFrame {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
+				DepartmentMenu.aspirant = 3;
 				AddWorkerAspirant.this.setVisible(false);
 				try {
 					new NotWorkerAspirantInformation(AddWorkerAspirant.this).setVisible(true);

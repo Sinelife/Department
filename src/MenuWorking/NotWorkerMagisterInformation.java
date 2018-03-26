@@ -10,6 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import DepartmentMenu.CathedraPeopleInfo;
+import DepartmentMenu.DepartmentMenu;
+import DepartmentMenu.DepartmentPeopleInfo;
 import ThemesMenu.WorkThemesMenu;
 import dao.MagisterDao;
 import domain.Magister;
@@ -36,7 +39,22 @@ public class NotWorkerMagisterInformation extends JFrame {
 	public NotWorkerMagisterInformation(JFrame parent) throws SQLException
 	{
 		MagisterDao md = new MagisterDao();
-		Magister m = md.read(AddWorkerMagister.m_id_to_look);
+		Magister m = new Magister();
+		
+		
+		if(DepartmentMenu.magister == 1)
+		{
+			m = md.readMagister(DepartmentPeopleInfo.m_id);
+		}
+		if(DepartmentMenu.magister == 2)
+		{
+			m = md.readMagister(CathedraPeopleInfo.m_id);
+		}
+		if(DepartmentMenu.magister == 3)
+		{
+			m = md.readMagister(AddWorkerMagister.m_id_to_look);
+		}
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 492);

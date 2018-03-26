@@ -16,6 +16,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import DepartmentMenu.ChooseCathedra;
+import DepartmentMenu.DepartmentMenu;
+import MenuTheme.ScientificThemeInformation;
+import MenuWorking.WorkerTeacherInformation;
+import MenuWorking.WorkersList;
 import dao.TeacherDao;
 import domain.ScientificTheme;
 import domain.Teacher;
@@ -27,6 +31,9 @@ public class TeacherWorkingInfo extends JFrame {
 
 	public static String surname_to_choose;
 	public static int id_to_choose;
+	
+	public static String title;
+	public static int id = 0;
 	
 	List<ScientificTheme> themes = new ArrayList<ScientificTheme>();
 
@@ -41,7 +48,7 @@ public class TeacherWorkingInfo extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 598, 489);
+		setBounds(100, 100, 651, 489);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -51,7 +58,7 @@ public class TeacherWorkingInfo extends JFrame {
 		JLabel label = new JLabel("Теми, на яких працює викладач");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 24));
-		label.setBounds(0, 25, 580, 42);
+		label.setBounds(0, 25, 633, 42);
 		contentPane.add(label);
 		
 		
@@ -74,8 +81,8 @@ public class TeacherWorkingInfo extends JFrame {
 		
 		
 		
-		JButton btnNewButton = new JButton("Вибрати");
-		btnNewButton.addActionListener(new ActionListener() 
+		JButton SelectButton = new JButton("Вибрати");
+		SelectButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -97,14 +104,56 @@ public class TeacherWorkingInfo extends JFrame {
 				
 			}
 		});
-		btnNewButton.setBounds(183, 176, 103, 30);
-		contentPane.add(btnNewButton);
+		SelectButton.setBounds(183, 176, 103, 30);
+		contentPane.add(SelectButton);
+		
+		
+		
+
+		
+		JButton TeacherInfoButton = new JButton("Інформація");
+		TeacherInfoButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				id = Methods.getThemeIdByThemeTitle(title, id, ScientificThemeComboBox, themes);
+				DepartmentMenu.teacherWorker = 1;
+				TeacherWorkingInfo.this.setVisible(false);
+				try {
+					new WorkerTeacherInformation(TeacherWorkingInfo.this).setVisible(true);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		TeacherInfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		TeacherInfoButton.setBounds(479, 110, 122, 34);
+		contentPane.add(TeacherInfoButton);
+		
+		JButton ThemeInfoButton = new JButton("Інформація");
+		ThemeInfoButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				id = Methods.getThemeIdByThemeTitle(title, id, ScientificThemeComboBox, themes);
+				DepartmentMenu.theme = 0;
+				TeacherWorkingInfo.this.setVisible(false);
+				try {
+					new ScientificThemeInformation(TeacherWorkingInfo.this).setVisible(true);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		ThemeInfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		ThemeInfoButton.setBounds(479, 284, 122, 34);
+		contentPane.add(ThemeInfoButton);
 		
 		
 		
 		
-		JButton button = new JButton("BACK");
-		button.addActionListener(new ActionListener() 
+		JButton btnBack = new JButton("BACK");
+		btnBack.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
@@ -114,7 +163,7 @@ public class TeacherWorkingInfo extends JFrame {
 				TeacherWorkingInfo.this.dispose();
 			}
 		});
-		button.setBounds(471, 404, 97, 25);
-		contentPane.add(button);
+		btnBack.setBounds(471, 404, 97, 25);
+		contentPane.add(btnBack);
 	}
 }

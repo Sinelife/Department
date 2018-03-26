@@ -10,8 +10,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import DepartmentMenu.DepartmentMenu;
 import ThemesMenu.ChooseTheme;
 import ThemesMenu.WorkThemesMenu;
+import WorkTeacherMenu.TeacherWorkingInfo;
 import dao.TeacherDao;
 import dao.WorkingDao;
 import domain.Teacher;
@@ -42,9 +44,20 @@ public class WorkerTeacherInformation extends JFrame {
 	public WorkerTeacherInformation(JFrame parent) throws SQLException
 	{
 		TeacherDao td = new TeacherDao();
-		Teacher t = td.readTeacher(WorkersList.worker_id_to_look);
+		Teacher t = new Teacher();
 		WorkingDao wd = new WorkingDao();
-		Working w = wd.readWorker(ChooseTheme.id_to_work, WorkersList.worker_id_to_look);
+		Working w = new Working();
+		if(DepartmentMenu.teacherWorker == 1)
+		{
+			t = td.readTeacher(TeacherWorkingInfo.id_to_choose);
+			w = wd.readWorker(TeacherWorkingInfo.id, TeacherWorkingInfo.id_to_choose);
+		}
+		if(DepartmentMenu.teacherWorker == 2)
+		{
+			t = td.readTeacher(WorkersList.worker_id_to_look);
+			w = wd.readWorker(ChooseTheme.id_to_work, WorkersList.worker_id_to_look);
+		}
+		
  	  	
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

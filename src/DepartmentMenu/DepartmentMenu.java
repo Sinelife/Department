@@ -19,7 +19,11 @@ public class DepartmentMenu extends JFrame {
 	private JPanel contentPane;
 	
 	public static int teacherSupervisor;
+	public static int teacherWorker;
 	public static int theme;
+	public static int teacher;
+	public static int magister;
+	public static int aspirant;
 
 	/**
 	 * Create the frame.

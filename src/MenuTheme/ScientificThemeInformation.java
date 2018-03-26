@@ -8,6 +8,7 @@ import ThemesMenu.ChooseTheme;
 import ThemesMenu.DeleteTheme;
 import ThemesMenu.WorkThemesMenu;
 import WorkTeacherMenu.TeacherSupervisionInfo;
+import WorkTeacherMenu.TeacherWorkingInfo;
 import dao.ScientificThemeDao;
 import domain.ScientificTheme;
 
@@ -39,7 +40,10 @@ public class ScientificThemeInformation extends JFrame {
 	{
 		ScientificThemeDao std = new ScientificThemeDao();
 		ScientificTheme st = new ScientificTheme();
-		
+		if(DepartmentMenu.theme == 0)
+		{
+			st = std.readTheme(TeacherWorkingInfo.id);
+		}
 		if(DepartmentMenu.theme == 1)
 		{
 			st = std.readTheme(TeacherSupervisionInfo.id);

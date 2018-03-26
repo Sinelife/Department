@@ -10,6 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import DepartmentMenu.CathedraPeopleInfo;
+import DepartmentMenu.DepartmentMenu;
+import DepartmentMenu.DepartmentPeopleInfo;
 import ThemesMenu.WorkThemesMenu;
 import dao.AspirantDao;
 import domain.Aspirant;
@@ -36,7 +39,22 @@ public class NotWorkerAspirantInformation extends JFrame {
 	public NotWorkerAspirantInformation(JFrame parent) throws SQLException
 	{
 		AspirantDao ad = new AspirantDao();
-		Aspirant a = ad.read(AddWorkerAspirant.a_id_to_look);
+		Aspirant a = new Aspirant();
+		
+		
+		if(DepartmentMenu.aspirant == 1)
+		{
+			a = ad.readAspirant(DepartmentPeopleInfo.a_id);
+		}
+		if(DepartmentMenu.aspirant == 2)
+		{
+			a = ad.readAspirant(CathedraPeopleInfo.a_id);
+		}
+		if(DepartmentMenu.aspirant == 3)
+		{
+			a = ad.readAspirant(AddWorkerAspirant.a_id_to_look);
+		}
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 628, 508);

@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import DepartmentMenu.DepartmentMenu;
 
 
-
-
 public class Main 
 {
 	public static Connection conn;

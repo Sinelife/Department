@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import DepartmentMenu.DepartmentMenu;
 import ThemesMenu.ChooseTheme;
 import dao.MagisterDao;
 import domain.Magister;
@@ -132,6 +133,7 @@ public class AddWorkerMagister extends JFrame {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
+				DepartmentMenu.magister = 3;
 				AddWorkerMagister.this.setVisible(false);
 				try {
 					new NotWorkerMagisterInformation(AddWorkerMagister.this).setVisible(true);

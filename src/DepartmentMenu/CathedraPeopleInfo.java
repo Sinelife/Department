@@ -10,6 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import MenuWorking.NotWorkerAspirantInformation;
+import MenuWorking.NotWorkerMagisterInformation;
+import MenuWorking.NotWorkerTeacherInformation;
 import dao.AspirantDao;
 import dao.CathedraDao;
 import dao.MagisterDao;
@@ -18,6 +21,7 @@ import domain.Aspirant;
 import domain.Cathedra;
 import domain.Magister;
 import domain.Teacher;
+import main.Methods;
 
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -29,7 +33,14 @@ public class CathedraPeopleInfo extends JFrame
 
 	private JPanel contentPane;
 
-
+	public static int m_id = 0;
+	public static String m_name;
+	public static int a_id = 0;
+	public static String a_name;
+	public static int t_id = 0;
+	public static String t_name;
+	
+	
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
@@ -68,20 +79,20 @@ public class CathedraPeopleInfo extends JFrame
 		contentPane.add(label1);
 		
 		JLabel lblNewLabel = new JLabel("Викладачі");
-		lblNewLabel.setBounds(72, 133, 87, 25);
+		lblNewLabel.setBounds(32, 134, 87, 25);
 		contentPane.add(lblNewLabel);
 		
 		JLabel label_1 = new JLabel("Аспіранти");
-		label_1.setBounds(72, 230, 87, 25);
+		label_1.setBounds(32, 231, 87, 25);
 		contentPane.add(label_1);
 		
 		JLabel label_2 = new JLabel("Магістри");
-		label_2.setBounds(72, 333, 87, 25);
+		label_2.setBounds(32, 334, 87, 25);
 		contentPane.add(label_2);
 		
 		JComboBox<String> TeacherComboBox = new JComboBox<String>();
 		TeacherComboBox.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		TeacherComboBox.setBounds(171, 130, 237, 31);
+		TeacherComboBox.setBounds(131, 131, 237, 31);
 		contentPane.add(TeacherComboBox);
 		for(Teacher teacher : teachers)
 		{
@@ -90,7 +101,7 @@ public class CathedraPeopleInfo extends JFrame
 		
 		JComboBox<String> AspirantComboBox = new JComboBox<String>();
 		AspirantComboBox.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		AspirantComboBox.setBounds(171, 230, 237, 31);
+		AspirantComboBox.setBounds(131, 231, 237, 31);
 		contentPane.add(AspirantComboBox);
 		for(Aspirant aspirant : aspirants)
 		{
@@ -99,7 +110,7 @@ public class CathedraPeopleInfo extends JFrame
 		
 		JComboBox<String> MagisterComboBox = new JComboBox<String>();
 		MagisterComboBox.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		MagisterComboBox.setBounds(171, 333, 237, 31);
+		MagisterComboBox.setBounds(131, 334, 237, 31);
 		contentPane.add(MagisterComboBox);
 		for(Magister magister : magisters)
 		{
@@ -109,11 +120,84 @@ public class CathedraPeopleInfo extends JFrame
 		
 		
 		
+	
+		
+		JButton TeacherInfoButton = new JButton("Інформація");
+		TeacherInfoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				try {
+					t_id = Methods.getTeacherIdBySurname(t_name, t_id, TeacherComboBox, teachers);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				DepartmentMenu.teacher = 2;
+				CathedraPeopleInfo.this.setVisible(false);
+				try {
+					new NotWorkerTeacherInformation(CathedraPeopleInfo.this).setVisible(true);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		TeacherInfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		TeacherInfoButton.setBounds(380, 128, 122, 34);
+		contentPane.add(TeacherInfoButton);
+		
+		
+		JButton AspirantInfoButton = new JButton("Інформація");
+		AspirantInfoButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				try {
+					a_id = Methods.getAspirantIdBySurname(a_name, a_id, AspirantComboBox, aspirants);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				DepartmentMenu.aspirant = 2;
+				CathedraPeopleInfo.this.setVisible(false);
+				try {
+					new NotWorkerAspirantInformation(CathedraPeopleInfo.this).setVisible(true);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		AspirantInfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		AspirantInfoButton.setBounds(380, 231, 122, 34);
+		contentPane.add(AspirantInfoButton);
+		
+		
+		JButton MagisterInfoButton = new JButton("Інформація");
+		MagisterInfoButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				try {
+					m_id = Methods.getMagisterIdBySurname(m_name, m_id, MagisterComboBox, magisters);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				DepartmentMenu.magister = 2;
+				CathedraPeopleInfo.this.setVisible(false);
+				try {
+					new NotWorkerMagisterInformation(CathedraPeopleInfo.this).setVisible(true);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		MagisterInfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		MagisterInfoButton.setBounds(380, 334, 122, 34);
+		contentPane.add(MagisterInfoButton);
 		
 		
 		
-		JButton button = new JButton("BACK");
-		button.addActionListener(new ActionListener() {
+		
+		
+		JButton btnback = new JButton("BACK");
+		btnback.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
 				if (parent != null)
@@ -122,7 +206,7 @@ public class CathedraPeopleInfo extends JFrame
 				CathedraPeopleInfo.this.dispose();
 			}
 		});
-		button.setBounds(412, 410, 97, 25);
-		contentPane.add(button);
+		btnback.setBounds(412, 410, 97, 25);
+		contentPane.add(btnback);
 	}
 }

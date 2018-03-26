@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import DepartmentMenu.DepartmentMenu;
 import ThemesMenu.ChooseTheme;
 import dao.ScientificThemeDao;
 import dao.TeacherDao;
@@ -135,6 +136,7 @@ public class AddWorkerTeacher extends JFrame {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}		
+				DepartmentMenu.teacher = 3;
 				AddWorkerTeacher.this.setVisible(false);
 				try {
 					new NotWorkerTeacherInformation(AddWorkerTeacher.this).setVisible(true);

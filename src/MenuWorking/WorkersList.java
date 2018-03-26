@@ -1,5 +1,6 @@
 package MenuWorking;
 
+import DepartmentMenu.DepartmentMenu;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -105,6 +106,7 @@ public class WorkersList extends JFrame {
 				
 				if(check == 3)
 				{
+					DepartmentMenu.teacherWorker = 2;
 					WorkersList.this.setVisible(false);
 					try {
 						new WorkerTeacherInformation(WorkersList.this).setVisible(true);

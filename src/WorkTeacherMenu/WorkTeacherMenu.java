@@ -97,12 +97,12 @@ public class WorkTeacherMenu extends JFrame {
 		});
 		TeacherSupervisionButton.setBounds(37, 295, 434, 42);
 		TeacherSupervisionButton.setHorizontalAlignment(SwingConstants.LEFT);
-		TeacherSupervisionButton.setForeground(Color.RED);
+		TeacherSupervisionButton.setForeground(Color.BLACK);
 		TeacherSupervisionButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel.add(TeacherSupervisionButton);
 		
 		
-		JButton TeacherWorkingButtom = new JButton("Переглянути на, яких темах працюють викладачі");
+		JButton TeacherWorkingButtom = new JButton("4)Переглянути на, яких темах працюють викладачі");
 		TeacherWorkingButtom.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -117,7 +117,7 @@ public class WorkTeacherMenu extends JFrame {
 		});
 		TeacherWorkingButtom.setBounds(37, 382, 434, 42);
 		TeacherWorkingButtom.setHorizontalAlignment(SwingConstants.LEFT);
-		TeacherWorkingButtom.setForeground(Color.RED);
+		TeacherWorkingButtom.setForeground(Color.BLACK);
 		TeacherWorkingButtom.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel.add(TeacherWorkingButtom);
 		

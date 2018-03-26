@@ -12,7 +12,7 @@ import main.Main;
 public class MagisterDao 
 {
     /** @throws SQLException */
-    public Magister read(int key) throws SQLException 
+    public Magister readMagister(int key) throws SQLException 
     {
         String sql = "SELECT * FROM magister WHERE scientist_id = ?";
         Magister m = new Magister();
