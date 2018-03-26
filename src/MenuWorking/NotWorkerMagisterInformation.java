@@ -28,6 +28,7 @@ public class NotWorkerMagisterInformation extends JFrame {
 	private JTextField CathedraNameField;
 	private JTextField StartField;
 	private JTextField EndField;
+	private JTextField ReasonField;
 	private JTextField ThemeDiplomaField;
 	private JTextField PhoneField;
 
@@ -85,12 +86,16 @@ public class NotWorkerMagisterInformation extends JFrame {
 		lblEnd.setBounds(28, 217, 170, 22);
 		contentPane.add(lblEnd);
 		
+		JLabel lblReason = new JLabel("причина випуску");
+		lblReason.setBounds(28, 264, 170, 22);
+		contentPane.add(lblReason);
+		
 		JLabel lblDiplomaTheme = new JLabel("тема диплому");
-		lblDiplomaTheme.setBounds(28, 263, 170, 22);
+		lblDiplomaTheme.setBounds(28, 310, 170, 22);
 		contentPane.add(lblDiplomaTheme);
 		
 		JLabel lblPhone = new JLabel("номер");
-		lblPhone.setBounds(28, 313, 170, 22);
+		lblPhone.setBounds(28, 360, 170, 22);
 		contentPane.add(lblPhone);
 		
 		
@@ -123,13 +128,21 @@ public class NotWorkerMagisterInformation extends JFrame {
 		EndField.setColumns(10);
 		EndField.setBounds(210, 217, 350, 22);
 		contentPane.add(EndField);
-		WorkThemesMenu.DateToString(m.getEnd(), EndField);;
+		WorkThemesMenu.DateToString(m.getEnd(), EndField);
+		
+		
+		ReasonField = new JTextField();
+		ReasonField.setEditable(false);
+		ReasonField.setColumns(10);
+		ReasonField.setBounds(210, 264, 350, 22);
+		contentPane.add(ReasonField);
+		ReasonField.setText(m.getReason());
 		
 		
 		ThemeDiplomaField = new JTextField();
 		ThemeDiplomaField.setEditable(false);
 		ThemeDiplomaField.setColumns(10);
-		ThemeDiplomaField.setBounds(210, 263, 350, 22);
+		ThemeDiplomaField.setBounds(210, 310, 350, 22);
 		contentPane.add(ThemeDiplomaField);
  	  	ThemeDiplomaField.setText(m.getThemeMagister());
 		
@@ -137,7 +150,7 @@ public class NotWorkerMagisterInformation extends JFrame {
 		PhoneField = new JTextField();
 		PhoneField.setEditable(false);
 		PhoneField.setColumns(10);
-		PhoneField.setBounds(210, 313, 350, 22);
+		PhoneField.setBounds(210, 360, 350, 22);
 		contentPane.add(PhoneField);
  	  	PhoneField.setText(md.getPhone(m.getId()));
  	  	
@@ -154,7 +167,7 @@ public class NotWorkerMagisterInformation extends JFrame {
 				NotWorkerMagisterInformation.this.dispose();
 			}
 		});
-		btnBack.setBounds(504, 395, 97, 25);
+		btnBack.setBounds(513, 407, 97, 25);
 		contentPane.add(btnBack);
 
 	}

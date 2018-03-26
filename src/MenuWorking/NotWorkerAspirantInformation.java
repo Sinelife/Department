@@ -28,6 +28,7 @@ public class NotWorkerAspirantInformation extends JFrame {
 	private JTextField CathedraNameField;
 	private JTextField StartField;
 	private JTextField EndField;
+	private JTextField ProtectionField;
 	private JTextField ThemeDiplomaField;
 	private JTextField PhoneField;
 
@@ -57,7 +58,7 @@ public class NotWorkerAspirantInformation extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 628, 508);
+		setBounds(100, 100, 628, 534);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -85,12 +86,16 @@ public class NotWorkerAspirantInformation extends JFrame {
 		lblEnd.setBounds(24, 219, 162, 22);
 		contentPane.add(lblEnd);
 		
+		JLabel lblProtection = new JLabel("дата захисту");
+		lblProtection.setBounds(24, 271, 162, 22);
+		contentPane.add(lblProtection);
+		
 		JLabel lblDiplomaTheme = new JLabel("тема диплому");
-		lblDiplomaTheme.setBounds(24, 264, 162, 22);
+		lblDiplomaTheme.setBounds(24, 321, 162, 22);
 		contentPane.add(lblDiplomaTheme);
 		
 		JLabel lblPhone = new JLabel("номер");
-		lblPhone.setBounds(24, 314, 162, 22);
+		lblPhone.setBounds(24, 370, 162, 22);
 		contentPane.add(lblPhone);
 		
 		SurnameField = new JTextField();
@@ -124,10 +129,19 @@ public class NotWorkerAspirantInformation extends JFrame {
 		contentPane.add(EndField);
 		WorkThemesMenu.DateToString(a.getEnd(), EndField);
 		
+		
+		ProtectionField = new JTextField();
+		ProtectionField.setEditable(false);
+		ProtectionField.setColumns(10);
+		ProtectionField.setBounds(210, 271, 350, 22);
+		contentPane.add(ProtectionField);
+		WorkThemesMenu.DateToString(a.getProtection(), ProtectionField);
+		
+		
 		ThemeDiplomaField = new JTextField();
 		ThemeDiplomaField.setEditable(false);
 		ThemeDiplomaField.setColumns(10);
-		ThemeDiplomaField.setBounds(210, 264, 350, 22);
+		ThemeDiplomaField.setBounds(210, 321, 350, 22);
 		contentPane.add(ThemeDiplomaField);
  	  	ThemeDiplomaField.setText(a.getThemeAspirant());
 		
@@ -135,7 +149,7 @@ public class NotWorkerAspirantInformation extends JFrame {
 		PhoneField = new JTextField();
 		PhoneField.setEditable(false);
 		PhoneField.setColumns(10);
-		PhoneField.setBounds(210, 314, 350, 22);
+		PhoneField.setBounds(210, 370, 350, 22);
 		contentPane.add(PhoneField);
  	  	PhoneField.setText(ad.getPhone(a.getId())); 	  	
  	  	
@@ -152,7 +166,7 @@ public class NotWorkerAspirantInformation extends JFrame {
 				NotWorkerAspirantInformation.this.dispose();
 			}
 		});
-		btnBack.setBounds(497, 405, 97, 25);
+		btnBack.setBounds(501, 449, 97, 25);
 		contentPane.add(btnBack);
 	}
 }

@@ -28,6 +28,7 @@ public class WorkerMagisterInformation extends JFrame {
 	private JTextField CathedraNameField;
 	private JTextField StartField;
 	private JTextField EndField;
+	private JTextField ReasonField;
 	private JTextField ThemeDiplomaField;
 	private JTextField PhoneField;
 	private JTextField WorkTitleInThemeField;
@@ -76,24 +77,28 @@ public class WorkerMagisterInformation extends JFrame {
 		lblEnd.setBounds(28, 217, 170, 22);
 		contentPane.add(lblEnd);
 		
+		JLabel lblReason = new JLabel("причина випуску");
+		lblReason.setBounds(28, 268, 170, 22);
+		contentPane.add(lblReason);
+		
 		JLabel lblDiplomaTheme = new JLabel("тема диплому");
-		lblDiplomaTheme.setBounds(28, 263, 170, 22);
+		lblDiplomaTheme.setBounds(28, 311, 170, 22);
 		contentPane.add(lblDiplomaTheme);
 		
 		JLabel lblPhone = new JLabel("номер");
-		lblPhone.setBounds(28, 313, 170, 22);
+		lblPhone.setBounds(28, 361, 170, 22);
 		contentPane.add(lblPhone);
 		
 		JLabel lblWorkTitleInTheme = new JLabel("назва роботи в темі");
-		lblWorkTitleInTheme.setBounds(28, 357, 170, 22);
+		lblWorkTitleInTheme.setBounds(28, 405, 170, 22);
 		contentPane.add(lblWorkTitleInTheme);
 		
 		JLabel lblStartInTheme = new JLabel("початок роботи в темі");
-		lblStartInTheme.setBounds(28, 407, 170, 22);
+		lblStartInTheme.setBounds(28, 455, 170, 22);
 		contentPane.add(lblStartInTheme);
 		
 		JLabel lblEndInTheme = new JLabel("кінець роботи в темі");
-		lblEndInTheme.setBounds(28, 455, 170, 22);
+		lblEndInTheme.setBounds(28, 503, 170, 22);
 		contentPane.add(lblEndInTheme);
 		
 		SurnameField = new JTextField();
@@ -125,13 +130,21 @@ public class WorkerMagisterInformation extends JFrame {
 		EndField.setColumns(10);
 		EndField.setBounds(210, 217, 350, 22);
 		contentPane.add(EndField);
-		WorkThemesMenu.DateToString(m.getEnd(), EndField);;
+		WorkThemesMenu.DateToString(m.getEnd(), EndField);
+		
+		
+		ReasonField = new JTextField();
+		ReasonField.setEditable(false);
+		ReasonField.setColumns(10);
+		ReasonField.setBounds(210, 268, 350, 22);
+		contentPane.add(ReasonField);
+		ReasonField.setText(m.getReason());
 		
 		
 		ThemeDiplomaField = new JTextField();
 		ThemeDiplomaField.setEditable(false);
 		ThemeDiplomaField.setColumns(10);
-		ThemeDiplomaField.setBounds(210, 263, 350, 22);
+		ThemeDiplomaField.setBounds(210, 311, 350, 22);
 		contentPane.add(ThemeDiplomaField);
  	  	ThemeDiplomaField.setText(m.getThemeMagister());
 		
@@ -139,7 +152,7 @@ public class WorkerMagisterInformation extends JFrame {
 		PhoneField = new JTextField();
 		PhoneField.setEditable(false);
 		PhoneField.setColumns(10);
-		PhoneField.setBounds(210, 313, 350, 22);
+		PhoneField.setBounds(210, 361, 350, 22);
 		contentPane.add(PhoneField);
  	  	PhoneField.setText(md.getPhone(m.getId()));
  	  	
@@ -148,7 +161,7 @@ public class WorkerMagisterInformation extends JFrame {
 		WorkTitleInThemeField.setText((String) null);
 		WorkTitleInThemeField.setEditable(false);
 		WorkTitleInThemeField.setColumns(10);
-		WorkTitleInThemeField.setBounds(210, 357, 350, 22);
+		WorkTitleInThemeField.setBounds(210, 405, 350, 22);
 		contentPane.add(WorkTitleInThemeField);
  	  	WorkTitleInThemeField.setText(w.getTitle());
  	  	
@@ -157,7 +170,7 @@ public class WorkerMagisterInformation extends JFrame {
 		StartInThemeField.setText((String) null);
 		StartInThemeField.setEditable(false);
 		StartInThemeField.setColumns(10);
-		StartInThemeField.setBounds(210, 407, 350, 22);
+		StartInThemeField.setBounds(210, 455, 350, 22);
 		contentPane.add(StartInThemeField);
  	  	StartInThemeField.setText(String.valueOf(w.getStart()));
 		
@@ -166,7 +179,7 @@ public class WorkerMagisterInformation extends JFrame {
 		EndInThemeField.setText((String) null);
 		EndInThemeField.setEditable(false);
 		EndInThemeField.setColumns(10);
-		EndInThemeField.setBounds(210, 455, 350, 22);
+		EndInThemeField.setBounds(210, 503, 350, 22);
 		contentPane.add(EndInThemeField);
 		WorkThemesMenu.DateToString(w.getEnd(), EndInThemeField);
  	  	
