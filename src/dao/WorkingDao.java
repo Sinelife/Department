@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import MainMenu.MainMenu;
+import main.Main;
 import domain.Working;
 
 public class WorkingDao 
@@ -18,7 +18,7 @@ public class WorkingDao
     public void addWorker(Working w) throws SQLException 
     {
 		String sql = "INSERT INTO working (scientific_theme_id,scientist_id, title, start, end) VALUES (?,?,?,?,?)";
- 	  	PreparedStatement stm = MainMenu.conn.prepareStatement(sql);
+ 	  	PreparedStatement stm = Main.conn.prepareStatement(sql);
  	  	stm.setInt(1, w.getScientificThemeId());
  	  	stm.setInt(2, w.getScientistId());
  	  	stm.setString(3, w.getTitle());
@@ -33,7 +33,7 @@ public class WorkingDao
     {
         String sql = "SELECT * FROM working WHERE scientific_theme_id = ? and scientist_id = ?";
         Working w = new Working();
-        try (PreparedStatement stm = MainMenu.conn.prepareStatement(sql)) 
+        try (PreparedStatement stm = Main.conn.prepareStatement(sql)) 
         {
             stm.setInt(1, scientific_theme_id);
             stm.setInt(2, scientist_id);
@@ -53,7 +53,7 @@ public class WorkingDao
     public void updateWorker(Working w) throws SQLException 
     {
     	String sql = "update working set title = ?, start = ?, end = ? where scientific_theme_id = " +  w.getScientificThemeId() + " and scientist_id = " + w.getScientistId();
-    	PreparedStatement stm = MainMenu.conn.prepareStatement(sql);
+    	PreparedStatement stm = Main.conn.prepareStatement(sql);
     	stm.setString(1, w.getTitle());
     	stm.setDate(2, w.getStart());
     	stm.setDate(3, w.getEnd());
@@ -65,7 +65,7 @@ public class WorkingDao
     public void deleteWorker(Working w) throws SQLException 
     {
     	String sql = "DELETE FROM working WHERE scientific_theme_id = " + w.getScientificThemeId() + " and scientist_id = " + w.getScientistId();
-    	try (Statement stm = MainMenu.conn.createStatement())
+    	try (Statement stm = Main.conn.createStatement())
     	{
             stm.executeUpdate(sql);
     	}
@@ -78,7 +78,7 @@ public class WorkingDao
     {
         String sql = "SELECT * FROM working WHERE scientific_theme_id = " + scientific_theme_id;
         List<Working> list = new ArrayList<Working>();
-        try (PreparedStatement stm = MainMenu.conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = Main.conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
             	Working w = new Working();
@@ -98,7 +98,7 @@ public class WorkingDao
     {
     	String sql = "SELECT surname FROM scientist WHERE scientist_id IN "
     				+ "(SELECT scientist_id FROM working WHERE scientist_id = " + scientist_id + ")";
-		Statement s = MainMenu.conn.createStatement();
+		Statement s = Main.conn.createStatement();
  	  	ResultSet rs = s.executeQuery(sql);
  	  	String surname = null;
  	  	while (rs.next()) {
@@ -116,7 +116,7 @@ public class WorkingDao
     	String role = "";
     	String sql1 = "SELECT surname FROM scientist WHERE scientist_id IN "
     			+ "(SELECT scientist_id FROM " + table + " WHERE scientist_id = " + scientist_id + ")";
-    	Statement s1 = MainMenu.conn.createStatement();
+    	Statement s1 = Main.conn.createStatement();
  	  	ResultSet rs1 = s1.executeQuery(sql1);
  	  	String surname1 = "not ";
  	  	while (rs1.next()) {

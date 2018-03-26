@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.ChooseTheme;
-import MainMenu.MainMenu;
+import ThemesMenu.ChooseTheme;
+import ThemesMenu.WorkThemesMenu;
 import dao.WorkingDao;
 import domain.Working;
 import main.Methods;
@@ -83,7 +83,7 @@ public class EditWorkerInformationFrame extends JFrame {
 		EndInThemeField.setColumns(10);
 		EndInThemeField.setBounds(179, 225, 374, 22);
 		contentPane.add(EndInThemeField);
-		MainMenu.DateToString(w.getEnd(), EndInThemeField);;
+		WorkThemesMenu.DateToString(w.getEnd(), EndInThemeField);;
  	  	
 		
 		

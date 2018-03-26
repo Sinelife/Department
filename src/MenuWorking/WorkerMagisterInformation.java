@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.ChooseTheme;
-import MainMenu.MainMenu;
+import ThemesMenu.ChooseTheme;
+import ThemesMenu.WorkThemesMenu;
 import dao.MagisterDao;
 import dao.WorkingDao;
 import domain.Magister;
@@ -125,7 +125,7 @@ public class WorkerMagisterInformation extends JFrame {
 		EndField.setColumns(10);
 		EndField.setBounds(210, 217, 350, 22);
 		contentPane.add(EndField);
-		MainMenu.DateToString(m.getEnd(), EndField);;
+		WorkThemesMenu.DateToString(m.getEnd(), EndField);;
 		
 		
 		ThemeDiplomaField = new JTextField();
@@ -168,7 +168,7 @@ public class WorkerMagisterInformation extends JFrame {
 		EndInThemeField.setColumns(10);
 		EndInThemeField.setBounds(210, 455, 350, 22);
 		contentPane.add(EndInThemeField);
-		MainMenu.DateToString(w.getEnd(), EndInThemeField);
+		WorkThemesMenu.DateToString(w.getEnd(), EndInThemeField);
  	  	
  	  	
 		

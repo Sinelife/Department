@@ -8,10 +8,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.ChooseTheme;
-import MainMenu.EditTheme;
-import MainMenu.EditThemeFrame;
-import MainMenu.MainMenu;
+import ThemesMenu.ChooseTheme;
+import ThemesMenu.EditTheme;
+import ThemesMenu.EditThemeFrame;
+import ThemesMenu.WorkThemesMenu;
 import dao.SupervisionDao;
 import dao.TeacherDao;
 import domain.Supervision;
@@ -85,7 +85,7 @@ public class EditSupervisorInformationFrame extends JFrame {
 		EndInThemeField.setColumns(10);
 		EndInThemeField.setBounds(179, 225, 374, 22);
 		contentPane.add(EndInThemeField);
-		MainMenu.DateToString(s.getEnd(), EndInThemeField);
+		WorkThemesMenu.DateToString(s.getEnd(), EndInThemeField);
  	  	
 		
 		

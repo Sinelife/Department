@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.MainMenu;
+import ThemesMenu.WorkThemesMenu;
 import dao.AspirantDao;
 import domain.Aspirant;
 
@@ -104,7 +104,7 @@ public class NotWorkerAspirantInformation extends JFrame {
 		EndField.setColumns(10);
 		EndField.setBounds(210, 219, 350, 22);
 		contentPane.add(EndField);
-		MainMenu.DateToString(a.getEnd(), EndField);
+		WorkThemesMenu.DateToString(a.getEnd(), EndField);
 		
 		ThemeDiplomaField = new JTextField();
 		ThemeDiplomaField.setEditable(false);

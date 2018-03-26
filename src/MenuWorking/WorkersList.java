@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.ChooseTheme;
+import ThemesMenu.ChooseTheme;
 import dao.AspirantDao;
 import dao.MagisterDao;
 import dao.TeacherDao;

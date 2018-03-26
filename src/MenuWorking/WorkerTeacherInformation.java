@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.ChooseTheme;
-import MainMenu.MainMenu;
+import ThemesMenu.ChooseTheme;
+import ThemesMenu.WorkThemesMenu;
 import dao.TeacherDao;
 import dao.WorkingDao;
 import domain.Teacher;
@@ -42,7 +42,7 @@ public class WorkerTeacherInformation extends JFrame {
 	public WorkerTeacherInformation(JFrame parent) throws SQLException
 	{
 		TeacherDao td = new TeacherDao();
-		Teacher t = td.read(WorkersList.worker_id_to_look);
+		Teacher t = td.readTeacher(WorkersList.worker_id_to_look);
 		WorkingDao wd = new WorkingDao();
 		Working w = wd.readWorker(ChooseTheme.id_to_work, WorkersList.worker_id_to_look);
  	  	
@@ -176,7 +176,7 @@ public class WorkerTeacherInformation extends JFrame {
 		EndInThemeField.setColumns(10);
 		EndInThemeField.setBounds(218, 477, 350, 22);
 		contentPane.add(EndInThemeField);
-		MainMenu.DateToString(w.getEnd(), EndInThemeField);
+		WorkThemesMenu.DateToString(w.getEnd(), EndInThemeField);
  	  	
  	  	
 		

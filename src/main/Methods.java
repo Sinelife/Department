@@ -4,10 +4,14 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-import MainMenu.ChooseTheme;
+import DepartmentMenu.ChooseCathedra;
+import ThemesMenu.ChooseTheme;
+import ThemesMenu.EditTheme;
+import WorkTeacherMenu.EditTeacher;
 import dao.AspirantDao;
 import dao.MagisterDao;
 import dao.ScientificThemeDao;
@@ -18,6 +22,7 @@ import domain.Aspirant;
 import domain.Cathedra;
 import domain.Magister;
 import domain.ScientificTheme;
+import domain.Scientist;
 import domain.Supervision;
 import domain.Teacher;
 import domain.Working;
@@ -154,6 +159,68 @@ public class Methods
 
 	// МЕТОДИ ДЛЯ ДОДАВАННЯ РІЗНИХ ОБЄКТІВ ДО БД
 
+	// Метод додавання викладача
+
+		public static void addTeacher(int cathedra_id, JTextField SurnameField, JTextField PhoneField, JTextField PositionField,
+				JTextField StatusField, JTextField StartField, JCheckBox CheckBox)
+		{
+			TeacherDao td = new TeacherDao();
+			Teacher t = new Teacher();
+			Scientist s = new Scientist();
+			s.setSurname(SurnameField.getText());
+			s.setPhone(PhoneField.getText());
+			if(CheckBox.isSelected())
+			{
+				s.setSex(true);
+			}
+			else
+			{
+				s.setSex(false);
+			}
+			t.setCathedraId(cathedra_id);
+			t.setPosition(PositionField.getText());
+			t.setStatus(StatusField.getText());
+			t.setStart(Date.valueOf(StartField.getText()));
+			try {
+				td.addTeacher(t,s);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		// Метод оновлення викладача
+		
+		public static void updateTeacher(int scientist_id, int cathedra_id, JTextField SurnameField, JTextField PhoneField, JCheckBox CheckBox, JTextField PositionField,
+				JTextField StatusField, JTextField StartField)
+		{
+			TeacherDao td = new TeacherDao();
+			Scientist s = new Scientist();
+			Teacher t = new Teacher();
+			s.setId(scientist_id);
+			s.setSurname(SurnameField.getText());
+			s.setPhone(PhoneField.getText());
+			if(CheckBox.isSelected())
+			{
+				s.setSex(true);
+			}
+			else
+			{
+				s.setSex(false);
+			}
+			t.setId(scientist_id);
+			t.setCathedraId(cathedra_id);
+			t.setPosition(PositionField.getText());
+			t.setStatus(StatusField.getText());
+			t.setStart(Date.valueOf(StartField.getText()));
+			try {
+				td.updateTeacher(t, s);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	
+	
 	// Метод додавання теми
 
 	public static void addTheme(int cathedra_id, JTextField TitleField, JTextField CustomerField, JTextField StartField,
@@ -183,11 +250,13 @@ public class Methods
 	
 	// Метод оновлення теми
 	
-	public static void updateTheme(JTextField TitleField, JTextField CustomerField, JTextField StartField,
-			JTextField EndField)
+	public static void updateTheme(int theme_id, int cathedra_id, JTextField TitleField, JTextField CustomerField,
+			JTextField StartField, JTextField EndField)
 	{
 		ScientificThemeDao std = new ScientificThemeDao();
 		ScientificTheme st = new ScientificTheme();
+		st.setId(theme_id);
+		st.setCathedraId(cathedra_id);
 		st.setTitle(TitleField.getText());
 		st.setCustomer(CustomerField.getText());
 		st.setStart(Date.valueOf(StartField.getText()));
@@ -386,6 +455,7 @@ public class Methods
 	}
 	
 	
+	//Метод вибору інфи з магістрів,аспірантів і викладачів
 	public static int infoDecitionId(int worker_id, String worker_surname, JComboBox WorkersComboBox) throws SQLException
 	{
 		MagisterDao md = new MagisterDao();

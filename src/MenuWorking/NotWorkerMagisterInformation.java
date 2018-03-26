@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.MainMenu;
+import ThemesMenu.WorkThemesMenu;
 import dao.MagisterDao;
 import domain.Magister;
 
@@ -105,7 +105,7 @@ public class NotWorkerMagisterInformation extends JFrame {
 		EndField.setColumns(10);
 		EndField.setBounds(210, 217, 350, 22);
 		contentPane.add(EndField);
-		MainMenu.DateToString(m.getEnd(), EndField);;
+		WorkThemesMenu.DateToString(m.getEnd(), EndField);;
 		
 		
 		ThemeDiplomaField = new JTextField();

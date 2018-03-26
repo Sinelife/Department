@@ -35,7 +35,7 @@ public class NotWorkerTeacherInformation extends JFrame {
 	public NotWorkerTeacherInformation(JFrame parent) throws SQLException
 	{
 		TeacherDao td = new TeacherDao();
-		Teacher t = td.read(AddWorkerTeacher.t_id_to_look);
+		Teacher t = td.readTeacher(AddWorkerTeacher.t_id_to_look);
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

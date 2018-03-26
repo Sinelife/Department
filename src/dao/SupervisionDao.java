@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-import MainMenu.MainMenu;
+import main.Main;
 import domain.Supervision;
 
 public class SupervisionDao 
@@ -14,7 +14,7 @@ public class SupervisionDao
     public void addSupervisor(Supervision s) throws SQLException 
     {
 		String sql = "INSERT INTO supervision (scientific_theme_id, teacher_scientist_id, start, end) VALUES (?,?,?,?)";
- 	  	PreparedStatement stm = MainMenu.conn.prepareStatement(sql);
+ 	  	PreparedStatement stm = Main.conn.prepareStatement(sql);
     	stm.setInt(1, s.getScientificThemeId());
     	stm.setInt(2, s.getScientistId());
     	stm.setDate(3, s.getStart());
@@ -27,7 +27,7 @@ public class SupervisionDao
     public void changeSupervisor(int new_id ,Supervision s) throws SQLException
     {
     	String sql = "update supervision set teacher_scientist_id = ? where scientific_theme_id = " + s.getScientificThemeId();
-    	PreparedStatement stm = MainMenu.conn.prepareStatement(sql);
+    	PreparedStatement stm = Main.conn.prepareStatement(sql);
     	stm.setInt(1, new_id);
     	stm.executeUpdate();
     	JOptionPane.showMessageDialog (null, "Керівника теми успішно змінено!" );
@@ -42,7 +42,7 @@ public class SupervisionDao
 		{
 	        String sql = "SELECT * FROM supervision WHERE scientific_theme_id = ?";
 	        Supervision s = new Supervision();
-	        try (PreparedStatement stm = MainMenu.conn.prepareStatement(sql)) 
+	        try (PreparedStatement stm = Main.conn.prepareStatement(sql)) 
 	        {
 	            stm.setInt(1, key);
 	            ResultSet rs = stm.executeQuery();
@@ -65,7 +65,7 @@ public class SupervisionDao
     public void updateSupervisor(Supervision s) throws SQLException 
     {
     	String sql = "update supervision set start = ?, end = ? where scientific_theme_id = " +  s.getScientificThemeId();
-    	PreparedStatement stm = MainMenu.conn.prepareStatement(sql);
+    	PreparedStatement stm = Main.conn.prepareStatement(sql);
     	stm.setDate(1, s.getStart());
     	stm.setDate(2, s.getEnd());
     	stm.executeUpdate();
@@ -76,7 +76,7 @@ public class SupervisionDao
     public boolean hasSupervisor(int scientific_theme_id) throws SQLException
     {
     	String sql = "SELECT scientific_theme_id FROM scientifictheme WHERE scientific_theme_id IN (SELECT scientific_theme_id FROM supervision)";
-    	PreparedStatement stm = MainMenu.conn.prepareStatement(sql);
+    	PreparedStatement stm = Main.conn.prepareStatement(sql);
     	ResultSet rs = stm.executeQuery();
     	int ids[] = new int[100];
     	for(int i = 0; i < 100;i++)

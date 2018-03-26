@@ -1,5 +1,6 @@
 package MenuSupervision;
 
+import DepartmentMenu.DepartmentMenu;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -9,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.ChooseTheme;
+import ThemesMenu.ChooseTheme;
 import dao.ScientificThemeDao;
 import dao.SupervisionDao;
 import domain.ScientificTheme;
@@ -74,6 +75,7 @@ public class MenuSupervision extends JFrame {
 				}
 				else
 				{
+					DepartmentMenu.teacherSupervisor = 2;
 					MenuSupervision.this.setVisible(false);
 					try {
 						new SupervisorInformation(MenuSupervision.this).setVisible(true);

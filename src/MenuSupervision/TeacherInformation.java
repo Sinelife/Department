@@ -16,8 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.ChooseTheme;
-import MainMenu.MainMenu;
+import ThemesMenu.ChooseTheme;
+import ThemesMenu.WorkThemesMenu;
 import dao.TeacherDao;
 import domain.Teacher;
 
@@ -46,11 +46,11 @@ public class TeacherInformation extends JFrame
 		
 		if(MenuSupervision.teacher_change_or_add == 2)
 		{
-			t = td.read(ChangeSupervisor.id_to_look);
+			t = td.readTeacher(ChangeSupervisor.id_to_look);
 		}
 		else
 		{
-			t = td.read(AddSupervisor.id_to_look);
+			t = td.readTeacher(AddSupervisor.id_to_look);
 		}
  	  	
 		

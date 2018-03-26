@@ -1,11 +1,13 @@
 package MenuTheme;
+import DepartmentMenu.DepartmentMenu;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.ChooseTheme;
-import MainMenu.DeleteTheme;
-import MainMenu.MainMenu;
+import ThemesMenu.ChooseTheme;
+import ThemesMenu.DeleteTheme;
+import ThemesMenu.WorkThemesMenu;
+import WorkTeacherMenu.TeacherSupervisionInfo;
 import dao.ScientificThemeDao;
 import domain.ScientificTheme;
 
@@ -38,11 +40,15 @@ public class ScientificThemeInformation extends JFrame {
 		ScientificThemeDao std = new ScientificThemeDao();
 		ScientificTheme st = new ScientificTheme();
 		
-		if(MainMenu.theme_information == 2)
+		if(DepartmentMenu.theme == 1)
+		{
+			st = std.readTheme(TeacherSupervisionInfo.id);
+		}
+		if(DepartmentMenu.theme == 2)
 		{
 			st = std.readTheme(ChooseTheme.id_to_work);
 		}
-		else
+		if(DepartmentMenu.theme == 3)
 		{
 			st = std.readTheme(DeleteTheme.id_to_delete);
 		}
@@ -110,7 +116,7 @@ public class ScientificThemeInformation extends JFrame {
 		EndField.setColumns(10);
 		EndField.setBounds(202, 288, 350, 22);
 		contentPane.add(EndField);
-		MainMenu.DateToString(st.getEnd(), EndField);
+		WorkThemesMenu.DateToString(st.getEnd(), EndField);
 		
 		
 		CathedraIdField = new JTextField();

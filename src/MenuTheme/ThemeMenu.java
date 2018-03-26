@@ -1,16 +1,16 @@
 package MenuTheme;
 
 import java.awt.Font;
+import DepartmentMenu.DepartmentMenu;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.ChooseTheme;
-import MainMenu.MainMenu;
 import MenuSupervision.MenuSupervision;
 import MenuWorking.MenuWorking;
+import ThemesMenu.ChooseTheme;
 import dao.ScientificThemeDao;
 import domain.ScientificTheme;
 
@@ -63,7 +63,7 @@ public class ThemeMenu extends JFrame {
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				MainMenu.theme_information = 2;
+				DepartmentMenu.theme = 2;
 				ThemeMenu.this.setVisible(false);
 				try {
 					new ScientificThemeInformation(ThemeMenu.this).setVisible(true);
@@ -118,8 +118,7 @@ public class ThemeMenu extends JFrame {
 					parent.setVisible(true);
 				ThemeMenu.this.setVisible(false);
 				ThemeMenu.this.dispose();
-				ChooseTheme.title_to_work = null;
-				ChooseTheme.id_to_work = 0;
+
 			}
 		});
 		btnBack.setBounds(489, 427, 97, 25);

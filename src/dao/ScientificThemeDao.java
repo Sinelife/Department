@@ -9,9 +9,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import MainMenu.MainMenu;
 import domain.ScientificTheme;
-
+import main.Main;
 public class ScientificThemeDao 
 {
 	
@@ -19,11 +18,11 @@ public class ScientificThemeDao
     public void addTheme(ScientificTheme st) throws SQLException 
     {
 		String sql = "INSERT INTO scientifictheme (scientific_theme_id, title, customer, start, end, cathedra_id) VALUES (?,?,?,?,?,?)";
- 	  	PreparedStatement stm = MainMenu.conn.prepareStatement(sql);
+ 	  	PreparedStatement stm = Main.conn.prepareStatement(sql);
  	  	
 		int i = -1;
 		String sql_for_id = "SELECT MAX(scientific_theme_id) from scientifictheme";
-		PreparedStatement statement_for_id = MainMenu.conn.prepareStatement(sql_for_id);
+		PreparedStatement statement_for_id = Main.conn.prepareStatement(sql_for_id);
 		statement_for_id.executeQuery();
 		ResultSet result = statement_for_id.getResultSet();
 		if((result!=null) && (result.next()))i = result.getInt(1);
@@ -42,7 +41,7 @@ public class ScientificThemeDao
     {
         String sql = "SELECT * FROM scientifictheme WHERE scientific_theme_id = ?";
         ScientificTheme st = new ScientificTheme();
-        try (PreparedStatement stm = MainMenu.conn.prepareStatement(sql)) 
+        try (PreparedStatement stm = Main.conn.prepareStatement(sql)) 
         {
             stm.setInt(1, key);
             ResultSet rs = stm.executeQuery();
@@ -62,7 +61,7 @@ public class ScientificThemeDao
     public void updateTheme(ScientificTheme st) throws SQLException 
     {
     	String sql = "update scientifictheme set title = ?, customer = ?, start = ?, end = ? where scientific_theme_id = " +  st.getId();
-    	PreparedStatement stm = MainMenu.conn.prepareStatement(sql);
+    	PreparedStatement stm = Main.conn.prepareStatement(sql);
     	stm.setString(1, st.getTitle());
     	stm.setString(2, st.getCustomer());
     	stm.setDate(3, st.getStart());
@@ -75,7 +74,7 @@ public class ScientificThemeDao
     public void deleteTheme(ScientificTheme st) throws SQLException 
     {
     	String sql = "DELETE FROM scientifictheme WHERE scientific_theme_id = " + st.getId();
-    	try (Statement stm = MainMenu.conn.createStatement())
+    	try (Statement stm = Main.conn.createStatement())
     	{
             stm.executeUpdate(sql);
     	}
@@ -87,7 +86,7 @@ public class ScientificThemeDao
     {
         String sql = "SELECT * FROM scientifictheme;";
         List<ScientificTheme> list = new ArrayList<ScientificTheme>();
-        try (PreparedStatement stm = MainMenu.conn.prepareStatement(sql)) {
+        try (PreparedStatement stm = Main.conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
             while (rs.next()) {
             	ScientificTheme st = new ScientificTheme();
@@ -104,10 +103,34 @@ public class ScientificThemeDao
     }
     
     
+    
+    public List<ScientificTheme> getAllInCathedra(int cathedra_id) throws SQLException 
+    {
+        String sql = "SELECT * FROM scientifictheme WHERE cathedra_id IN"
+        		+ "(SELECT cathedra_id FROM cathedra WHERE cathedra_id = " + cathedra_id + ");";
+        List<ScientificTheme> list = new ArrayList<ScientificTheme>();
+        try (PreparedStatement stm = Main.conn.prepareStatement(sql)) {
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+            	ScientificTheme st = new ScientificTheme();
+                st.setId(rs.getInt("scientific_theme_id"));
+                st.setTitle(rs.getString("title"));
+                st.setCustomer(rs.getString("customer"));
+                st.setStart(rs.getDate("start"));
+                st.setEnd(rs.getDate("end"));
+                st.setCathedraId(rs.getInt("cathedra_id"));
+                list.add(st);
+            }
+        }
+        return list;
+    }
+    
+    
+    
     public String getCathedraName(int key) throws SQLException
     {
     	String sql = "select name from cathedra where cathedra_id in (select cathedra_id from scientifictheme where scientific_theme_id = " + key + ")";
-		Statement s = MainMenu.conn.createStatement();
+		Statement s = Main.conn.createStatement();
  	  	ResultSet rs = s.executeQuery(sql);
  	  	String name = null;
  	  	while (rs.next()) {

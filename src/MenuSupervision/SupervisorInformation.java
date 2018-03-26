@@ -12,8 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.ChooseTheme;
-import MainMenu.MainMenu;
+import DepartmentMenu.DepartmentMenu;
+import ThemesMenu.ChooseTheme;
+import ThemesMenu.WorkThemesMenu;
+import WorkTeacherMenu.TeacherSupervisionInfo;
 import dao.SupervisionDao;
 import dao.TeacherDao;
 import domain.Supervision;
@@ -41,10 +43,20 @@ public class SupervisorInformation extends JFrame {
 	public SupervisorInformation(JFrame parent) throws SQLException 
 	{
 		SupervisionDao sd = new SupervisionDao();
-		Supervision s = sd.readSupervisor(ChooseTheme.id_to_work);
+		Supervision s = new Supervision();
 		TeacherDao td = new TeacherDao();
-		Teacher t = td.read(s.getScientistId());
+		Teacher t = new Teacher();
 		
+		if(DepartmentMenu.teacherSupervisor == 1)
+		{
+			s = sd.readSupervisor(TeacherSupervisionInfo.id);
+			t = td.readTeacher(s.getScientistId());
+		}
+		if(DepartmentMenu.teacherSupervisor == 2)
+		{
+			s = sd.readSupervisor(ChooseTheme.id_to_work);
+			t = td.readTeacher(s.getScientistId());
+		}
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 546);
@@ -147,7 +159,7 @@ public class SupervisorInformation extends JFrame {
 		EndInThemeField.setColumns(10);
 		EndInThemeField.setBounds(224, 386, 375, 22);
 		contentPane.add(EndInThemeField);
-		MainMenu.DateToString(s.getEnd(), EndInThemeField);
+		WorkThemesMenu.DateToString(s.getEnd(), EndInThemeField);
 		
 		
 

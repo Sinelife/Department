@@ -1,19 +1,18 @@
 package domain;
 
-import java.sql.Date;
-
-;
 
 public class Scientist
 {
 
 	private int scientist_id;
+	private boolean sex;
 	private String surname;
 	private String phone;
 	
-	Scientist(int scientist_id, String surname,String phone)
+	Scientist(int scientist_id, boolean sex, String surname,String phone)
 	{
 		this.scientist_id = scientist_id; 
+		this.sex = sex;
 		this.surname = surname; 
 		this.phone = phone;
 	}
@@ -53,6 +52,16 @@ public class Scientist
 	public void setPhone(String phone) 
 	{
 		this.phone = phone;	
+	}
+
+	public boolean getSex() 
+	{
+		return sex;
+	}
+
+	public void setSex(boolean sex) {
+		
+		this.sex = sex;
 	}
 
 }

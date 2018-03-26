@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import MainMenu.ChooseTheme;
+import ThemesMenu.ChooseTheme;
 import dao.WorkingDao;
 import domain.Working;
 import main.Methods;
