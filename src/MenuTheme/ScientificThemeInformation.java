@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class ScientificThemeInformation extends JFrame {
 
@@ -67,8 +68,9 @@ public class ScientificThemeInformation extends JFrame {
 		contentPane.setLayout(null);
 	
 		JLabel lblScientificThemeInformation = new JLabel("Інформація про наукову тему");
+		lblScientificThemeInformation.setHorizontalAlignment(SwingConstants.CENTER);
 		lblScientificThemeInformation.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblScientificThemeInformation.setBounds(171, 13, 258, 37);
+		lblScientificThemeInformation.setBounds(0, 13, 622, 37);
 		contentPane.add(lblScientificThemeInformation);
 		
 		JLabel lblTitle = new JLabel("назва теми");

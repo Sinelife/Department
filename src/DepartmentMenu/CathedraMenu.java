@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import ThemesMenu.WorkThemesMenu;
+import WorkAspirantMenu.WorkAspirantMenu;
 import WorkTeacherMenu.WorkTeacherMenu;
 import dao.CathedraDao;
 import domain.Cathedra;
@@ -35,7 +36,7 @@ public class CathedraMenu extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 589, 435);
+		setBounds(100, 100, 603, 530);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -84,7 +85,7 @@ public class CathedraMenu extends JFrame {
 				new WorkTeacherMenu().setVisible(true);
 			}
 		});
-		WorkTeacherMenuButton.setForeground(Color.RED);
+		WorkTeacherMenuButton.setForeground(Color.BLACK);
 		WorkTeacherMenuButton.setHorizontalAlignment(SwingConstants.LEFT);
 		WorkTeacherMenuButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		WorkTeacherMenuButton.setBounds(37, 209, 487, 42);
@@ -112,6 +113,22 @@ public class CathedraMenu extends JFrame {
 		contentPane.add(WorkThemesMenuButton);
 		
 		
+		JButton WorkAspirantMenuButton = new JButton("4)Меню роботи з аспірантами");
+		WorkAspirantMenuButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				CathedraMenu.this.setVisible(false);
+				new WorkAspirantMenu().setVisible(true);
+			}
+		});
+		WorkAspirantMenuButton.setHorizontalAlignment(SwingConstants.LEFT);
+		WorkAspirantMenuButton.setForeground(Color.BLACK);
+		WorkAspirantMenuButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		WorkAspirantMenuButton.setBounds(37, 379, 487, 42);
+		contentPane.add(WorkAspirantMenuButton);
+		
+		
 		
 		JButton btnBack = new JButton("BACK");
 		btnBack.addActionListener(new ActionListener() 
@@ -127,9 +144,8 @@ public class CathedraMenu extends JFrame {
 				}
 			}
 		});
-		btnBack.setBounds(462, 350, 97, 25);
+		btnBack.setBounds(474, 445, 97, 25);
 		contentPane.add(btnBack);
-		
 	}
 
 }

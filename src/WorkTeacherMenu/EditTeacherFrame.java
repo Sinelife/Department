@@ -3,7 +3,6 @@ package WorkTeacherMenu;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Date;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -15,10 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import DepartmentMenu.ChooseCathedra;
-import dao.ScientistDao;
 import dao.TeacherDao;
-import domain.Scientist;
 import domain.Teacher;
 import main.Methods;
 
@@ -40,9 +36,7 @@ public class EditTeacherFrame extends JFrame {
 	public EditTeacherFrame(JFrame parent) throws SQLException 
 	{
 		TeacherDao td = new TeacherDao();
-		ScientistDao sd = new ScientistDao();
 		Teacher t = td.readTeacher(EditTeacher.id_to_edit);
-		Scientist s = sd.readScientist(EditTeacher.id_to_edit);
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -138,7 +132,7 @@ public class EditTeacherFrame extends JFrame {
 		AddButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				Methods.updateTeacher(EditTeacher.id_to_edit, ChooseCathedra.cathedra_id_to_work,SurnameField, PhoneField, CheckBox, PositionField, StatusField, StartField);
+				Methods.updateTeacher(EditTeacher.id_to_edit, SurnameField, PhoneField, CheckBox, PositionField, StatusField, StartField);
 				EditTeacherFrame.this.setVisible(false);
 				EditTeacherFrame.this.dispose();
 				new WorkTeacherMenu().setVisible(true);

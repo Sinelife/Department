@@ -14,6 +14,8 @@ import DepartmentMenu.CathedraPeopleInfo;
 import DepartmentMenu.DepartmentMenu;
 import DepartmentMenu.DepartmentPeopleInfo;
 import ThemesMenu.WorkThemesMenu;
+import WorkAspirantMenu.AspirantThemeRulers;
+import WorkAspirantMenu.ScientificWorkOfAspirant;
 import dao.AspirantDao;
 import domain.Aspirant;
 
@@ -54,6 +56,14 @@ public class NotWorkerAspirantInformation extends JFrame {
 		if(DepartmentMenu.aspirant == 3)
 		{
 			a = ad.readAspirant(AddWorkerAspirant.a_id_to_look);
+		}
+		if(DepartmentMenu.aspirant == 4)
+		{
+			a = ad.readAspirant(AspirantThemeRulers.a_id);
+		}
+		if(DepartmentMenu.aspirant == 5)
+		{
+			a = ad.readAspirant(ScientificWorkOfAspirant.aspirant_id);
 		}
 		
 		

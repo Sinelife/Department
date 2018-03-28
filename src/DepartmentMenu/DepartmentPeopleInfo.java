@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import MenuWorking.AddWorkerTeacher;
 import MenuWorking.NotWorkerAspirantInformation;
 import MenuWorking.NotWorkerMagisterInformation;
 import MenuWorking.NotWorkerTeacherInformation;
@@ -49,6 +48,7 @@ public class DepartmentPeopleInfo extends JFrame {
 		AspirantDao ad = new AspirantDao();
 		List<Teacher> teachers = td.getAll();
 		List<Aspirant> aspirants = ad.getAll();
+		List<Aspirant> aspirants_finish = ad.getAllWhoFinished();
 		List<Magister> magisters = md.getAll();
 		
 		
@@ -179,6 +179,48 @@ public class DepartmentPeopleInfo extends JFrame {
 		MagisterInfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		MagisterInfoButton.setBounds(384, 318, 122, 34);
 		contentPane.add(MagisterInfoButton);
+		
+		
+		
+		
+		JButton FinishedButton = new JButton("Закінчили навчання");
+		FinishedButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				AspirantComboBox.removeAllItems();
+				for(Aspirant aspirant : aspirants_finish)
+				{
+					try {
+						AspirantComboBox.addItem(ad.getSurname(aspirant.getId()));
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+		FinishedButton.setBounds(135, 259, 168, 25);
+		contentPane.add(FinishedButton);
+		
+		JButton AllButton = new JButton("Всі");
+		AllButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				AspirantComboBox.removeAllItems();
+				for(Aspirant aspirant : aspirants)
+				{
+					try {
+						AspirantComboBox.addItem(ad.getSurname(aspirant.getId()));
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+		AllButton.setBounds(306, 259, 66, 25);
+		contentPane.add(AllButton);
+		
 		
 		
 		

@@ -8,10 +8,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
-import DepartmentMenu.ChooseCathedra;
 import ThemesMenu.ChooseTheme;
-import ThemesMenu.EditTheme;
-import WorkTeacherMenu.EditTeacher;
 import dao.AspirantDao;
 import dao.MagisterDao;
 import dao.ScientificThemeDao;
@@ -22,6 +19,7 @@ import domain.Aspirant;
 import domain.Cathedra;
 import domain.Magister;
 import domain.ScientificTheme;
+import domain.ScientificWork;
 import domain.Scientist;
 import domain.Supervision;
 import domain.Teacher;
@@ -47,6 +45,24 @@ public class Methods
 	
 	
 	//МЕТОДИ ДЛЯ ОТРИМАННЯ АЙДІШНИКА ОБ'ЄКТА ЧЕРЕЗ І'МЯ
+	
+	
+	//Метод для отримання айдішника наукової роботи через назву 
+	
+	public static int getWorkIdByWorkTitle(String title, int id, JComboBox<String> ComboBox,List<ScientificWork> works)
+	{
+		title = String.valueOf(ComboBox.getSelectedItem());
+		for(ScientificWork work : works) 
+		{
+			id = work.getId();
+			if(work.getTitle().equals(title))
+			{
+				break;
+			}
+		}
+		return id;
+	}
+	
 	
 	//Метод для отримання айдішника наукової теми через назву теми
 	
@@ -100,6 +116,7 @@ public class Methods
 	}
 	
 	
+	
 	//Метод для отримання айдішника аспіранта за прізвищем
 	
 	public static int getAspirantIdBySurname(String surname, int id, JComboBox<String> ComboBox,List<Aspirant> aspirants) throws SQLException
@@ -116,6 +133,7 @@ public class Methods
 		}
 		return id;
 	}
+	
 	
 	
 	//Метод для отримання айдішника магістра за прізвищем
@@ -159,6 +177,98 @@ public class Methods
 
 	// МЕТОДИ ДЛЯ ДОДАВАННЯ РІЗНИХ ОБЄКТІВ ДО БД
 
+	// Метод додавання аспіранта
+
+	public static void addAspirant(int cathedra_id, int ruler_id, JTextField SurnameField, JTextField PhoneField, JTextField StartField,
+			JTextField EndField, JTextField ProtectionField, JTextField DiplomaField, JCheckBox SexCheckBox)
+	{
+		AspirantDao ad = new AspirantDao();
+		Aspirant a = new Aspirant();
+		Scientist s = new Scientist();
+		s.setSurname(SurnameField.getText());
+		s.setPhone(PhoneField.getText());
+		if(SexCheckBox.isSelected())
+		{
+			s.setSex(true);
+		}
+		else
+		{
+			s.setSex(false);
+		}
+		a.setCathedraId(cathedra_id);
+		a.setStart(Date.valueOf(StartField.getText()));
+	  	if(EndField.getText().equals(""))
+	  	{
+	  		a.setEnd(null);
+	  	}
+	  	else
+	  	{
+	  		a.setEnd(Date.valueOf(EndField.getText()));
+	  	}
+	  	if(EndField.getText().equals(""))
+	  	{
+	  		a.setProtection(null);
+	  	}
+	  	else
+	  	{
+	  		a.setProtection(Date.valueOf(EndField.getText()));
+	  	}
+		a.setThemeAspirant(DiplomaField.getText());
+		a.setTeacherScientistId(ruler_id);
+		try {
+			ad.addAspirant(a,s);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	
+	//Метод оновлення аспіранта
+	
+	public static void updateAspirant(int scientist_id, int ruler_id, JTextField SurnameField, JTextField PhoneField, JTextField StartField,
+			JTextField EndField, JTextField ProtectionField, JTextField DiplomaField, JCheckBox SexCheckBox)
+	{
+		AspirantDao ad = new AspirantDao();
+		Aspirant a = new Aspirant();
+		Scientist s = new Scientist();
+		s.setId(scientist_id);
+		s.setSurname(SurnameField.getText());
+		s.setPhone(PhoneField.getText());
+		if(SexCheckBox.isSelected())
+		{
+			s.setSex(true);
+		}
+		else
+		{
+			s.setSex(false);
+		}
+		a.setStart(Date.valueOf(StartField.getText()));
+	  	if(EndField.getText().equals(""))
+	  	{
+	  		a.setEnd(null);
+	  	}
+	  	else
+	  	{
+	  		a.setEnd(Date.valueOf(EndField.getText()));
+	  	}
+	  	if(ProtectionField.getText().equals(""))
+	  	{
+	  		a.setProtection(null);
+	  	}
+	  	else
+	  	{
+	  		a.setProtection(Date.valueOf(EndField.getText()));
+	  	}
+		a.setThemeAspirant(DiplomaField.getText());
+		a.setTeacherScientistId(ruler_id);
+		try {
+			ad.updateAspirant(a,s);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	
 	// Метод додавання викладача
 
 		public static void addTeacher(int cathedra_id, JTextField SurnameField, JTextField PhoneField, JTextField PositionField,
@@ -191,7 +301,7 @@ public class Methods
 		
 		// Метод оновлення викладача
 		
-		public static void updateTeacher(int scientist_id, int cathedra_id, JTextField SurnameField, JTextField PhoneField, JCheckBox CheckBox, JTextField PositionField,
+		public static void updateTeacher(int scientist_id,  JTextField SurnameField, JTextField PhoneField, JCheckBox CheckBox, JTextField PositionField,
 				JTextField StatusField, JTextField StartField)
 		{
 			TeacherDao td = new TeacherDao();
@@ -209,7 +319,6 @@ public class Methods
 				s.setSex(false);
 			}
 			t.setId(scientist_id);
-			t.setCathedraId(cathedra_id);
 			t.setPosition(PositionField.getText());
 			t.setStatus(StatusField.getText());
 			t.setStart(Date.valueOf(StartField.getText()));
@@ -231,7 +340,7 @@ public class Methods
 		st.setTitle(TitleField.getText());
 		st.setCustomer(CustomerField.getText());
 		st.setStart(Date.valueOf(StartField.getText()));
-	  	if(EndField.getText().equals("null"))
+	  	if(EndField.getText().equals(""))
 	  	{
 	  		st.setEnd(null);
 	  	}

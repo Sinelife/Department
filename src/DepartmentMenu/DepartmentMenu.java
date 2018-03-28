@@ -31,7 +31,7 @@ public class DepartmentMenu extends JFrame {
 	public DepartmentMenu() 
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 628, 449);
+		setBounds(100, 100, 628, 354);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,14 +62,7 @@ public class DepartmentMenu extends JFrame {
 		ChooseCathedraButton.setBounds(27, 111, 531, 42);
 		contentPane.add(ChooseCathedraButton);
 		
-		JButton EditCathedraButton = new JButton("2)Редагувати кафедру");
-		EditCathedraButton.setForeground(Color.RED);
-		EditCathedraButton.setHorizontalAlignment(SwingConstants.LEFT);
-		EditCathedraButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		EditCathedraButton.setBounds(27, 191, 531, 42);
-		contentPane.add(EditCathedraButton);
-		
-		JButton AllPeopleOnDepartmentButton = new JButton("3)Перегляд всіх людей факультеті");
+		JButton AllPeopleOnDepartmentButton = new JButton("2)Перегляд всіх людей факультеті");
 		AllPeopleOnDepartmentButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e)
@@ -85,7 +78,7 @@ public class DepartmentMenu extends JFrame {
 		AllPeopleOnDepartmentButton.setForeground(Color.BLACK);
 		AllPeopleOnDepartmentButton.setHorizontalAlignment(SwingConstants.LEFT);
 		AllPeopleOnDepartmentButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		AllPeopleOnDepartmentButton.setBounds(27, 272, 531, 42);
+		AllPeopleOnDepartmentButton.setBounds(27, 198, 531, 42);
 		contentPane.add(AllPeopleOnDepartmentButton);
 	}
 }

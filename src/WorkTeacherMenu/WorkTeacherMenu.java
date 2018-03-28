@@ -57,7 +57,7 @@ public class WorkTeacherMenu extends JFrame {
 				}
 			}
 		});
-		AddTeacherButton.setBounds(37, 112, 434, 42);
+		AddTeacherButton.setBounds(37, 111, 456, 42);
 		AddTeacherButton.setHorizontalAlignment(SwingConstants.LEFT);
 		AddTeacherButton.setForeground(Color.BLACK);
 		AddTeacherButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -76,7 +76,7 @@ public class WorkTeacherMenu extends JFrame {
 				}
 			}
 		});
-		EditTeacherButton.setBounds(37, 209, 434, 42);
+		EditTeacherButton.setBounds(37, 201, 456, 42);
 		EditTeacherButton.setHorizontalAlignment(SwingConstants.LEFT);
 		EditTeacherButton.setForeground(Color.BLACK);
 		EditTeacherButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -95,7 +95,7 @@ public class WorkTeacherMenu extends JFrame {
 				}
 			}
 		});
-		TeacherSupervisionButton.setBounds(37, 295, 434, 42);
+		TeacherSupervisionButton.setBounds(37, 294, 456, 42);
 		TeacherSupervisionButton.setHorizontalAlignment(SwingConstants.LEFT);
 		TeacherSupervisionButton.setForeground(Color.BLACK);
 		TeacherSupervisionButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -115,7 +115,7 @@ public class WorkTeacherMenu extends JFrame {
 				}
 			}
 		});
-		TeacherWorkingButtom.setBounds(37, 382, 434, 42);
+		TeacherWorkingButtom.setBounds(37, 381, 456, 42);
 		TeacherWorkingButtom.setHorizontalAlignment(SwingConstants.LEFT);
 		TeacherWorkingButtom.setForeground(Color.BLACK);
 		TeacherWorkingButtom.setFont(new Font("Tahoma", Font.PLAIN, 17));

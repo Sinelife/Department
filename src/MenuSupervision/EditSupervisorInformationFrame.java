@@ -85,7 +85,7 @@ public class EditSupervisorInformationFrame extends JFrame {
 		EndInThemeField.setColumns(10);
 		EndInThemeField.setBounds(179, 225, 374, 22);
 		contentPane.add(EndInThemeField);
-		WorkThemesMenu.DateToString(s.getEnd(), EndInThemeField);
+		Methods.DateToString(s.getEnd(), EndInThemeField);
  	  	
 		
 		

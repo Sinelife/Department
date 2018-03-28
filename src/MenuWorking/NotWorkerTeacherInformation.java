@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import DepartmentMenu.DepartmentMenu;
 import DepartmentMenu.DepartmentPeopleInfo;
+import WorkAspirantMenu.AspirantThemeRulers;
 import dao.TeacherDao;
 import domain.Teacher;
 
@@ -51,6 +52,10 @@ public class NotWorkerTeacherInformation extends JFrame {
 		if(DepartmentMenu.teacher == 3)
 		{
 			t = td.readTeacher(AddWorkerTeacher.t_id_to_look);
+		}
+		if(DepartmentMenu.teacher == 4)
+		{
+			t = td.readTeacher(AspirantThemeRulers.ruler_id);
 		}
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

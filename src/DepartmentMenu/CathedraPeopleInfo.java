@@ -54,6 +54,7 @@ public class CathedraPeopleInfo extends JFrame
 		Cathedra c = cd.readCathedra(ChooseCathedra.cathedra_id_to_work);
 		List<Teacher> teachers = td.getAllFromCathedra(ChooseCathedra.cathedra_id_to_work);
 		List<Aspirant> aspirants = ad.getAllFromCathedra(ChooseCathedra.cathedra_id_to_work);
+		List<Aspirant> aspirants_finish = ad.getAllFromCathedraWhoFinished(ChooseCathedra.cathedra_id_to_work);
 		List<Magister> magisters = md.getAllFromCathedra(ChooseCathedra.cathedra_id_to_work);
 		
 		
@@ -191,6 +192,49 @@ public class CathedraPeopleInfo extends JFrame
 		MagisterInfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		MagisterInfoButton.setBounds(380, 334, 122, 34);
 		contentPane.add(MagisterInfoButton);
+		
+		
+		
+		
+		
+		JButton FinishedButton = new JButton("Закінчили навчання");
+		FinishedButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				AspirantComboBox.removeAllItems();
+				for(Aspirant aspirant : aspirants_finish)
+				{
+					try {
+						AspirantComboBox.addItem(ad.getSurname(aspirant.getId()));
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		FinishedButton.setBounds(131, 275, 168, 25);
+		contentPane.add(FinishedButton);
+		
+		
+		JButton AllButton = new JButton("Усі");
+		AllButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				AspirantComboBox.removeAllItems();
+				for(Aspirant aspirant : aspirants)
+				{
+					try {
+						AspirantComboBox.addItem(ad.getSurname(aspirant.getId()));
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+		AllButton.setBounds(302, 275, 66, 25);
+		contentPane.add(AllButton);
 		
 		
 		

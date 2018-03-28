@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 import main.Main;
+import domain.Aspirant;
 import domain.ScientificTheme;
 import domain.Scientist;
 import domain.Teacher;
@@ -274,6 +275,28 @@ public class TeacherDao
                 st.setEnd(rs.getDate("end"));
                 st.setCathedraId(rs.getInt("cathedra_id"));
                 list.add(st);
+            }
+        }
+        return list;
+    }
+    
+    
+    public List<Aspirant> getAllAspirantsWhichRulerIs(int scientist_id) throws SQLException 
+    {
+    	String sql = "select * from aspirant where teacher_scientist_id = " + scientist_id;
+        List<Aspirant> list = new ArrayList<Aspirant>();
+        try (PreparedStatement stm = Main.conn.prepareStatement(sql)) {
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+            	Aspirant a = new Aspirant();
+                a.setId(rs.getInt("scientist_id"));
+                a.setThemeAspirant(rs.getString("theme_aspirant"));
+                a.setProtection(rs.getDate("protection_date"));
+                a.setStart(rs.getDate("start"));
+                a.setEnd(rs.getDate("end"));
+                a.setCathedraId(rs.getInt("cathedra_id"));
+                a.setTeacherScientistId(rs.getInt("teacher_scientist_id"));
+                list.add(a);
             }
         }
         return list;
