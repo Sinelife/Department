@@ -59,7 +59,7 @@ public class SupervisorInformation extends JFrame {
 		}
 		if(DepartmentMenu.teacherSupervisor == 3)
 		{
-			s = sd.readOldSupervisor(AllSupervisors.supervisor_id);
+			s = sd.readOldSupervisorByDate(AllSupervisors.supervisor_date);
 			t = td.readTeacher(s.getScientistId());
 		}
 		

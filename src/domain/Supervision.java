@@ -2,7 +2,7 @@ package domain;
 
 import java.sql.Date;
 
-public class Supervision 
+public class Supervision implements Comparable
 {
 	private int supervisor_id;
 	private Date start;
@@ -85,6 +85,17 @@ public class Supervision
 	public void setSupervisorId(int supervisor_id) 
 	{
 		this.supervisor_id = supervisor_id;
+	}
+
+	
+	
+	
+	public int compareTo(Object s) {
+		int compare_id = ((Supervision) s).getSupervisorId();
+
+		return this.supervisor_id - compare_id;
+		/* For Descending order do like this */
+		// return compareage-this.studentage;
 	}
 	
 }

@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -90,7 +91,6 @@ public class SupervisionDao
 	
 	public Supervision readOldSupervisor(int supervisor_id) throws SQLException 
     {
-		SupervisionDao sd = new SupervisionDao();
 		String sql = "SELECT * FROM supervision WHERE supervisor_id = ?";
 		Supervision s = new Supervision();
 		try (PreparedStatement stm = Main.conn.prepareStatement(sql)) 
@@ -109,7 +109,25 @@ public class SupervisionDao
 		
 	}
 
-
+	public Supervision readOldSupervisorByDate(Date start) throws SQLException 
+    {
+		String sql = "SELECT * FROM supervision WHERE start = ?";
+		Supervision s = new Supervision();
+		try (PreparedStatement stm = Main.conn.prepareStatement(sql)) 
+		{
+			stm.setDate(1, start);
+			ResultSet rs = stm.executeQuery();
+			rs.next();
+			s.setSupervisorId(rs.getInt("supervisor_id"));
+			s.setScientificThemeId(rs.getInt("scientific_theme_id"));
+			s.setScientistId(rs.getInt("teacher_scientist_id"));
+			s.setStart(rs.getDate("start"));
+			s.setEnd(rs.getDate("end"));
+			s.setRuler(rs.getBoolean("ruler"));
+		}
+		return s;
+		
+	}
 	
 
     
