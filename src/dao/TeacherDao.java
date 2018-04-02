@@ -110,7 +110,7 @@ public class TeacherDao
     
     public List<Teacher> getAllFromCathedraExceptSupervisor(int scientific_theme_id, int cathedra_id) throws SQLException 
     {
-        String sql = "SELECT * FROM teacher WHERE cathedra_id in (SELECT cathedra_id FROM cathedra WHERE cathedra_id = " + cathedra_id + ") and scientist_id not in (SELECT teacher_scientist_id FROM supervision WHERE scientific_theme_id = " + scientific_theme_id + ")";
+        String sql = "SELECT * FROM teacher WHERE cathedra_id in (SELECT cathedra_id FROM cathedra WHERE cathedra_id = " + cathedra_id + ") and scientist_id not in (select teacher_scientist_id from supervision where ruler = 1)";
         List<Teacher> list = new ArrayList<Teacher>();
         try (PreparedStatement stm = Main.conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
@@ -240,7 +240,7 @@ public class TeacherDao
     public List<ScientificTheme> getAllThemesSupervisedByTeacher(int scientist_id) throws SQLException 
     {
     	String sql = "select * from scientifictheme where scientific_theme_id in "
-    				+ "(select scientific_theme_id from supervision where teacher_scientist_id = " + scientist_id + ")";
+    				+ "(select scientific_theme_id from supervision where ruler = 1 and teacher_scientist_id = " + scientist_id + ")";
         List<ScientificTheme> list = new ArrayList<ScientificTheme>();
         try (PreparedStatement stm = Main.conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();

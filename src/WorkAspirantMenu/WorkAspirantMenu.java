@@ -1,7 +1,6 @@
 package WorkAspirantMenu;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JFrame;
@@ -11,9 +10,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import DepartmentMenu.CathedraMenu;
-import WorkTeacherMenu.AddTeacher;
-import WorkTeacherMenu.WorkTeacherMenu;
-
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -32,7 +28,7 @@ public class WorkAspirantMenu extends JFrame {
 	public WorkAspirantMenu() 
 	{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 599, 559);
+		setBounds(100, 100, 606, 675);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -64,7 +60,7 @@ public class WorkAspirantMenu extends JFrame {
 		AddAspirantButton.setHorizontalAlignment(SwingConstants.LEFT);
 		AddAspirantButton.setForeground(Color.BLACK);
 		AddAspirantButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		AddAspirantButton.setBounds(58, 111, 434, 42);
+		AddAspirantButton.setBounds(58, 94, 434, 42);
 		panel.add(AddAspirantButton);
 		
 		JButton EditAspirantButton = new JButton("2)Редагувати аспіранта");
@@ -83,7 +79,7 @@ public class WorkAspirantMenu extends JFrame {
 		EditAspirantButton.setHorizontalAlignment(SwingConstants.LEFT);
 		EditAspirantButton.setForeground(Color.BLACK);
 		EditAspirantButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		EditAspirantButton.setBounds(58, 206, 434, 42);
+		EditAspirantButton.setBounds(58, 178, 434, 42);
 		panel.add(EditAspirantButton);
 		
 		JButton AspirantDiplomaRulerButton = new JButton("3)Переглянути аспірантів по викладачам");
@@ -102,7 +98,7 @@ public class WorkAspirantMenu extends JFrame {
 		AspirantDiplomaRulerButton.setHorizontalAlignment(SwingConstants.LEFT);
 		AspirantDiplomaRulerButton.setForeground(Color.BLACK);
 		AspirantDiplomaRulerButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		AspirantDiplomaRulerButton.setBounds(58, 303, 434, 42);
+		AspirantDiplomaRulerButton.setBounds(58, 260, 434, 42);
 		panel.add(AspirantDiplomaRulerButton);
 		
 		
@@ -125,9 +121,48 @@ public class WorkAspirantMenu extends JFrame {
 		AspirantScientificWorkButton.setHorizontalAlignment(SwingConstants.LEFT);
 		AspirantScientificWorkButton.setForeground(Color.BLACK);
 		AspirantScientificWorkButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		AspirantScientificWorkButton.setBounds(58, 394, 434, 42);
+		AspirantScientificWorkButton.setBounds(58, 340, 434, 42);
 		panel.add(AspirantScientificWorkButton);
 		
+		
+		JButton AddAspirantAsteacherButton = new JButton("5)Назначити аспіранта на посаду викладача");
+		AddAspirantAsteacherButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				WorkAspirantMenu.this.setVisible(false);
+				try {
+					new AddAspirantAsTeacher(WorkAspirantMenu.this).setVisible(true);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		AddAspirantAsteacherButton.setHorizontalAlignment(SwingConstants.LEFT);
+		AddAspirantAsteacherButton.setForeground(Color.BLACK);
+		AddAspirantAsteacherButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		AddAspirantAsteacherButton.setBounds(58, 423, 434, 42);
+		panel.add(AddAspirantAsteacherButton);
+		
+		
+		JButton DeleteAspirantAsTeacherButton = new JButton("6)Звільнити аспіранта з посади викладача");
+		DeleteAspirantAsTeacherButton.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				WorkAspirantMenu.this.setVisible(false);
+				try {
+					new DeleteAspirantAsTeacher(WorkAspirantMenu.this).setVisible(true);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		DeleteAspirantAsTeacherButton.setHorizontalAlignment(SwingConstants.LEFT);
+		DeleteAspirantAsTeacherButton.setForeground(Color.BLACK);
+		DeleteAspirantAsTeacherButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		DeleteAspirantAsTeacherButton.setBounds(58, 509, 434, 42);
+		panel.add(DeleteAspirantAsTeacherButton);
 		
 		
 		
@@ -145,8 +180,7 @@ public class WorkAspirantMenu extends JFrame {
 				}
 			}
 		});
-		btnBack.setBounds(462, 464, 97, 25);
+		btnBack.setBounds(473, 580, 97, 25);
 		panel.add(btnBack);
 	}
-
 }

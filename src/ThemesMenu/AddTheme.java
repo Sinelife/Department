@@ -22,7 +22,6 @@ public class AddTheme extends JFrame {
 	private JTextField TitleField;
 	private JTextField CustomerField;
 	private JTextField StartField;
-	private JTextField EndField;
 	
 	public static String cathedra_name;
 	public static int cathedra_id;
@@ -36,7 +35,7 @@ public class AddTheme extends JFrame {
 		Cathedra c = cd.readCathedra(ChooseCathedra.cathedra_id_to_work);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 646, 450);
+		setBounds(100, 100, 646, 394);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -59,10 +58,6 @@ public class AddTheme extends JFrame {
 		lblStart.setBounds(89, 225, 76, 22);
 		contentPane.add(lblStart);
 		
-		JLabel lblEnd = new JLabel("кінець");
-		lblEnd.setBounds(89, 288, 76, 22);
-		contentPane.add(lblEnd);
-		
 		TitleField = new JTextField();
 		TitleField.setBounds(202, 115, 350, 22);
 		contentPane.add(TitleField);
@@ -77,18 +72,13 @@ public class AddTheme extends JFrame {
 		StartField.setColumns(10);
 		StartField.setBounds(202, 225, 350, 22);
 		contentPane.add(StartField);
-		
-		EndField = new JTextField();
-		EndField.setColumns(10);
-		EndField.setBounds(202, 288, 350, 22);
-		contentPane.add(EndField);
 
 		
 		JButton btnL = new JButton("Додати");
 		btnL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				Methods.addTheme(ChooseCathedra.cathedra_id_to_work, TitleField, CustomerField, StartField, EndField);
+				Methods.addTheme(ChooseCathedra.cathedra_id_to_work, TitleField, CustomerField, StartField);
 				if (parent != null)
 					parent.setVisible(true);
 				AddTheme.this.setVisible(false);
@@ -96,7 +86,7 @@ public class AddTheme extends JFrame {
 			}
 		});
 		btnL.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnL.setBounds(82, 349, 108, 32);
+		btnL.setBounds(76, 300, 108, 32);
 		contentPane.add(btnL);
 		
 		
@@ -110,7 +100,7 @@ public class AddTheme extends JFrame {
 				AddTheme.this.dispose();
 			}
 		});
-		btnBack.setBounds(497, 364, 97, 25);
+		btnBack.setBounds(493, 305, 97, 25);
 		contentPane.add(btnBack);
 	}
 }

@@ -19,9 +19,13 @@ import domain.Teacher;
 import main.Methods;
 
 import java.awt.event.ActionListener;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class ChangeSupervisor extends JFrame {
 
@@ -30,6 +34,7 @@ public class ChangeSupervisor extends JFrame {
 	public static int id_to_look;
 	public static String surname_to_select;
 	public static int id_to_select;
+	private JTextField StartField;
 
 
 	/**
@@ -39,7 +44,8 @@ public class ChangeSupervisor extends JFrame {
 	public ChangeSupervisor(JFrame parent) throws SQLException 
 	{
 		SupervisionDao sd = new SupervisionDao();
-		Supervision s = sd.readSupervisor(ChooseTheme.id_to_work);
+		Supervision s_old = sd.readSupervisor(ChooseTheme.id_to_work);
+		Supervision s_new = new Supervision();
 		
 		
 		ScientificThemeDao std = new ScientificThemeDao();
@@ -67,9 +73,34 @@ public class ChangeSupervisor extends JFrame {
 		
 		
 		JLabel lblNewLabel = new JLabel("Вибір нового керівника");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		lblNewLabel.setBounds(40, 44, 543, 42);
+		lblNewLabel.setBounds(0, 44, 610, 42);
 		contentPane.add(lblNewLabel);
+		
+		
+		JLabel StartLabel = new JLabel("Початок керування темою");
+		StartLabel.setBounds(32, 298, 179, 22);
+		contentPane.add(StartLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Над темою почали працювати " + st.getStart());
+		lblNewLabel_1.setBackground(Color.WHITE);
+		lblNewLabel_1.setBounds(220, 219, 311, 22);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Попередній керівник почав керувати " + s_old.getStart());
+		lblNewLabel_2.setBackground(Color.WHITE);
+		lblNewLabel_2.setBounds(220, 264, 311, 22);
+		contentPane.add(lblNewLabel_2);
+		
+		
+		StartField = new JTextField();
+		StartField.setText("null");
+		StartField.setColumns(10);
+		StartField.setBackground(Color.WHITE);
+		StartField.setBounds(223, 299, 375, 22);
+		contentPane.add(StartField);
+		
 		
 
 		
@@ -82,8 +113,11 @@ public class ChangeSupervisor extends JFrame {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
+				s_new.setScientificThemeId(st.getId());
+				s_new.setScientistId(id_to_select);
+				s_new.setStart(Date.valueOf(StartField.getText()));
 				try {
-					sd.changeSupervisor(id_to_select,s);
+					sd.changeSupervisor(s_old, s_new);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -99,9 +133,9 @@ public class ChangeSupervisor extends JFrame {
 		
 		
 		
-		JButton ChooseButton_1 = new JButton("Інформація");
-		ChooseButton_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		ChooseButton_1.addActionListener(new ActionListener() {
+		JButton InfoButton = new JButton("Інформація");
+		InfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		InfoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				MenuSupervision.teacher_change_or_add = 2;
@@ -118,8 +152,9 @@ public class ChangeSupervisor extends JFrame {
 				}
 			}
 		});
-		ChooseButton_1.setBounds(463, 121, 120, 34);
-		contentPane.add(ChooseButton_1);
+		InfoButton.setBounds(463, 121, 120, 34);
+		contentPane.add(InfoButton);
+		
 		
 		
 		

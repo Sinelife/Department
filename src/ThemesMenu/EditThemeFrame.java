@@ -15,14 +15,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class EditThemeFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField TitleField;
 	private JTextField CustomerField;
-	private JTextField StartField;
-	private JTextField EndField;
 	
 	
 	
@@ -37,15 +36,16 @@ public class EditThemeFrame extends JFrame {
  	  	
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 640, 463);
+		setBounds(100, 100, 640, 335);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblScientificThemeInformation = new JLabel("Редагування наукової теми");
-		lblScientificThemeInformation.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblScientificThemeInformation.setBounds(146, 23, 301, 37);
+		lblScientificThemeInformation.setHorizontalAlignment(SwingConstants.CENTER);
+		lblScientificThemeInformation.setFont(new Font("Tahoma", Font.PLAIN, 21));
+		lblScientificThemeInformation.setBounds(0, 23, 622, 37);
 		contentPane.add(lblScientificThemeInformation);
 	
 		JLabel lblTitle = new JLabel("назва теми");
@@ -55,14 +55,6 @@ public class EditThemeFrame extends JFrame {
 		JLabel lblCustomer = new JLabel("замовник");
 		lblCustomer.setBounds(89, 167, 76, 22);
 		contentPane.add(lblCustomer);
-		
-		JLabel lblStart = new JLabel("початок");
-		lblStart.setBounds(89, 225, 76, 22);
-		contentPane.add(lblStart);
-		
-		JLabel lblEnd = new JLabel("кінець");
-		lblEnd.setBounds(89, 288, 76, 22);
-		contentPane.add(lblEnd);
 		
 		
 		TitleField = new JTextField();
@@ -79,27 +71,13 @@ public class EditThemeFrame extends JFrame {
 		CustomerField.setText(st.getCustomer());
 		
 		
-		StartField = new JTextField();
-		StartField.setColumns(10);
-		StartField.setBounds(202, 225, 350, 22);
-		contentPane.add(StartField);
-		StartField.setText(String.valueOf(st.getStart()));
-		
-		
-		EndField = new JTextField();
-		EndField.setColumns(10);
-		EndField.setBounds(202, 288, 350, 22);
-		contentPane.add(EndField);
-		EndField.setText(String.valueOf(st.getEnd()));
-		
-		
 		
 		JButton EditButton = new JButton("Редагувати");
 		EditButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				Methods.updateTheme(EditTheme.id_to_edit,ChooseCathedra.cathedra_id_to_work, TitleField, CustomerField, StartField, EndField);
+				Methods.updateTheme(EditTheme.id_to_edit,ChooseCathedra.cathedra_id_to_work, TitleField, CustomerField);
 				EditThemeFrame.this.setVisible(false);
 				EditThemeFrame.this.dispose();
 				try {
@@ -110,7 +88,7 @@ public class EditThemeFrame extends JFrame {
 			
 			}
 		});
-		EditButton.setBounds(55, 367, 113, 25);
+		EditButton.setBounds(34, 229, 113, 25);
 		contentPane.add(EditButton);
 		
 		
@@ -126,7 +104,7 @@ public class EditThemeFrame extends JFrame {
 				EditThemeFrame.this.dispose();
 			}
 		});
-		btnBack.setBounds(489, 367, 97, 25);
+		btnBack.setBounds(478, 229, 97, 25);
 		contentPane.add(btnBack);
 	}
 }

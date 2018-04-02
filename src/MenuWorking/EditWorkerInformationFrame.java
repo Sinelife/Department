@@ -63,6 +63,8 @@ public class EditWorkerInformationFrame extends JFrame {
 		contentPane.add(lblEndInTheme);
 		
 		WorkInThemeField = new JTextField();
+		WorkInThemeField.setBackground(Color.WHITE);
+		WorkInThemeField.setEditable(false);
 		WorkInThemeField.setText((String) null);
 		WorkInThemeField.setColumns(10);
 		WorkInThemeField.setBounds(179, 115, 374, 22);
@@ -71,6 +73,8 @@ public class EditWorkerInformationFrame extends JFrame {
 		
 		
 		StartInThemeField = new JTextField();
+		StartInThemeField.setBackground(Color.WHITE);
+		StartInThemeField.setEditable(false);
 		StartInThemeField.setText((String) null);
 		StartInThemeField.setColumns(10);
 		StartInThemeField.setBounds(179, 167, 374, 22);

@@ -14,6 +14,7 @@ import domain.Aspirant;
 import domain.ScientificTheme;
 import domain.ScientificWork;
 import domain.Scientist;
+import domain.Teacher;
 
 public class AspirantDao 
 {
@@ -326,5 +327,85 @@ public class AspirantDao
         }
         return list;
     }
+    
+    
+    
+    
+    
+    public List<Aspirant> getAllWhoTeachers() throws SQLException 
+    {
+        String sql = "SELECT * FROM aspirant where scientist_id in " + 
+        		"(select scientist_id from teacher) ";
+        List<Aspirant> list = new ArrayList<Aspirant>();
+        try (PreparedStatement stm = Main.conn.prepareStatement(sql)) {
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+            	Aspirant a = new Aspirant();
+                a.setId(rs.getInt("scientist_id"));
+                a.setThemeAspirant(rs.getString("theme_aspirant"));
+                a.setProtection(rs.getDate("protection_date"));
+                a.setStart(rs.getDate("start"));
+                a.setEnd(rs.getDate("end"));
+                a.setCathedraId(rs.getInt("cathedra_id"));
+                a.setTeacherScientistId(rs.getInt("teacher_scientist_id"));
+                list.add(a);
+            }
+        }
+        return list;
+    }
+    
+    
+    public List<Aspirant> getAllWhoNotTeachers() throws SQLException 
+    {
+        String sql = "SELECT * FROM aspirant where scientist_id not in " + 
+        		"(select scientist_id from teacher)";
+        List<Aspirant> list = new ArrayList<Aspirant>();
+        try (PreparedStatement stm = Main.conn.prepareStatement(sql)) {
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+            	Aspirant a = new Aspirant();
+                a.setId(rs.getInt("scientist_id"));
+                a.setThemeAspirant(rs.getString("theme_aspirant"));
+                a.setProtection(rs.getDate("protection_date"));
+                a.setStart(rs.getDate("start"));
+                a.setEnd(rs.getDate("end"));
+                a.setCathedraId(rs.getInt("cathedra_id"));
+                a.setTeacherScientistId(rs.getInt("teacher_scientist_id"));
+                list.add(a);
+            }
+        }
+        return list;
+    }
+    
+    
+    
+    
+    
+    public void addAspirantAsTeacher(Teacher t) throws SQLException
+    {
+		String sql = "INSERT INTO teacher (scientist_id, cathedra_id, position, status, start_date) VALUES (?,?,?,?,?)";
+ 	  	PreparedStatement stm2 = Main.conn.prepareStatement(sql);
+    	stm2.setInt(1, t.getId());
+    	stm2.setInt(2, t.getCathedraId());
+    	stm2.setString(3, t.getPosition());
+    	stm2.setString(4, t.getStatus());
+    	stm2.setDate(5, t.getStart());
+    	stm2.executeUpdate();
+    	JOptionPane.showMessageDialog (null, "Аспіранта назначено на посаду викладача!" );
+    }
+    
+    
+    
+    public void deleteAspirantAsTeacher(int scientist_id) throws SQLException 
+    {
+    	String sql = "DELETE FROM teacher WHERE scientist_id = " + scientist_id;
+    	try (Statement stm = Main.conn.createStatement())
+    	{
+            stm.executeUpdate(sql);
+    	}
+    	JOptionPane.showMessageDialog (null, "Аспіранта звільнено з посади викладача!" );
+	}
+
+
 
 }

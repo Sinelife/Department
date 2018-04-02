@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import DepartmentMenu.DepartmentMenu;
 import DepartmentMenu.DepartmentPeopleInfo;
 import WorkAspirantMenu.AspirantThemeRulers;
+import WorkAspirantMenu.DeleteAspirantAsTeacher;
 import dao.TeacherDao;
 import domain.Teacher;
 
@@ -57,6 +58,11 @@ public class NotWorkerTeacherInformation extends JFrame {
 		{
 			t = td.readTeacher(AspirantThemeRulers.ruler_id);
 		}
+		if(DepartmentMenu.teacher == 5)
+		{
+			t = td.readTeacher(DeleteAspirantAsTeacher.id_to_select);
+		}
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 634, 473);

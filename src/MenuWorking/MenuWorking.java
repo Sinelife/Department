@@ -5,9 +5,11 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import DepartmentMenu.DepartmentMenu;
 import ThemesMenu.ChooseTheme;
 import dao.ScientificThemeDao;
 import domain.ScientificTheme;
@@ -72,9 +74,17 @@ public class MenuWorking extends JFrame {
 		
 		JButton AddWorkerButton = new JButton("2)Додати нового науковця до теми");
 		AddWorkerButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MenuWorking.this.setVisible(false);
-				new AddWorker(MenuWorking.this).setVisible(true);
+			public void actionPerformed(ActionEvent e) 
+			{
+				if (DepartmentMenu.finished_theme == 1)
+				{
+					JOptionPane.showMessageDialog (null, "Робота з темою завершена і вносити зміни до теми неможливо." );
+				}
+				else
+				{
+					MenuWorking.this.setVisible(false);
+					new AddWorker(MenuWorking.this).setVisible(true);
+				}
 			}
 		});
 		AddWorkerButton.setHorizontalAlignment(SwingConstants.LEFT);
@@ -85,12 +95,20 @@ public class MenuWorking extends JFrame {
 		
 		JButton DeleteWorkerButton = new JButton("3)Видалити науковця з теми");
 		DeleteWorkerButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MenuWorking.this.setVisible(false);
-				try {
-					new DeleteWorker(MenuWorking.this).setVisible(true);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+			public void actionPerformed(ActionEvent e) 
+			{
+				if (DepartmentMenu.finished_theme == 1)
+				{
+					JOptionPane.showMessageDialog (null, "Робота з темою завершена і вносити зміни до теми неможливо." );
+				}
+				else
+				{
+					MenuWorking.this.setVisible(false);
+					try {
+						new DeleteWorker(MenuWorking.this).setVisible(true);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
@@ -102,12 +120,20 @@ public class MenuWorking extends JFrame {
 		
 		JButton AddWorkerTeacherButton = new JButton("4)Залучити викладача");
 		AddWorkerTeacherButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				MenuWorking.this.setVisible(false);
-				try {
-					new AddWorkerTeacher(MenuWorking.this).setVisible(true);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+			public void actionPerformed(ActionEvent e) 
+			{
+				if (DepartmentMenu.finished_theme == 1)
+				{
+					JOptionPane.showMessageDialog (null, "Робота з темою завершена і вносити зміни до теми неможливо." );
+				}
+				else
+				{
+					MenuWorking.this.setVisible(false);
+					try {
+						new AddWorkerTeacher(MenuWorking.this).setVisible(true);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});
@@ -121,11 +147,18 @@ public class MenuWorking extends JFrame {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				MenuWorking.this.setVisible(false);
-				try {
-					new EditWorkerInformation(MenuWorking.this).setVisible(true);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
+				if (DepartmentMenu.finished_theme == 1)
+				{
+					JOptionPane.showMessageDialog (null, "Робота з темою завершена і вносити зміни до теми неможливо." );
+				}
+				else
+				{
+					MenuWorking.this.setVisible(false);
+					try {
+						new EditWorkerInformation(MenuWorking.this).setVisible(true);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		});

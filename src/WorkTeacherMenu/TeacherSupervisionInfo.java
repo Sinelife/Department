@@ -8,7 +8,6 @@ import DepartmentMenu.ChooseCathedra;
 import DepartmentMenu.DepartmentMenu;
 import MenuSupervision.SupervisorInformation;
 import MenuTheme.ScientificThemeInformation;
-import ThemesMenu.DeleteTheme;
 import dao.TeacherDao;
 import domain.ScientificTheme;
 import domain.Teacher;

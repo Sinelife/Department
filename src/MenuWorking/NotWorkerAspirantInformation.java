@@ -14,7 +14,9 @@ import DepartmentMenu.CathedraPeopleInfo;
 import DepartmentMenu.DepartmentMenu;
 import DepartmentMenu.DepartmentPeopleInfo;
 import ThemesMenu.WorkThemesMenu;
+import WorkAspirantMenu.AddAspirantAsTeacher;
 import WorkAspirantMenu.AspirantThemeRulers;
+import WorkAspirantMenu.DeleteAspirantAsTeacher;
 import WorkAspirantMenu.ScientificWorkOfAspirant;
 import dao.AspirantDao;
 import domain.Aspirant;
@@ -65,6 +67,15 @@ public class NotWorkerAspirantInformation extends JFrame {
 		{
 			a = ad.readAspirant(ScientificWorkOfAspirant.aspirant_id);
 		}
+		if(DepartmentMenu.aspirant == 6)
+		{
+			a = ad.readAspirant(DeleteAspirantAsTeacher.id_to_select);
+		}
+		if(DepartmentMenu.aspirant == 7)
+		{
+			a = ad.readAspirant(AddAspirantAsTeacher.id_to_select);
+		}
+		
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

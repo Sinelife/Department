@@ -24,6 +24,8 @@ public class DepartmentMenu extends JFrame {
 	public static int teacher;
 	public static int magister;
 	public static int aspirant;
+	
+	public static int finished_theme;
 
 	/**
 	 * Create the frame.

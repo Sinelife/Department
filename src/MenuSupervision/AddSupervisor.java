@@ -21,6 +21,8 @@ import domain.Teacher;
 import main.Methods;
 
 import javax.swing.JTextField;
+import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class AddSupervisor extends JFrame {
 
@@ -32,7 +34,6 @@ public class AddSupervisor extends JFrame {
 	public static String surname_to_select;
 	
 	private JTextField StartSupervisionField;
-	private JTextField EndSupervisionField;
 	
 
 	/**
@@ -48,15 +49,16 @@ public class AddSupervisor extends JFrame {
 		List<Teacher> teachers = td.getAllFromCathedra(st.getCathedraId());
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 628, 536);
+		setBounds(100, 100, 628, 436);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Додавання керівника(якщо його немає)");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		lblNewLabel.setBounds(40, 44, 543, 42); 
+		lblNewLabel.setBounds(0, 44, 610, 42); 
 		contentPane.add(lblNewLabel);
 	
 		
@@ -74,24 +76,17 @@ public class AddSupervisor extends JFrame {
 		JLabel lblStartSupervisition = new JLabel("початок керування темою");
 		lblStartSupervisition.setBounds(17, 230, 179, 22);
 		contentPane.add(lblStartSupervisition);
-		
-		JLabel lblEndSupervisition = new JLabel("кінець керування темою");
-		lblEndSupervisition.setBounds(17, 272, 179, 22);
-		contentPane.add(lblEndSupervisition);
 
 		
 		StartSupervisionField = new JTextField();
+		StartSupervisionField.setBackground(Color.WHITE);
+		StartSupervisionField.setEditable(false);
 		StartSupervisionField.setColumns(10);
 		StartSupervisionField.setBounds(208, 231, 375, 22);
 		contentPane.add(StartSupervisionField);
+		StartSupervisionField.setText(String.valueOf(st.getStart()));
 		
-		EndSupervisionField = new JTextField();
-		EndSupervisionField.setColumns(10);
-		EndSupervisionField.setBounds(208, 271, 375, 22);
-		contentPane.add(EndSupervisionField);
-		
-		
-		
+
 		
 		JButton AddButton = new JButton("Додати");
 		AddButton.addActionListener(new ActionListener() {
@@ -102,7 +97,7 @@ public class AddSupervisor extends JFrame {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
-				Methods.addSupervisor(ChooseTheme.id_to_work, id_to_select, StartSupervisionField, EndSupervisionField);
+				Methods.addSupervisor(ChooseTheme.id_to_work, id_to_select, StartSupervisionField);
 				if (parent != null)
 					parent.setVisible(true);
 				AddSupervisor.this.setVisible(false);
@@ -110,7 +105,7 @@ public class AddSupervisor extends JFrame {
 			}
 		});
 		AddButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		AddButton.setBounds(40, 418, 104, 34);
+		AddButton.setBounds(40, 318, 104, 34);
 		contentPane.add(AddButton);
 		
 		
@@ -150,7 +145,7 @@ public class AddSupervisor extends JFrame {
 				AddSupervisor.this.dispose();
 			}
 		});
-		btnBack.setBounds(489, 427, 97, 25);
+		btnBack.setBounds(486, 324, 97, 25);
 		contentPane.add(btnBack);
 	}
 }

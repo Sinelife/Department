@@ -44,6 +44,30 @@ public class Methods
 	
 	
 	
+	@SuppressWarnings("deprecation")
+	public static String getCurrentDate()
+	{
+		java.util.Date date = new java.util.Date();
+		String result = "";
+		String day = String.valueOf(date.getDate());
+		String year = String.valueOf(date.getYear() + 1900);
+		String month = "";
+		String s = String.valueOf(date.getMonth() + 1);
+		if((Integer.valueOf(s)) < 10)
+		{
+			String s1 = "0";
+			month = s1.concat(s);
+		}
+		else
+		{
+			month = s;
+		} 
+		result = year.concat("-").concat(month).concat("-").concat(day);
+		return result;
+	}
+	
+	
+	
 	//МЕТОДИ ДЛЯ ОТРИМАННЯ АЙДІШНИКА ОБ'ЄКТА ЧЕРЕЗ І'МЯ
 	
 	
@@ -96,6 +120,33 @@ public class Methods
 		}
 		return id;
 	}
+	
+	
+	
+	
+	//Метод для отримання айдішника керівника за прізвищем
+	
+	public static int getSupervisorIdBySurname(String surname, int id, JComboBox<String> ComboBox,List<Supervision> supervisors) throws SQLException
+	{
+		SupervisionDao sd = new SupervisionDao();
+		surname = String.valueOf(ComboBox.getSelectedItem());
+		System.out.println(surname);
+		if(surname.contains(id + "6)"));
+		{
+			surname = surname.replace(id + "6)", "");
+			System.out.println(surname);
+			for (Supervision supervisor : supervisors) 
+			{
+				id = supervisor.getScientistId();
+				if (sd.getSurname(supervisor.getScientistId()).equals(surname)) 
+				{
+					break;
+				}
+			}
+			return id;
+		}
+	}
+	
 	
 	
 	//Метод для отримання айдішника викладача за прізвищем
@@ -332,22 +383,13 @@ public class Methods
 	
 	// Метод додавання теми
 
-	public static void addTheme(int cathedra_id, JTextField TitleField, JTextField CustomerField, JTextField StartField,
-			JTextField EndField)
+	public static void addTheme(int cathedra_id, JTextField TitleField, JTextField CustomerField, JTextField StartField)
 	{
 		ScientificThemeDao std = new ScientificThemeDao();
 		ScientificTheme st = new ScientificTheme();
 		st.setTitle(TitleField.getText());
 		st.setCustomer(CustomerField.getText());
 		st.setStart(Date.valueOf(StartField.getText()));
-	  	if(EndField.getText().equals(""))
-	  	{
-	  		st.setEnd(null);
-	  	}
-	  	else
-	  	{
-	  		st.setEnd(Date.valueOf(EndField.getText()));
-	  	}
 		st.setCathedraId(cathedra_id);
 	  		try {
 			std.addTheme(st);
@@ -359,8 +401,7 @@ public class Methods
 	
 	// Метод оновлення теми
 	
-	public static void updateTheme(int theme_id, int cathedra_id, JTextField TitleField, JTextField CustomerField,
-			JTextField StartField, JTextField EndField)
+	public static void updateTheme(int theme_id, int cathedra_id, JTextField TitleField, JTextField CustomerField)
 	{
 		ScientificThemeDao std = new ScientificThemeDao();
 		ScientificTheme st = new ScientificTheme();
@@ -368,15 +409,6 @@ public class Methods
 		st.setCathedraId(cathedra_id);
 		st.setTitle(TitleField.getText());
 		st.setCustomer(CustomerField.getText());
-		st.setStart(Date.valueOf(StartField.getText()));
-	  		if(EndField.getText().equals("null"))
-	  		{
-	  			st.setEnd(null);
-	  		}
-	  		else
-	  		{
-	  			st.setEnd(Date.valueOf(EndField.getText()));
-	  		}
 		try {
 			std.updateTheme(st);
 		} catch (SQLException e) {
@@ -388,21 +420,13 @@ public class Methods
 	
 	//Додати керівника теми якщо його нема
 	
-	public static void addSupervisor(int theme_id, int teacher_id, JTextField StartSupervisionField,JTextField EndSupervisionField)
+	public static void addSupervisor(int theme_id, int teacher_id, JTextField StartSupervisionField)
 	{
 		SupervisionDao sd = new SupervisionDao();
 		Supervision s = new Supervision();
 		s.setScientificThemeId(theme_id);
 		s.setScientistId(teacher_id);
 		s.setStart(Date.valueOf(StartSupervisionField.getText()));
-		if(EndSupervisionField.getText().equals(""))
-		{
-			s.setEnd(null);
-		}
-		else
-		{
-			s.setEnd(Date.valueOf(EndSupervisionField.getText()));
-		}
 		try {
 			sd.addSupervisor(s);
 		} catch (SQLException e1) {
@@ -614,6 +638,27 @@ public class Methods
 			return worker_id;
 		}
 		return 0;
+	}
+	
+	
+	
+	//Метод для звільнення аспіранта з посади викладача
+	
+	public static void addAspirantAsTeacher(int scientist_id, int cathedra_id, JTextField PositionField,
+			JTextField StatusField, JTextField StartField)
+	{
+		AspirantDao ad = new AspirantDao();
+		Teacher t = new Teacher();
+		t.setId(scientist_id);
+		t.setCathedraId(cathedra_id);
+		t.setPosition(PositionField.getText());
+		t.setStatus(StatusField.getText());
+		t.setStart(Date.valueOf(StartField.getText()));
+		try {
+			ad.addAspirantAsTeacher(t);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

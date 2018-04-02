@@ -57,6 +57,11 @@ public class SupervisorInformation extends JFrame {
 			s = sd.readSupervisor(ChooseTheme.id_to_work);
 			t = td.readTeacher(s.getScientistId());
 		}
+		if(DepartmentMenu.teacherSupervisor == 3)
+		{
+			s = sd.readOldSupervisor(AllSupervisors.supervisor_id);
+			t = td.readTeacher(s.getScientistId());
+		}
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 650, 546);
