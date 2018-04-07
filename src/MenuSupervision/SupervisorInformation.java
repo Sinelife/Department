@@ -23,7 +23,8 @@ import domain.Teacher;
 
 
 
-public class SupervisorInformation extends JFrame {
+public class SupervisorInformation extends JFrame 
+{
 
 	private JPanel contentPane;
 	private JTextField PositionField;
@@ -49,7 +50,7 @@ public class SupervisorInformation extends JFrame {
 		
 		if(DepartmentMenu.teacherSupervisor == 1)
 		{
-			s = sd.readSupervisor(TeacherSupervisionInfo.id);
+			s = sd.readSupervisor(TeacherSupervisionInfo.theme_id);
 			t = td.readTeacher(s.getScientistId());
 		}
 		if(DepartmentMenu.teacherSupervisor == 2)

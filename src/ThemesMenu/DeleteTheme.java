@@ -23,7 +23,7 @@ import javax.swing.JComboBox;
 public class DeleteTheme extends JFrame {
 
 	private JPanel contentPane;
-	public static String title_to_delete;
+
 	public static int id_to_delete;
 	
 	/**
@@ -67,7 +67,7 @@ public class DeleteTheme extends JFrame {
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
-				id_to_delete = Methods.getThemeIdByThemeTitle(title_to_delete, id_to_delete, comboBox, themes);
+				id_to_delete = Methods.getThemeIdByThemeTitle(comboBox, themes);
 				ScientificTheme d = new ScientificTheme();
 				for(ScientificTheme theme : themes)
 				{
@@ -98,7 +98,7 @@ public class DeleteTheme extends JFrame {
 		InfoButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				id_to_delete = Methods.getThemeIdByThemeTitle(title_to_delete, id_to_delete, comboBox, themes);
+				id_to_delete = Methods.getThemeIdByThemeTitle(comboBox, themes);
 				DepartmentMenu.theme = 3;
 				DeleteTheme.this.setVisible(false);
 				try {

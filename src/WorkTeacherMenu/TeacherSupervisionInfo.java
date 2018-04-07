@@ -30,11 +30,10 @@ public class TeacherSupervisionInfo extends JFrame {
 
 	private JPanel contentPane;
 
-	public static String surname_to_choose;
 	public static int id_to_choose;
+	public static int id_to_look;
 	
-	public static String title;
-	public static int id = 0;
+	public static int theme_id = 0;
 	
 	
 	List<ScientificTheme> themes = new ArrayList<ScientificTheme>();
@@ -50,7 +49,7 @@ public class TeacherSupervisionInfo extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 630, 491);
+		setBounds(100, 100, 784, 491);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,7 +65,7 @@ public class TeacherSupervisionInfo extends JFrame {
 		
 		JComboBox<String> TeacherComboBox = new JComboBox<String>();
 		TeacherComboBox.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		TeacherComboBox.setBounds(45, 114, 427, 30);
+		TeacherComboBox.setBounds(45, 114, 554, 30);
 		contentPane.add(TeacherComboBox);
 		for(Teacher teacher : teachers)
 		{
@@ -76,7 +75,7 @@ public class TeacherSupervisionInfo extends JFrame {
 		
 		JComboBox<String> ScientificThemeComboBox = new JComboBox<String>();
 		ScientificThemeComboBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		ScientificThemeComboBox.setBounds(45, 288, 427, 30);
+		ScientificThemeComboBox.setBounds(45, 288, 554, 30);
 		contentPane.add(ScientificThemeComboBox);
 		
 		
@@ -90,7 +89,7 @@ public class TeacherSupervisionInfo extends JFrame {
 			{
 				ScientificThemeComboBox.removeAllItems();
 				try {
-					id_to_choose = Methods.getTeacherIdBySurname(surname_to_choose, id_to_choose, TeacherComboBox, teachers);
+					id_to_choose = Methods.getTeacherIdBySurname(TeacherComboBox, teachers);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -115,7 +114,7 @@ public class TeacherSupervisionInfo extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				id = Methods.getThemeIdByThemeTitle(title, id, ScientificThemeComboBox, themes);
+				theme_id = Methods.getThemeIdByThemeTitle(ScientificThemeComboBox, themes);
 				DepartmentMenu.teacherSupervisor = 1;
 				TeacherSupervisionInfo.this.setVisible(false);
 				try {
@@ -126,7 +125,7 @@ public class TeacherSupervisionInfo extends JFrame {
 			}
 		});
 		TeacherInfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		TeacherInfoButton.setBounds(478, 110, 122, 34);
+		TeacherInfoButton.setBounds(615, 110, 122, 34);
 		contentPane.add(TeacherInfoButton);
 		
 		
@@ -136,7 +135,7 @@ public class TeacherSupervisionInfo extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				id = Methods.getThemeIdByThemeTitle(title, id, ScientificThemeComboBox, themes);
+				theme_id = Methods.getThemeIdByThemeTitle(ScientificThemeComboBox, themes);
 				DepartmentMenu.theme = 1;
 				TeacherSupervisionInfo.this.setVisible(false);
 				try {
@@ -147,7 +146,7 @@ public class TeacherSupervisionInfo extends JFrame {
 			}
 		});
 		ThemeInfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		ThemeInfoButton.setBounds(478, 284, 122, 34);
+		ThemeInfoButton.setBounds(615, 286, 122, 34);
 		contentPane.add(ThemeInfoButton);
 		
 		
@@ -164,7 +163,7 @@ public class TeacherSupervisionInfo extends JFrame {
 				TeacherSupervisionInfo.this.dispose();
 			}
 		});
-		btnBack.setBounds(503, 406, 97, 25);
+		btnBack.setBounds(657, 406, 97, 25);
 		contentPane.add(btnBack);
 	}
 }

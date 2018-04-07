@@ -36,7 +36,7 @@ public class EditThemeFrame extends JFrame {
  	  	
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 640, 335);
+		setBounds(100, 100, 683, 342);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -45,7 +45,7 @@ public class EditThemeFrame extends JFrame {
 		JLabel lblScientificThemeInformation = new JLabel("Редагування наукової теми");
 		lblScientificThemeInformation.setHorizontalAlignment(SwingConstants.CENTER);
 		lblScientificThemeInformation.setFont(new Font("Tahoma", Font.PLAIN, 21));
-		lblScientificThemeInformation.setBounds(0, 23, 622, 37);
+		lblScientificThemeInformation.setBounds(0, 23, 665, 37);
 		contentPane.add(lblScientificThemeInformation);
 	
 		JLabel lblTitle = new JLabel("назва теми");
@@ -58,14 +58,14 @@ public class EditThemeFrame extends JFrame {
 		
 		
 		TitleField = new JTextField();
-		TitleField.setBounds(202, 115, 350, 22);
+		TitleField.setBounds(202, 115, 408, 22);
 		contentPane.add(TitleField);
 		TitleField.setColumns(10);
 		TitleField.setText(st.getTitle());
 		
 		
 		CustomerField = new JTextField();
-		CustomerField.setBounds(202, 167, 350, 22);
+		CustomerField.setBounds(202, 167, 408, 22);
 		contentPane.add(CustomerField);
 		CustomerField.setColumns(10);
 		CustomerField.setText(st.getCustomer());
@@ -77,7 +77,11 @@ public class EditThemeFrame extends JFrame {
 		{
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				Methods.updateTheme(EditTheme.id_to_edit,ChooseCathedra.cathedra_id_to_work, TitleField, CustomerField);
+				try {
+					Methods.updateTheme(EditTheme.id_to_edit, TitleField, CustomerField);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 				EditThemeFrame.this.setVisible(false);
 				EditThemeFrame.this.dispose();
 				try {
@@ -104,7 +108,7 @@ public class EditThemeFrame extends JFrame {
 				EditThemeFrame.this.dispose();
 			}
 		});
-		btnBack.setBounds(478, 229, 97, 25);
+		btnBack.setBounds(556, 244, 97, 25);
 		contentPane.add(btnBack);
 	}
 }

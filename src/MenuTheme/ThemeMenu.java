@@ -56,23 +56,24 @@ public class ThemeMenu extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 628, 562);
+		setBounds(100, 100, 663, 546);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Меню роботи з темою");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		lblNewLabel.setBounds(129, 13, 290, 42);
+		lblNewLabel.setBounds(0, 13, 645, 42);
 		contentPane.add(lblNewLabel);
 		
 		String l = "''";
 		String res = l.concat(st.getTitle()).concat(l);
 		JLabel label = new JLabel(res);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		label.setBounds(12, 68, 574, 42);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		label.setBounds(0, 69, 645, 42);
 		contentPane.add(label);
 		
 		
@@ -91,7 +92,7 @@ public class ThemeMenu extends JFrame {
 				}
 			}
 		});
-		button1.setBounds(40, 154, 328, 36);
+		button1.setBounds(148, 154, 328, 36);
 		contentPane.add(button1);
 		
 		JButton button2 = new JButton("2)Меню керівника");
@@ -108,7 +109,7 @@ public class ThemeMenu extends JFrame {
 		});
 		button2.setHorizontalAlignment(SwingConstants.LEFT);
 		button2.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		button2.setBounds(40, 232, 328, 36);
+		button2.setBounds(148, 227, 328, 36);
 		contentPane.add(button2);
 		
 		JButton button3 = new JButton("3)Меню науковців");
@@ -124,7 +125,7 @@ public class ThemeMenu extends JFrame {
 		});
 		button3.setHorizontalAlignment(SwingConstants.LEFT);
 		button3.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		button3.setBounds(40, 312, 328, 36);
+		button3.setBounds(148, 303, 328, 36);
 		contentPane.add(button3);
 	
 		
@@ -144,7 +145,7 @@ public class ThemeMenu extends JFrame {
 		});
 		button.setHorizontalAlignment(SwingConstants.LEFT);
 		button.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		button.setBounds(40, 400, 328, 36);
+		button.setBounds(148, 378, 328, 36);
 		contentPane.add(button);
 		
 		
@@ -160,7 +161,7 @@ public class ThemeMenu extends JFrame {
 
 			}
 		});
-		btnBack.setBounds(489, 462, 97, 25);
+		btnBack.setBounds(513, 461, 97, 25);
 		contentPane.add(btnBack);
 	}
 }

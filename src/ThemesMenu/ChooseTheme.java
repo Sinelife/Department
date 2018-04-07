@@ -23,7 +23,7 @@ import javax.swing.SwingConstants;
 public class ChooseTheme extends JFrame {
 
 	private JPanel contentPane;
-	public static String title_to_work;
+
 	public static int id_to_work;
 	
 
@@ -38,7 +38,7 @@ public class ChooseTheme extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 646, 361);
+		setBounds(100, 100, 694, 370);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,8 +52,8 @@ public class ChooseTheme extends JFrame {
 		
 		
 		JComboBox<String> ThemeComboBox = new JComboBox<String>();
-		ThemeComboBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		ThemeComboBox.setBounds(40, 121, 504, 34);
+		ThemeComboBox.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		ThemeComboBox.setBounds(12, 121, 652, 34);
 		contentPane.add(ThemeComboBox);
 		for(ScientificTheme theme : themes)
 		{
@@ -67,7 +67,7 @@ public class ChooseTheme extends JFrame {
 		ChooseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				id_to_work = Methods.getThemeIdByThemeTitle(title_to_work, id_to_work, ThemeComboBox, themes);
+				id_to_work = Methods.getThemeIdByThemeTitle(ThemeComboBox, themes);
 				ChooseTheme.this.setVisible(false);
 				try {
 					new ThemeMenu(ChooseTheme.this).setVisible(true);
@@ -90,7 +90,7 @@ public class ChooseTheme extends JFrame {
 				ChooseTheme.this.dispose();
 			}
 		});
-		btnBack.setBounds(472, 258, 97, 25);
+		btnBack.setBounds(567, 272, 97, 25);
 		contentPane.add(btnBack);
 			
 	}

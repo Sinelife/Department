@@ -50,7 +50,7 @@ public class WorkerTeacherInformation extends JFrame {
 		if(DepartmentMenu.teacherWorker == 1)
 		{
 			t = td.readTeacher(TeacherWorkingInfo.id_to_choose);
-			w = wd.readWorker(TeacherWorkingInfo.id, TeacherWorkingInfo.id_to_choose);
+			w = wd.readWorker(TeacherWorkingInfo.theme_id, TeacherWorkingInfo.id_to_choose);
 		}
 		if(DepartmentMenu.teacherWorker == 2)
 		{

@@ -37,7 +37,7 @@ public class MenuSupervision extends JFrame {
 		ScientificTheme st = std.readTheme(ChooseTheme.id_to_work);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 628, 513);
+		setBounds(100, 100, 661, 513);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -46,15 +46,15 @@ public class MenuSupervision extends JFrame {
 		JLabel lblNewLabel = new JLabel("Меню керівника наукової теми");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		lblNewLabel.setBounds(0, 13, 610, 42);
+		lblNewLabel.setBounds(0, 13, 643, 42);
 		contentPane.add(lblNewLabel);
 		
 		String l = "''";
 		String res = l.concat(st.getTitle()).concat(l);
 		JLabel label = new JLabel(res);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		label.setBounds(12, 68, 574, 42);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		label.setBounds(12, 68, 631, 42);
 		contentPane.add(label);
 		
 		
@@ -87,7 +87,7 @@ public class MenuSupervision extends JFrame {
 		});
 		SupervisorInfoButton.setHorizontalAlignment(SwingConstants.LEFT);
 		SupervisorInfoButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		SupervisorInfoButton.setBounds(56, 127, 367, 36);
+		SupervisorInfoButton.setBounds(133, 123, 367, 36);
 		contentPane.add(SupervisorInfoButton);
 		
 		JButton SupervisorChangeButton = new JButton("2)Змінити керівника");
@@ -126,7 +126,7 @@ public class MenuSupervision extends JFrame {
 		});
 		SupervisorChangeButton.setHorizontalAlignment(SwingConstants.LEFT);
 		SupervisorChangeButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		SupervisorChangeButton.setBounds(56, 208, 367, 36);
+		SupervisorChangeButton.setBounds(133, 199, 367, 36);
 		contentPane.add(SupervisorChangeButton);
 		
 		
@@ -167,7 +167,7 @@ public class MenuSupervision extends JFrame {
 		});
 		SupervisorAddButton.setHorizontalAlignment(SwingConstants.LEFT);
 		SupervisorAddButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		SupervisorAddButton.setBounds(56, 288, 367, 36);
+		SupervisorAddButton.setBounds(133, 280, 367, 36);
 		contentPane.add(SupervisorAddButton);
 		
 		
@@ -187,7 +187,7 @@ public class MenuSupervision extends JFrame {
 		});
 		AllSupervisorsButton.setHorizontalAlignment(SwingConstants.LEFT);
 		AllSupervisorsButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		AllSupervisorsButton.setBounds(56, 368, 367, 36);
+		AllSupervisorsButton.setBounds(133, 363, 367, 36);
 		contentPane.add(AllSupervisorsButton);
 		
 		
@@ -202,7 +202,7 @@ public class MenuSupervision extends JFrame {
 				MenuSupervision.this.dispose();
 			}
 		});
-		btnBack.setBounds(489, 411, 97, 25);
+		btnBack.setBounds(534, 428, 97, 25);
 		contentPane.add(btnBack);
 	}
 }

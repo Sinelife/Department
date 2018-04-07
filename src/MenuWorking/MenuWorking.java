@@ -35,23 +35,24 @@ public class MenuWorking extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 644, 626);
+		setBounds(100, 100, 644, 645);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Меню науковців наукової теми");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		lblNewLabel.setBounds(83, 13, 415, 42);
+		lblNewLabel.setBounds(0, 13, 626, 42);
 		contentPane.add(lblNewLabel);
 		
 		String l = "''";
 		String res = l.concat(st.getTitle()).concat(l);
 		JLabel label = new JLabel(res);
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		label.setBounds(12, 68, 574, 42);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		label.setBounds(0, 68, 626, 42);
 		contentPane.add(label);
 		
 		
@@ -68,7 +69,7 @@ public class MenuWorking extends JFrame {
 		});
 		WorkersListButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		WorkersListButton.setHorizontalAlignment(SwingConstants.LEFT);
-		WorkersListButton.setBounds(56, 135, 442, 42);
+		WorkersListButton.setBounds(100, 136, 442, 42);
 		contentPane.add(WorkersListButton);
 		
 		
@@ -89,7 +90,7 @@ public class MenuWorking extends JFrame {
 		});
 		AddWorkerButton.setHorizontalAlignment(SwingConstants.LEFT);
 		AddWorkerButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		AddWorkerButton.setBounds(56, 215, 442, 42);
+		AddWorkerButton.setBounds(100, 223, 442, 42);
 		contentPane.add(AddWorkerButton);
 		
 		
@@ -114,7 +115,7 @@ public class MenuWorking extends JFrame {
 		});
 		DeleteWorkerButton.setHorizontalAlignment(SwingConstants.LEFT);
 		DeleteWorkerButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		DeleteWorkerButton.setBounds(56, 301, 442, 42);
+		DeleteWorkerButton.setBounds(100, 310, 442, 42);
 		contentPane.add(DeleteWorkerButton);
 		
 		
@@ -139,7 +140,7 @@ public class MenuWorking extends JFrame {
 		});
 		AddWorkerTeacherButton.setHorizontalAlignment(SwingConstants.LEFT);
 		AddWorkerTeacherButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		AddWorkerTeacherButton.setBounds(56, 383, 442, 42);
+		AddWorkerTeacherButton.setBounds(100, 393, 442, 42);
 		contentPane.add(AddWorkerTeacherButton);
 		
 		
@@ -165,7 +166,7 @@ public class MenuWorking extends JFrame {
 		button.setForeground(Color.BLACK);
 		button.setHorizontalAlignment(SwingConstants.LEFT);
 		button.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		button.setBounds(56, 464, 442, 42);
+		button.setBounds(100, 486, 442, 42);
 		contentPane.add(button);
 		
 		
@@ -179,7 +180,7 @@ public class MenuWorking extends JFrame {
 				MenuWorking.this.dispose();
 			}
 		});
-		btnBack.setBounds(517, 541, 97, 25);
+		btnBack.setBounds(517, 560, 97, 25);
 		contentPane.add(btnBack);
 	}
 }

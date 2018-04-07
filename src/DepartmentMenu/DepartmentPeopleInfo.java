@@ -29,12 +29,9 @@ public class DepartmentPeopleInfo extends JFrame {
 
 	private JPanel contentPane;
 
-	public static int m_id = 0;
-	public static String m_name;
-	public static int a_id = 0;
-	public static String a_name;
-	public static int t_id = 0;
-	public static String t_name;
+	public static int m_id;
+	public static int a_id;
+	public static int t_id;
 
 
 	/**
@@ -114,7 +111,7 @@ public class DepartmentPeopleInfo extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				try {
-					t_id = Methods.getTeacherIdBySurname(t_name, t_id, TeacherComboBox, teachers);
+					t_id = Methods.getTeacherIdBySurname(TeacherComboBox, teachers);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -139,7 +136,7 @@ public class DepartmentPeopleInfo extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				try {
-					a_id = Methods.getAspirantIdBySurname(a_name, a_id, AspirantComboBox, aspirants);
+					a_id = Methods.getAspirantIdBySurname(AspirantComboBox, aspirants);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -163,7 +160,7 @@ public class DepartmentPeopleInfo extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				try {
-					m_id = Methods.getMagisterIdBySurname(m_name, m_id, MagisterComboBox, magisters);
+					m_id = Methods.getMagisterIdBySurname(MagisterComboBox, magisters);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

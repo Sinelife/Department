@@ -35,7 +35,6 @@ public class AddAspirant extends JFrame {
 
 
 	public static int ruler_id;
-	public static String ruler_surname;
 	
 
 	/**
@@ -161,7 +160,7 @@ public class AddAspirant extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				try {
-					ruler_id = Methods.getTeacherIdBySurname(ruler_surname, ruler_id, TeacherComboBox, teachers);
+					ruler_id = Methods.getTeacherIdBySurname(TeacherComboBox, teachers);
 				} catch (SQLException e2) {
 					e2.printStackTrace();
 				}

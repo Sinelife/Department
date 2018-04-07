@@ -23,7 +23,6 @@ public class DeleteWorker extends JFrame {
 
 	private JPanel contentPane;
 
-	public static String surname_to_delete;
 	public static int id_to_delete;
 
 	/** 
@@ -65,7 +64,7 @@ public class DeleteWorker extends JFrame {
 			public void actionPerformed(ActionEvent arg0) 
 			{	 	  	
 				try {
-					id_to_delete = Methods.getWorkerIdBySurname(surname_to_delete, id_to_delete, comboBox, workers);
+					id_to_delete = Methods.getWorkerIdBySurname(comboBox, workers);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

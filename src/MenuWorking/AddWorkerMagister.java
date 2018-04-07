@@ -29,9 +29,7 @@ public class AddWorkerMagister extends JFrame {
 	private JTextField StartField;
 	private JTextField EndField;
 	
-	public static String m_surname_to_look;
 	public static int m_id_to_look;
-	public static String m_surname_to_select;
 	public static int m_id_to_select;
 
 
@@ -103,7 +101,7 @@ public class AddWorkerMagister extends JFrame {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				try {
-					m_id_to_select = Methods.getMagisterIdBySurname(m_surname_to_select, m_id_to_select, comboBox, magisters);
+					m_id_to_select = Methods.getMagisterIdBySurname(comboBox, magisters);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}				
@@ -129,7 +127,7 @@ public class AddWorkerMagister extends JFrame {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				try {
-					m_id_to_look = Methods.getMagisterIdBySurname(m_surname_to_look, m_id_to_look, comboBox, magisters);
+					m_id_to_look = Methods.getMagisterIdBySurname(comboBox, magisters);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

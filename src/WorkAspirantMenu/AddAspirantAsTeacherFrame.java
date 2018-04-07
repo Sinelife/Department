@@ -34,7 +34,6 @@ public class AddAspirantAsTeacherFrame extends JFrame {
 
 	
 	public static int cathedra_id;
-	public static String cathedra_name;
 
 	/**
 	 * Create the frame.
@@ -124,7 +123,7 @@ public class AddAspirantAsTeacherFrame extends JFrame {
 		AddButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				cathedra_id = Methods.getCathedraIdByCathedraName(cathedra_name, cathedra_id, CathedraComboBox, cathedras);
+				cathedra_id = Methods.getCathedraIdByCathedraName(CathedraComboBox, cathedras);
 				Methods.addAspirantAsTeacher(AddAspirantAsTeacher.id_to_select, cathedra_id, PositionField, StatusField, StartField);
 				AddAspirantAsTeacherFrame.this.setVisible(false);
 				AddAspirantAsTeacherFrame.this.dispose();

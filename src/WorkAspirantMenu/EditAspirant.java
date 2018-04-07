@@ -25,7 +25,6 @@ public class EditAspirant extends JFrame {
 
 	private JPanel contentPane;
 	
-	public static String surname_to_edit;
 	public static int id_to_edit;
 
 	/**
@@ -69,7 +68,7 @@ public class EditAspirant extends JFrame {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				try {
-					id_to_edit = Methods.getAspirantIdBySurname(surname_to_edit, id_to_edit, AspirantComboBox, aspirants);
+					id_to_edit = Methods.getAspirantIdBySurname(AspirantComboBox, aspirants);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

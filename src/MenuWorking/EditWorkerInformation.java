@@ -23,7 +23,7 @@ import javax.swing.SwingConstants;
 public class EditWorkerInformation extends JFrame {
 
 	private JPanel contentPane;
-	public static String surname_to_edit;
+
 	public static int id_to_edit;
 
 
@@ -68,7 +68,7 @@ public class EditWorkerInformation extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{				
 				try {
-					id_to_edit = Methods.getWorkerIdBySurname(surname_to_edit, id_to_edit, comboBox, workers);
+					id_to_edit = Methods.getWorkerIdBySurname(comboBox, workers);
 				} catch (SQLException e2) {
 					e2.printStackTrace();
 				}

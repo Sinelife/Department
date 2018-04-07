@@ -43,11 +43,11 @@ public class ScientificThemeInformation extends JFrame {
 		ScientificTheme st = new ScientificTheme();
 		if(DepartmentMenu.theme == 0)
 		{
-			st = std.readTheme(TeacherWorkingInfo.id);
+			st = std.readTheme(TeacherWorkingInfo.theme_id);
 		}
 		if(DepartmentMenu.theme == 1)
 		{
-			st = std.readTheme(TeacherSupervisionInfo.id);
+			st = std.readTheme(TeacherSupervisionInfo.theme_id);
 		}
 		if(DepartmentMenu.theme == 2)
 		{

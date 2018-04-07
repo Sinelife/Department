@@ -19,7 +19,6 @@ import DepartmentMenu.ChooseCathedra;
 import DepartmentMenu.DepartmentMenu;
 import MenuWorking.NotWorkerAspirantInformation;
 import dao.AspirantDao;
-import dao.ScientificWorkDao;
 import domain.Aspirant;
 import domain.ScientificWork;
 import main.Methods;
@@ -29,10 +28,8 @@ public class ScientificWorkOfAspirant extends JFrame {
 	private JPanel contentPane;
 	
 	public static int aspirant_id;
-	public static String aspirant_surname;
 	
 	public static int work_id;
-	public static String work_title;
 
 	public static List<ScientificWork> works = new ArrayList<ScientificWork>();
 
@@ -87,7 +84,7 @@ public class ScientificWorkOfAspirant extends JFrame {
 			{
 				ScientificWorkComboBox.removeAllItems();
 				try {
-					aspirant_id = Methods.getAspirantIdBySurname(aspirant_surname, aspirant_id, AspirantComboBox, aspirants);
+					aspirant_id = Methods.getAspirantIdBySurname(AspirantComboBox, aspirants);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -114,7 +111,7 @@ public class ScientificWorkOfAspirant extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				try {
-					aspirant_id = Methods.getAspirantIdBySurname(aspirant_surname, aspirant_id, AspirantComboBox, aspirants);
+					aspirant_id = Methods.getAspirantIdBySurname(AspirantComboBox, aspirants);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -139,7 +136,7 @@ public class ScientificWorkOfAspirant extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				work_id = Methods.getWorkIdByWorkTitle(work_title, work_id, ScientificWorkComboBox, works);
+				work_id = Methods.getWorkIdByWorkTitle(ScientificWorkComboBox, works);
 				ScientificWorkOfAspirant.this.setVisible(false);
 				try {
 					new ScientificWorkInformation(ScientificWorkOfAspirant.this).setVisible(true);

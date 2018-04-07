@@ -30,9 +30,8 @@ public class AddWorkerTeacher extends JFrame {
 	private JTextField WorkingNameField;
 	private JTextField StartField;
 	private JTextField EndField;
-	public static String t_surname_to_look;
+
 	public static int t_id_to_look;
-	public static String t_surname_to_select;
 	public static int t_id_to_select;
 	
 
@@ -106,7 +105,7 @@ public class AddWorkerTeacher extends JFrame {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				try {
-					t_id_to_select = Methods.getTeacherIdBySurname(t_surname_to_select, t_id_to_select, comboBox, teachers);
+					t_id_to_select = Methods.getTeacherIdBySurname(comboBox, teachers);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -132,7 +131,7 @@ public class AddWorkerTeacher extends JFrame {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				try {
-					t_id_to_look = Methods.getTeacherIdBySurname(t_surname_to_look, t_id_to_look, comboBox, teachers);
+					t_id_to_look = Methods.getTeacherIdBySurname(comboBox, teachers);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}		

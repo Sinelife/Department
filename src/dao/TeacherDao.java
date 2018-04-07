@@ -110,7 +110,7 @@ public class TeacherDao
     
     public List<Teacher> getAllFromCathedraExceptSupervisor(int scientific_theme_id, int cathedra_id) throws SQLException 
     {
-        String sql = "SELECT * FROM teacher WHERE cathedra_id in (SELECT cathedra_id FROM cathedra WHERE cathedra_id = " + cathedra_id + ") and scientist_id not in (select teacher_scientist_id from supervision where ruler = 1)";
+        String sql = "SELECT * FROM teacher WHERE cathedra_id in (SELECT cathedra_id FROM cathedra WHERE cathedra_id = " + cathedra_id + ") and scientist_id not in (select teacher_scientist_id from supervision where ruler = 1 and scientific_theme_id = " + scientific_theme_id + ")";
         List<Teacher> list = new ArrayList<Teacher>();
         try (PreparedStatement stm = Main.conn.prepareStatement(sql)) {
             ResultSet rs = stm.executeQuery();
@@ -166,6 +166,29 @@ public class TeacherDao
         }
         return list;
     }
+    
+    
+    
+    public List<Teacher> getAllFromThemeNotAspirant(int key) throws SQLException 
+    {
+    	String sql = "SELECT * FROM teacher WHERE scientist_id in (SELECT scientist_id FROM working WHERE scientific_theme_id = " + key + ") "
+    				+ "and scientist_id not in (select scientist_id from aspirant)";
+        List<Teacher> list = new ArrayList<Teacher>();
+        try (PreparedStatement stm = Main.conn.prepareStatement(sql)) {
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+            	Teacher t = new Teacher();
+                t.setId(rs.getInt("scientist_id"));
+                t.setPosition(rs.getString("position"));
+                t.setStatus(rs.getString("status"));
+                t.setStart(rs.getDate("start_date"));
+                t.setCathedraId(rs.getInt("cathedra_id"));
+                list.add(t);
+            }
+        }
+        return list;
+    }
+    
     
     
     public List<Teacher> getAllNotFromThemeNotFromCathedra(int scientific_theme_id, int cathedra_id) throws SQLException 

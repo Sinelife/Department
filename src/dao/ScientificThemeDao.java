@@ -60,11 +60,10 @@ public class ScientificThemeDao
     /**@throws SQLException */
     public void updateTheme(ScientificTheme st) throws SQLException 
     {
-    	String sql = "update scientifictheme set title = ?, customer = ?, start = ? where scientific_theme_id = " +  st.getId();
+    	String sql = "update scientifictheme set title = ?, customer = ? where scientific_theme_id = " +  st.getId();
     	PreparedStatement stm = Main.conn.prepareStatement(sql);
     	stm.setString(1, st.getTitle());
     	stm.setString(2, st.getCustomer());
-    	stm.setDate(3, st.getStart());
     	stm.executeUpdate();
     	JOptionPane.showMessageDialog (null, "Научна тема успішно відредагована!" ); 
 	}

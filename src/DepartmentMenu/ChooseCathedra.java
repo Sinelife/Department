@@ -21,8 +21,7 @@ import java.awt.event.ActionEvent;
 public class ChooseCathedra extends JFrame {
 
 	private JPanel contentPane;
-
-	public static String cathedra_name_to_work;
+	
 	public static int cathedra_id_to_work;
 
 
@@ -65,8 +64,7 @@ public class ChooseCathedra extends JFrame {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				cathedra_id_to_work = Methods.getCathedraIdByCathedraName(cathedra_name_to_work, cathedra_id_to_work, CathedraComboBox, cathedras);
-				
+				cathedra_id_to_work = Methods.getCathedraIdByCathedraName(CathedraComboBox, cathedras);
 				ChooseCathedra.this.setVisible(false);
 				try {
 					new CathedraMenu().setVisible(true);

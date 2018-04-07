@@ -24,7 +24,6 @@ public class AddAspirantAsTeacher extends JFrame {
 
 	private JPanel contentPane;
 
-	public static String surname_to_select;
 	public static int id_to_select;
 	
 	
@@ -69,7 +68,7 @@ public class AddAspirantAsTeacher extends JFrame {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				try {
-					id_to_select = Methods.getAspirantIdBySurname(surname_to_select, id_to_select, AspirantComboBox, aspirants);
+					id_to_select = Methods.getAspirantIdBySurname(AspirantComboBox, aspirants);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -93,7 +92,7 @@ public class AddAspirantAsTeacher extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				try {
-					id_to_select = Methods.getAspirantIdBySurname(surname_to_select, id_to_select, AspirantComboBox, aspirants);
+					id_to_select = Methods.getAspirantIdBySurname(AspirantComboBox, aspirants);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

@@ -73,9 +73,10 @@ public class Methods
 	
 	//Метод для отримання айдішника наукової роботи через назву 
 	
-	public static int getWorkIdByWorkTitle(String title, int id, JComboBox<String> ComboBox,List<ScientificWork> works)
+	public static int getWorkIdByWorkTitle(JComboBox<String> ComboBox,List<ScientificWork> works)
 	{
-		title = String.valueOf(ComboBox.getSelectedItem());
+		String title = String.valueOf(ComboBox.getSelectedItem());
+		int id = 0;
 		for(ScientificWork work : works) 
 		{
 			id = work.getId();
@@ -90,9 +91,10 @@ public class Methods
 	
 	//Метод для отримання айдішника наукової теми через назву теми
 	
-	public static int getThemeIdByThemeTitle(String title, int id, JComboBox<String> ComboBox,List<ScientificTheme> themes)
+	public static int getThemeIdByThemeTitle(JComboBox<String> ComboBox,List<ScientificTheme> themes)
 	{
-		title = String.valueOf(ComboBox.getSelectedItem());
+		String title = String.valueOf(ComboBox.getSelectedItem());
+		int id = 0;
 		for(ScientificTheme theme : themes) 
 		{
 			id = theme.getId();
@@ -107,9 +109,10 @@ public class Methods
 	
 	//Метод для отримання айдішника кафедри через назву кафедри
 	
-	public static int getCathedraIdByCathedraName(String name, int id, JComboBox<String> ComboBox,List<Cathedra> cathedras)
+	public static int getCathedraIdByCathedraName(JComboBox<String> ComboBox,List<Cathedra> cathedras)
 	{
-		name = String.valueOf(ComboBox.getSelectedItem());
+		String name = String.valueOf(ComboBox.getSelectedItem());
+		int id = 0;
 		for(Cathedra cathedra : cathedras) 
 		{
 			id = cathedra.getId();
@@ -126,10 +129,11 @@ public class Methods
 	
 	//Метод для отримання айдішника керівника за прізвищем
 	
-	public static int getSupervisorIdBySurname(String surname, int id, JComboBox<String> ComboBox,List<Supervision> supervisors) throws SQLException
+	public static int getSupervisorIdBySurname(JComboBox<String> ComboBox,List<Supervision> supervisors) throws SQLException
 	{
 		SupervisionDao sd = new SupervisionDao();
-		surname = String.valueOf(ComboBox.getSelectedItem());
+		String surname = String.valueOf(ComboBox.getSelectedItem());
+		int id = 0;
 		System.out.println(surname);
 		if(surname.contains(id + "6)"));
 		{
@@ -151,10 +155,11 @@ public class Methods
 	
 	//Метод для отримання айдішника викладача за прізвищем
 	
-	public static int getTeacherIdBySurname(String surname, int id, JComboBox<String> ComboBox,List<Teacher> teachers) throws SQLException
+	public static int getTeacherIdBySurname(JComboBox<String> ComboBox,List<Teacher> teachers) throws SQLException
 	{
 		TeacherDao td = new TeacherDao();
-		surname = String.valueOf(ComboBox.getSelectedItem());
+		int id = 0;
+		String surname = String.valueOf(ComboBox.getSelectedItem());
 		for(Teacher teacher : teachers) 
 		{
 			id = teacher.getId();
@@ -170,10 +175,11 @@ public class Methods
 	
 	//Метод для отримання айдішника аспіранта за прізвищем
 	
-	public static int getAspirantIdBySurname(String surname, int id, JComboBox<String> ComboBox,List<Aspirant> aspirants) throws SQLException
+	public static int getAspirantIdBySurname(JComboBox<String> ComboBox,List<Aspirant> aspirants) throws SQLException
 	{
 		AspirantDao ad = new AspirantDao();
-		surname = String.valueOf(ComboBox.getSelectedItem());
+		String surname = String.valueOf(ComboBox.getSelectedItem());
+		int id = 0;
 		for(Aspirant aspirant : aspirants) 
 		{
 			id = aspirant.getId();
@@ -189,10 +195,11 @@ public class Methods
 	
 	//Метод для отримання айдішника магістра за прізвищем
 	
-	public static int getMagisterIdBySurname(String surname, int id, JComboBox<String> ComboBox,List<Magister> magisters) throws SQLException
+	public static int getMagisterIdBySurname(JComboBox<String> ComboBox,List<Magister> magisters) throws SQLException
 	{
 		MagisterDao md = new MagisterDao();
-		surname = String.valueOf(ComboBox.getSelectedItem());
+		String surname = String.valueOf(ComboBox.getSelectedItem());
+		int id = 0;
 		for(Magister magister : magisters) 
 		{
 			id = magister.getId();
@@ -207,10 +214,11 @@ public class Methods
 	
 	//Метод для отримання айдішника працівника за прізвищем
 	
-	public static int getWorkerIdBySurname(String surname, int id, JComboBox<String> ComboBox,List<Working> workers) throws SQLException
+	public static int getWorkerIdBySurname(JComboBox<String> ComboBox,List<Working> workers) throws SQLException
 	{
 		WorkingDao wd = new WorkingDao();
-		surname = String.valueOf(ComboBox.getSelectedItem());
+		String surname = String.valueOf(ComboBox.getSelectedItem());
+		int id = 0;
 		for(Working worker : workers) 
 		{
 			id = worker.getScientistId();
@@ -401,12 +409,10 @@ public class Methods
 	
 	// Метод оновлення теми
 	
-	public static void updateTheme(int theme_id, int cathedra_id, JTextField TitleField, JTextField CustomerField)
+	public static void updateTheme(int theme_id, JTextField TitleField, JTextField CustomerField) throws SQLException
 	{
 		ScientificThemeDao std = new ScientificThemeDao();
-		ScientificTheme st = new ScientificTheme();
-		st.setId(theme_id);
-		st.setCathedraId(cathedra_id);
+		ScientificTheme st = std.readTheme(theme_id);
 		st.setTitle(TitleField.getText());
 		st.setCustomer(CustomerField.getText());
 		try {

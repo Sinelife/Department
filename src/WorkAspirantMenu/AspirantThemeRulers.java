@@ -31,10 +31,8 @@ public class AspirantThemeRulers extends JFrame {
 	private JPanel contentPane;
 
 	public static int ruler_id;
-	public static String ruler_surname;
 	
 	public static int a_id;
-	public static String a_surname;
 
 	public static List<Aspirant> aspirants = new ArrayList<Aspirant>();
 
@@ -86,7 +84,7 @@ public class AspirantThemeRulers extends JFrame {
 			{
 				AspirantComboBox.removeAllItems();
 				try {
-					ruler_id = Methods.getTeacherIdBySurname(ruler_surname, ruler_id, RulerComboBox, rulers);
+					ruler_id = Methods.getTeacherIdBySurname(RulerComboBox, rulers);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -117,7 +115,7 @@ public class AspirantThemeRulers extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				try {
-					ruler_id = Methods.getTeacherIdBySurname(ruler_surname, ruler_id, RulerComboBox, rulers);
+					ruler_id = Methods.getTeacherIdBySurname(RulerComboBox, rulers);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -142,7 +140,7 @@ public class AspirantThemeRulers extends JFrame {
 			public void actionPerformed(ActionEvent e) 
 			{
 				try {
-					a_id = Methods.getAspirantIdBySurname(a_surname, a_id, AspirantComboBox, aspirants);
+					a_id = Methods.getAspirantIdBySurname(AspirantComboBox, aspirants);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

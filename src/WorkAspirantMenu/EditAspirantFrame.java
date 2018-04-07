@@ -36,7 +36,6 @@ public class EditAspirantFrame extends JFrame {
 	private JTextField RulerField;
 	
 	public static int ruler_id;
-	public static String ruler_surname;
 
 
 	/**
@@ -179,7 +178,7 @@ public class EditAspirantFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				try {
-					ruler_id = Methods.getTeacherIdBySurname(ruler_surname, ruler_id, RulerComboBox, rulers);
+					ruler_id = Methods.getTeacherIdBySurname(RulerComboBox, rulers);
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

@@ -176,6 +176,9 @@ public class AspirantDao
     }
     
     
+    
+    
+    
     public List<Aspirant> getAllNotFromTheme(int key) throws SQLException 
     {
     	String sql = "SELECT * FROM aspirant WHERE scientist_id not in (SELECT scientist_id FROM working WHERE scientific_theme_id = " + key + ")";

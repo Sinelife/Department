@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 public class EditTheme extends JFrame {
 
 	private JPanel contentPane;
-	public static String title_to_edit;
+
 	public static int id_to_edit;
 
 
@@ -37,7 +37,7 @@ public class EditTheme extends JFrame {
  	  	
  	  	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 646, 365);
+		setBounds(100, 100, 690, 371);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -46,7 +46,7 @@ public class EditTheme extends JFrame {
 
 		JComboBox<String> ThemeComboBox = new JComboBox<String>();
 		ThemeComboBox.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		ThemeComboBox.setBounds(40, 121, 504, 34);
+		ThemeComboBox.setBounds(12, 121, 648, 34);
 		contentPane.add(ThemeComboBox);
 		for(ScientificTheme theme : themes)
 		{
@@ -68,7 +68,7 @@ public class EditTheme extends JFrame {
 		EditButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				id_to_edit = Methods.getThemeIdByThemeTitle(title_to_edit, id_to_edit, ThemeComboBox, themes);
+				id_to_edit = Methods.getThemeIdByThemeTitle(ThemeComboBox, themes);
 				EditTheme.this.setVisible(false);
 				try {
 					new EditThemeFrame(EditTheme.this).setVisible(true);
@@ -93,7 +93,7 @@ public class EditTheme extends JFrame {
 				EditTheme.this.dispose();
 			}
 		});
-		btnBack.setBounds(485, 268, 97, 25);
+		btnBack.setBounds(550, 271, 97, 25);
 		contentPane.add(btnBack);
 	}
 }

@@ -22,7 +22,7 @@ import javax.swing.SwingConstants;
 public class EditTeacher extends JFrame {
 
 	private JPanel contentPane;
-	public static String surname_to_edit;
+
 	public static int id_to_edit;
 
 
@@ -70,7 +70,7 @@ public class EditTeacher extends JFrame {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				try {
-					id_to_edit = Methods.getTeacherIdBySurname(surname_to_edit, id_to_edit, TeacherComboBox, teachers);
+					id_to_edit = Methods.getTeacherIdBySurname(TeacherComboBox, teachers);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

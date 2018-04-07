@@ -30,10 +30,10 @@ import javax.swing.SwingConstants;
 public class ChangeSupervisor extends JFrame {
 
 	private JPanel contentPane;
-	public static String surname_to_look;
+
 	public static int id_to_look;
-	public static String surname_to_select;
 	public static int id_to_select;
+	
 	private JTextField StartField;
 
 
@@ -109,7 +109,7 @@ public class ChangeSupervisor extends JFrame {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				try {
-					id_to_select = Methods.getTeacherIdBySurname(surname_to_select, id_to_select, comboBox, teachers);
+					id_to_select = Methods.getTeacherIdBySurname(comboBox, teachers);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -140,7 +140,7 @@ public class ChangeSupervisor extends JFrame {
 			{
 				MenuSupervision.teacher_change_or_add = 2;
 				try {
-					id_to_look = Methods.getTeacherIdBySurname(surname_to_look, id_to_look, comboBox, teachers);
+					id_to_look = Methods.getTeacherIdBySurname(comboBox, teachers);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

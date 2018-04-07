@@ -44,7 +44,7 @@ public class WorkersList extends JFrame {
 		TeacherDao td = new TeacherDao();
 		List<Magister> magisters = md.getAllFromTheme(ChooseTheme.id_to_work);
 		List<Aspirant> aspirants = ad.getAllFromTheme(ChooseTheme.id_to_work);
-		List<Teacher> teachers = td.getAllFromTheme(ChooseTheme.id_to_work);
+		List<Teacher> teachers = td.getAllFromThemeNotAspirant(ChooseTheme.id_to_work);
 		List<String> list = new ArrayList<String>();
  	  	
 		
