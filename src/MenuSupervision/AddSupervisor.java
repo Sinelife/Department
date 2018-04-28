@@ -39,7 +39,8 @@ public class AddSupervisor extends JFrame {
 	 * @throws SQLException 
 	 */
 	public AddSupervisor(JFrame parent) throws SQLException 
-	{	
+	{
+		setResizable(false);	
 		ScientificThemeDao std = new ScientificThemeDao();
 		ScientificTheme st = std.readTheme(ChooseTheme.id_to_work);
 		

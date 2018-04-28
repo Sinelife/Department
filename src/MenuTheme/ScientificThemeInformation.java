@@ -39,6 +39,7 @@ public class ScientificThemeInformation extends JFrame {
 	 */
 	public ScientificThemeInformation(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		ScientificThemeDao std = new ScientificThemeDao();
 		ScientificTheme st = new ScientificTheme();
 		if(DepartmentMenu.theme == 0)

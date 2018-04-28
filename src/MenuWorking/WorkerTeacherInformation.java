@@ -43,6 +43,7 @@ public class WorkerTeacherInformation extends JFrame {
 	 */
 	public WorkerTeacherInformation(JFrame parent) throws SQLException
 	{
+		setResizable(false);
 		TeacherDao td = new TeacherDao();
 		Teacher t = new Teacher();
 		WorkingDao wd = new WorkingDao();

@@ -42,6 +42,7 @@ public class WorkerAspirantInformation extends JFrame {
 	 */
 	public WorkerAspirantInformation(JFrame parent) throws SQLException
 	{
+		setResizable(false);
 		AspirantDao ad = new AspirantDao();
 		Aspirant a = ad.readAspirant(WorkersList.worker_id_to_look);
 		WorkingDao wd = new WorkingDao();

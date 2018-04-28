@@ -43,6 +43,7 @@ public class SupervisorInformation extends JFrame
 	 */
 	public SupervisorInformation(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		SupervisionDao sd = new SupervisionDao();
 		Supervision s = new Supervision();
 		TeacherDao td = new TeacherDao();

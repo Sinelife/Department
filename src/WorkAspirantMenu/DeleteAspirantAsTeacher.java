@@ -33,6 +33,7 @@ public class DeleteAspirantAsTeacher extends JFrame {
 	 */
 	public DeleteAspirantAsTeacher(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		AspirantDao ad = new AspirantDao();
 		List<Aspirant> aspirants = ad.getAllWhoTeachers();
  	  	

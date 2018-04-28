@@ -25,6 +25,7 @@ public class WorkTeacherMenu extends JFrame {
 	 */
 	public WorkTeacherMenu() 
 	{
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 598, 537);
 		contentPane = new JPanel();

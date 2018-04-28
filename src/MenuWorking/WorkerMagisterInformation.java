@@ -42,6 +42,7 @@ public class WorkerMagisterInformation extends JFrame {
 	 */
 	public WorkerMagisterInformation(JFrame parent) throws SQLException
 	{
+		setResizable(false);
 		MagisterDao md = new MagisterDao();
 		Magister m = md.readMagister(WorkersList.worker_id_to_look);
 		WorkingDao wd = new WorkingDao();

@@ -30,6 +30,7 @@ public class MenuWorking extends JFrame {
 	 */
 	public MenuWorking(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		ScientificThemeDao std = new ScientificThemeDao();
 		ScientificTheme st = std.readTheme(ChooseTheme.id_to_work);
 		

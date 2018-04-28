@@ -32,7 +32,8 @@ public class AddTeacher extends JFrame {
 	 * @throws SQLException 
 	 */
 	public AddTeacher(JFrame parent) throws SQLException 
-	{ 	  	
+	{
+		setResizable(false); 	  	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 654, 566);
 		contentPane = new JPanel();

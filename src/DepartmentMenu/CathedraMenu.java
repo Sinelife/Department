@@ -31,6 +31,7 @@ public class CathedraMenu extends JFrame {
 	 */
 	public CathedraMenu() throws SQLException 
 	{
+		setResizable(false);
 		CathedraDao cd = new CathedraDao();
 		Cathedra c = cd.readCathedra(ChooseCathedra.cathedra_id_to_work);
 		
@@ -92,7 +93,7 @@ public class CathedraMenu extends JFrame {
 		contentPane.add(WorkTeacherMenuButton);
 		
 		
-		JButton WorkThemesMenuButton = new JButton("3)Меню роботи з науковими темами");
+		JButton WorkThemesMenuButton = new JButton("4)Меню роботи з науковими темами");
 		WorkThemesMenuButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -109,11 +110,11 @@ public class CathedraMenu extends JFrame {
 		WorkThemesMenuButton.setForeground(Color.BLACK);
 		WorkThemesMenuButton.setHorizontalAlignment(SwingConstants.LEFT);
 		WorkThemesMenuButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		WorkThemesMenuButton.setBounds(37, 295, 487, 42);
+		WorkThemesMenuButton.setBounds(37, 377, 487, 42);
 		contentPane.add(WorkThemesMenuButton);
 		
 		
-		JButton WorkAspirantMenuButton = new JButton("4)Меню роботи з аспірантами");
+		JButton WorkAspirantMenuButton = new JButton("3)Меню роботи з аспірантами");
 		WorkAspirantMenuButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -125,7 +126,7 @@ public class CathedraMenu extends JFrame {
 		WorkAspirantMenuButton.setHorizontalAlignment(SwingConstants.LEFT);
 		WorkAspirantMenuButton.setForeground(Color.BLACK);
 		WorkAspirantMenuButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		WorkAspirantMenuButton.setBounds(37, 379, 487, 42);
+		WorkAspirantMenuButton.setBounds(37, 295, 487, 42);
 		contentPane.add(WorkAspirantMenuButton);
 		
 		

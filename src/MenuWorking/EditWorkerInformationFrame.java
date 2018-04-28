@@ -33,6 +33,7 @@ public class EditWorkerInformationFrame extends JFrame {
 	 */
 	public EditWorkerInformationFrame(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		WorkingDao wd = new WorkingDao();
 		Working w = wd.readWorker(ChooseTheme.id_to_work, EditWorkerInformation.id_to_edit);
 

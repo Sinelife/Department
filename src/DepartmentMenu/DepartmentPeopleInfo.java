@@ -40,6 +40,7 @@ public class DepartmentPeopleInfo extends JFrame {
 	 */
 	public DepartmentPeopleInfo(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		TeacherDao td = new TeacherDao();
 		MagisterDao md = new MagisterDao();
 		AspirantDao ad = new AspirantDao();

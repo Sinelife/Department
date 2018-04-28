@@ -31,6 +31,7 @@ public class EditThemeFrame extends JFrame {
 	 */
 	public EditThemeFrame(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
  	  	ScientificThemeDao std = new ScientificThemeDao();
  	  	ScientificTheme st = std.readTheme(EditTheme.id_to_edit);
  	  	

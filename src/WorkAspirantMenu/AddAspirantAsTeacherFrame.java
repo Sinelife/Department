@@ -41,6 +41,7 @@ public class AddAspirantAsTeacherFrame extends JFrame {
 	 */
 	public AddAspirantAsTeacherFrame(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		AspirantDao ad = new AspirantDao();
 		Aspirant a = ad.readAspirant(AddAspirantAsTeacher.id_to_select);
 		CathedraDao cd = new CathedraDao();

@@ -33,6 +33,7 @@ public class EditWorkerInformation extends JFrame {
 	 */
 	public EditWorkerInformation(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		WorkingDao wd = new WorkingDao();
 		List<Working> workers = wd.getAllFromTheme(ChooseTheme.id_to_work);
 		

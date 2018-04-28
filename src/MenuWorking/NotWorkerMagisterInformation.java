@@ -39,6 +39,7 @@ public class NotWorkerMagisterInformation extends JFrame {
 	 */
 	public NotWorkerMagisterInformation(JFrame parent) throws SQLException
 	{
+		setResizable(false);
 		MagisterDao md = new MagisterDao();
 		Magister m = new Magister();
 		

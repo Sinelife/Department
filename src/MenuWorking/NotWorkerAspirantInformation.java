@@ -43,6 +43,7 @@ public class NotWorkerAspirantInformation extends JFrame {
 	 */
 	public NotWorkerAspirantInformation(JFrame parent) throws SQLException
 	{
+		setResizable(false);
 		AspirantDao ad = new AspirantDao();
 		Aspirant a = new Aspirant();
 		

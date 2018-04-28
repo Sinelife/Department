@@ -44,6 +44,7 @@ public class CathedraPeopleInfo extends JFrame
 	 */
 	public CathedraPeopleInfo(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		CathedraDao cd = new CathedraDao();
 		TeacherDao td = new TeacherDao();
 		MagisterDao md = new MagisterDao();

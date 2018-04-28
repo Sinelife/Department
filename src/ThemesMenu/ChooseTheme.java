@@ -32,7 +32,8 @@ public class ChooseTheme extends JFrame {
 	 * @throws SQLException 
 	 */
 	public ChooseTheme(JFrame parent) throws SQLException 
-	{	
+	{
+		setResizable(false);	
 		ScientificThemeDao std = new ScientificThemeDao();
 		List<ScientificTheme> themes = std.getAllInCathedra(ChooseCathedra.cathedra_id_to_work);
 		

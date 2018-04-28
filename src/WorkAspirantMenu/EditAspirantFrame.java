@@ -44,6 +44,7 @@ public class EditAspirantFrame extends JFrame {
 	 */
 	public EditAspirantFrame(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		AspirantDao ad = new AspirantDao();
 		TeacherDao td = new TeacherDao();
 		Aspirant a = ad.readAspirant(EditAspirant.id_to_edit);

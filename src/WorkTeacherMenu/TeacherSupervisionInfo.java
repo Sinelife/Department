@@ -44,6 +44,7 @@ public class TeacherSupervisionInfo extends JFrame {
 	 */
 	public TeacherSupervisionInfo(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		TeacherDao td = new TeacherDao();
 		List<Teacher> teachers = td.getAllFromCathedra(ChooseCathedra.cathedra_id_to_work);
 		

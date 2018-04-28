@@ -42,6 +42,7 @@ public class AspirantThemeRulers extends JFrame {
 	 */
 	public AspirantThemeRulers(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		TeacherDao td = new TeacherDao();
 		AspirantDao ad = new AspirantDao();
 		List<Teacher> rulers = td.getAll();

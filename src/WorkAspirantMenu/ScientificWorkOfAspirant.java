@@ -41,6 +41,7 @@ public class ScientificWorkOfAspirant extends JFrame {
 	 */
 	public ScientificWorkOfAspirant(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		AspirantDao ad = new AspirantDao();
 		List<Aspirant> aspirants = ad.getAllFromCathedra(ChooseCathedra.cathedra_id_to_work);
 		

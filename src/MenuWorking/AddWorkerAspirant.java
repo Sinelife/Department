@@ -39,6 +39,7 @@ public class AddWorkerAspirant extends JFrame {
 	 */
 	public AddWorkerAspirant(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
  	  	AspirantDao ad = new AspirantDao();
 		List<Aspirant> aspirants = ad.getAllNotFromTheme(ChooseTheme.id_to_work);
  	  	

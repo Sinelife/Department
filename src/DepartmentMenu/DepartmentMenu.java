@@ -32,6 +32,7 @@ public class DepartmentMenu extends JFrame {
 	 */
 	public DepartmentMenu() 
 	{
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 628, 354);
 		contentPane = new JPanel();
@@ -45,7 +46,7 @@ public class DepartmentMenu extends JFrame {
 		lblNewLabel.setBounds(27, 13, 543, 49);
 		contentPane.add(lblNewLabel);
 		
-		JButton ChooseCathedraButton = new JButton("1)Обрати кафедру для подальшої роботи з нею");
+		JButton ChooseCathedraButton = new JButton("2)Обрати кафедру для подальшої роботи з нею");
 		ChooseCathedraButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
@@ -61,10 +62,10 @@ public class DepartmentMenu extends JFrame {
 		ChooseCathedraButton.setForeground(Color.BLACK);
 		ChooseCathedraButton.setHorizontalAlignment(SwingConstants.LEFT);
 		ChooseCathedraButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		ChooseCathedraButton.setBounds(27, 111, 531, 42);
+		ChooseCathedraButton.setBounds(27, 191, 531, 42);
 		contentPane.add(ChooseCathedraButton);
 		
-		JButton AllPeopleOnDepartmentButton = new JButton("2)Перегляд всіх людей факультеті");
+		JButton AllPeopleOnDepartmentButton = new JButton("1)Перегляд всіх на людей факультеті");
 		AllPeopleOnDepartmentButton.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e)
@@ -80,7 +81,7 @@ public class DepartmentMenu extends JFrame {
 		AllPeopleOnDepartmentButton.setForeground(Color.BLACK);
 		AllPeopleOnDepartmentButton.setHorizontalAlignment(SwingConstants.LEFT);
 		AllPeopleOnDepartmentButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		AllPeopleOnDepartmentButton.setBounds(27, 198, 531, 42);
+		AllPeopleOnDepartmentButton.setBounds(27, 91, 531, 42);
 		contentPane.add(AllPeopleOnDepartmentButton);
 	}
 }

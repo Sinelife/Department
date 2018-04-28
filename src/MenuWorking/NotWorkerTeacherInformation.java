@@ -39,6 +39,7 @@ public class NotWorkerTeacherInformation extends JFrame {
 	 */
 	public NotWorkerTeacherInformation(JFrame parent) throws SQLException
 	{
+		setResizable(false);
 		TeacherDao td = new TeacherDao();
 		Teacher t = new Teacher();
 		

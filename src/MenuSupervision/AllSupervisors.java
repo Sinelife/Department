@@ -36,7 +36,8 @@ public class AllSupervisors extends JFrame {
 	 * @throws SQLException 
 	 */
 	public AllSupervisors(JFrame parent) throws SQLException
-	{		
+	{
+		setResizable(false);		
 		ScientificThemeDao std = new ScientificThemeDao();
 		
 		SupervisionDao sd = new SupervisionDao();

@@ -33,6 +33,7 @@ public class EditTeacher extends JFrame {
 	 */
 	public EditTeacher(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		TeacherDao td = new TeacherDao();
 		List<Teacher> teachers = td.getAllFromCathedra(ChooseCathedra.cathedra_id_to_work);
  	  	

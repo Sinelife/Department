@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class DeleteWorker extends JFrame {
 
@@ -31,6 +32,7 @@ public class DeleteWorker extends JFrame {
 	 */
 	public DeleteWorker(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		WorkingDao wd = new WorkingDao();
 		List<Working> workers = wd.getAllFromTheme(ChooseTheme.id_to_work);
 		
@@ -53,8 +55,9 @@ public class DeleteWorker extends JFrame {
 		
 		
 		JLabel lblNewLabel = new JLabel("Видалити науковця з теми");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		lblNewLabel.setBounds(40, 44, 543, 42);
+		lblNewLabel.setBounds(0, 44, 610, 42);
 		contentPane.add(lblNewLabel);
 		
 

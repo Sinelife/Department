@@ -22,6 +22,7 @@ public class AddWorker extends JFrame {
 	 * Create the frame.
 	 */
 	public AddWorker(JFrame parent) {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 572, 484);
 		contentPane = new JPanel();

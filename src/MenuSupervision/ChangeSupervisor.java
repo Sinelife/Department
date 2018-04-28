@@ -43,6 +43,7 @@ public class ChangeSupervisor extends JFrame {
 	 */
 	public ChangeSupervisor(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		SupervisionDao sd = new SupervisionDao();
 		Supervision s_old = sd.readSupervisor(ChooseTheme.id_to_work);
 		Supervision s_new = new Supervision();

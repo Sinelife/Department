@@ -23,6 +23,7 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class AddWorkerTeacher extends JFrame {
 
@@ -41,6 +42,7 @@ public class AddWorkerTeacher extends JFrame {
 	 */
 	public AddWorkerTeacher(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		ScientificThemeDao std = new ScientificThemeDao();
 		ScientificTheme st = std.readTheme(ChooseTheme.id_to_work);
 		
@@ -67,8 +69,9 @@ public class AddWorkerTeacher extends JFrame {
 		
 		
 		JLabel lblNewLabel = new JLabel("Залучення викладача");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		lblNewLabel.setBounds(40, 44, 543, 42);
+		lblNewLabel.setBounds(0, 44, 622, 42);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNameWorking = new JLabel("назва роботи");

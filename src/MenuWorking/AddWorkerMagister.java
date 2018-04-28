@@ -39,6 +39,7 @@ public class AddWorkerMagister extends JFrame {
 	 */
 	public AddWorkerMagister(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		MagisterDao md = new MagisterDao();
 		List<Magister> magisters = md.getAllNotFromTheme(ChooseTheme.id_to_work);
  	  	

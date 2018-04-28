@@ -39,6 +39,7 @@ public class WorkersList extends JFrame {
 	 */
 	public WorkersList(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		MagisterDao md = new MagisterDao();
 		AspirantDao ad = new AspirantDao();
 		TeacherDao td = new TeacherDao();

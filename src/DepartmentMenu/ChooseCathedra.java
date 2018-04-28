@@ -31,6 +31,7 @@ public class ChooseCathedra extends JFrame {
 	 */
 	public ChooseCathedra(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		CathedraDao cd = new CathedraDao();
 		List<Cathedra> cathedras = cd.getAll();
 		

@@ -33,6 +33,7 @@ public class AddAspirantAsTeacher extends JFrame {
 	 */
 	public AddAspirantAsTeacher(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		AspirantDao ad = new AspirantDao();
 		List<Aspirant> aspirants = ad.getAllWhoNotTeachers();
  	  	

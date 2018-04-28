@@ -30,7 +30,8 @@ public class AddTheme extends JFrame {
 	 * @throws SQLException 
 	 */
 	public AddTheme(JFrame parent) throws SQLException 
-	{ 	  	
+	{
+		setResizable(false); 	  	
 		CathedraDao cd = new CathedraDao();
 		Cathedra c = cd.readCathedra(ChooseCathedra.cathedra_id_to_work);
 		

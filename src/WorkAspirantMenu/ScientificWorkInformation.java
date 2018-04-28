@@ -34,6 +34,7 @@ public class ScientificWorkInformation extends JFrame {
 	 */
 	public ScientificWorkInformation(JFrame parent) throws SQLException 
 	{
+		setResizable(false);
 		ScientificWorkDao swd = new ScientificWorkDao();
 		ScientificWork sw = new ScientificWork();
 		sw = swd.readWork(ScientificWorkOfAspirant.work_id);

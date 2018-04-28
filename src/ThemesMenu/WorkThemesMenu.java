@@ -54,11 +54,12 @@ public class WorkThemesMenu extends JFrame {
 	 */
 	public WorkThemesMenu() throws SQLException 
 	{
+		setResizable(false);
 		CathedraDao cd = new CathedraDao();
 		Cathedra c = cd.readCathedra(ChooseCathedra.cathedra_id_to_work);
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 628, 536);
+		setBounds(100, 100, 628, 482);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -111,24 +112,7 @@ public class WorkThemesMenu extends JFrame {
 		AddThemeButton.setBounds(185, 218, 226, 42);
 		contentPane.add(AddThemeButton);
 		
-		JButton DeleteThemeButton = new JButton("3)Видалити тему");
-		DeleteThemeButton.setForeground(Color.DARK_GRAY);
-		DeleteThemeButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				WorkThemesMenu.this.setVisible(false);
-				try {
-					new DeleteTheme(WorkThemesMenu.this).setVisible(true);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				};
-			}
-		});
-		DeleteThemeButton.setHorizontalAlignment(SwingConstants.LEFT);
-		DeleteThemeButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		DeleteThemeButton.setBounds(185, 293, 226, 42);
-		contentPane.add(DeleteThemeButton);
-		
-		JButton EditThemeButton = new JButton("4)Редагувати тему");
+		JButton EditThemeButton = new JButton("3)Редагувати тему");
 		EditThemeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				WorkThemesMenu.this.setVisible(false);
@@ -141,7 +125,7 @@ public class WorkThemesMenu extends JFrame {
 		});
 		EditThemeButton.setHorizontalAlignment(SwingConstants.LEFT);
 		EditThemeButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		EditThemeButton.setBounds(185, 371, 226, 42);
+		EditThemeButton.setBounds(185, 305, 226, 42);
 		contentPane.add(EditThemeButton);
 		
 		JButton button = new JButton("BACK");
@@ -158,7 +142,7 @@ public class WorkThemesMenu extends JFrame {
 				}
 			}
 		});
-		button.setBounds(501, 451, 97, 25);
+		button.setBounds(501, 397, 97, 25);
 		contentPane.add(button);
 	}
 }
